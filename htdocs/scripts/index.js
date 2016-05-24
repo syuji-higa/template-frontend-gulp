@@ -58,8 +58,8 @@
 	// require('html5-polyfills/classList');
 	// require('html5-polyfills/dataset');
 	// require('fetch');
+	// require('../../vendors/rAF');  // https://gist.github.com/paulirish/1579671
 	// require('../../requires/polyfill/function');
-	// require('raf').polyfill();
 	
 	// create multiple incetance
 	var createIncetance = function createIncetance(_class, _selector, _opts) {
