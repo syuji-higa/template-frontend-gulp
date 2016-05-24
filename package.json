@@ -1,5 +1,5 @@
 {
-  "name": "base",
+  "name": "project",
   "version": "0.0.0",
   "description": "",
   "main": "",
@@ -8,9 +8,9 @@
   },
   "repository": {
     "Type": "git",
-    "URL": "git@gitlab.syuji.me:my-projects/project-base-gulp.git"
+    "URL": "git@github.com:syuji-higa/projects-base-gulp.git"
   },
-  "auther": "",
+  "auther": "syuji-higa",
   "license": "MIT",
   "private": true,
   "babel": {
