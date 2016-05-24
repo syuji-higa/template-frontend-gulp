@@ -281,10 +281,10 @@ gulp.task('browser-sync', () => {
         baseDir   : DEST_ROOT,
         middleware: browserSyncMiddleware,
       },
-      open           : false,
-      notify         : false,
+      open  : false,
+      notify: false,
       reloadOnRestart: true,
-      // directory      : true,
+      // directory: true,
     });
   }
   else {
@@ -294,10 +294,10 @@ gulp.task('browser-sync', () => {
       keepalive: false,
     });
     browserSync.init({
-      proxy          : 'localhost:3002',
-      middleware     : browserSyncMiddleware,
-      open           : false,
-      notify         : false,
+      proxy     : 'localhost:3002',
+      middleware: browserSyncMiddleware,
+      open      : false,
+      notify    : false,
       reloadOnRestart: true,
     });
   }
@@ -377,11 +377,11 @@ const jadeTask = (srcPath, destPath, isSrcDirUpdate, done = null) => {
     // .pipe(crLfReplace({ changeCode: 'CR+LF' }))
     // .pipe(gulpif(isProduction, iconv({ encoding: 'shift_jis' })))
     .pipe(gulp.dest(destPath))
-    .pipe(extensonChange({
-      afterExtension: 'php',
-      copy: true,
-    }))
-    .pipe(gulp.dest(JADE_DEST))
+    // .pipe(extensonChange({
+    //   afterExtension: 'php',
+    //   copy: true,
+    // }))
+    // .pipe(gulp.dest(JADE_DEST))
     .on('end', () => {
       if(done) done();
     });
