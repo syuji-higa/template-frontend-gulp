@@ -191,22 +191,9 @@ mixin が用意されているので import して使用します。
 
 
 # JavaScript
-基本は [CoffeeScript](http://coffeescript.org/) をコンパイル、  
-または [Babel（es2015、stage-0）](https://babeljs.io/) をトランスパイルして、  
+基本は [Babel（es2015、stage-0）](https://babeljs.io/) をトランスパイルして、  
 [webpack](https://webpack.github.io/) で結合します。
 
-## コンパイラ
-デフォルトは CoffeeScript を使用するようになっています。  
-Babel を使用する場合は、以下を変更します。
-
-```js:gulpfile.babel.js
-const jsCompiler = 'coffee';
-```
-↓
-
-```js:gulpfile.babel.js
-const jsCompiler = 'babel';
-```
 
 ## webpack
 パッケージマネージャーに [Bower](http://bower.io/) を使用しています。
