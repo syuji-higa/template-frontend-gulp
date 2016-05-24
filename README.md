@@ -75,9 +75,9 @@ JavaScrpt のテストを実行します。
 URL一覧を表示するHTMLファイルを生成します。
 
 #### **gulp clean**
-不要なファイルを削除します。
-通常は gulp production で合わせて実行されますが、
-ファイルの削除だけする場合に使用。
+不要なファイルを削除します。  
+通常は gulp production で合わせて実行されますが、  
+ファイルの削除だけする場合に使用。  
 ※ CSS、JavaScript 内にはソースマップへの参照が残ります。
 
 
@@ -123,17 +123,17 @@ gulp coding --php
 | extensonChange | 拡張子変換   |
 
 ## Factory
-テンプレートファイルと json から html 自動生成します。
+テンプレートファイルと json から html 自動生成します。  
 一部だけ違うページを大量生成する際におすすめ。
 
 #### **テンプレートファイル**
-/json/factorys/ 以下の jade ファイル。
+/json/factorys/ 以下の jade ファイル。  
 `{{vars}}` に json から取得したデータが変数として挿入されます。
 
 #### **データファイル**
 /json/factorys/ 以下の json ファイル。
 
-```json
+```javascript
 { "factorys/index.jade": {  // 使用するテンプレートを指定
 
   "factory/index.jade": {  // 出力先のパスを指定（拡張は.jade）
@@ -159,7 +159,7 @@ gulp coding --php
 # Image
 
 ## Sprite
-/images/sprites/ 以下の画像をスプライト化して /htdocs/ 以下に出力します。
+/images/sprites/ 以下の画像をスプライト化して /htdocs/ 以下に出力します。  
 最終ディレクトリ名がファイル名になります。
 
 > 例
@@ -168,7 +168,7 @@ gulp coding --php
 ↓
 /htdocs/images/sample.png
 
-Stylus で使用する為に /stylus/imports/sprite.styl が出力されます。
+Stylus で使用する為に /stylus/imports/sprite.styl が出力されます。  
 mixin が用意されているので import して使用します。
 
 ```stylus
@@ -184,19 +184,19 @@ mixin が用意されているので import して使用します。
 
 
 ## image minimizing
-/images/src/ 以下の画像を圧縮して /htdocs/ 以下に出力します。
-`gulp production` 実行時に一度だけ実行されます。
+/images/src/ 以下の画像を圧縮して /htdocs/ 以下に出力します。  
+`gulp production` 実行時に一度だけ実行されます。  
 `gulp imagemin` でも個別に実行できます。
 
 
 
 # JavaScript
-基本は [CoffeeScript](http://coffeescript.org/) をコンパイル、
-または [Babel（es2015、stage-0）](https://babeljs.io/) をトランスパイルして、
+基本は [CoffeeScript](http://coffeescript.org/) をコンパイル、  
+または [Babel（es2015、stage-0）](https://babeljs.io/) をトランスパイルして、  
 [webpack](https://webpack.github.io/) で結合します。
 
 ## コンパイラ
-デフォルトは CoffeeScript を使用するようになっています。
+デフォルトは CoffeeScript を使用するようになっています。  
 Babel を使用する場合は、以下を変更します。
 
 ```js:gulpfile.babel.js
@@ -211,7 +211,7 @@ const jsCompiler = 'babel';
 ## webpack
 パッケージマネージャーに [Bower](http://bower.io/) を使用しています。
 
-minファイルなど package.json で指定されている main 以外のファイルを使用したい場合は、
+minファイルなど package.json で指定されている main 以外のファイルを使用したい場合は、  
 オプションの alias に指定すると便利。
 
 ```js:gulpfile.babel.js
@@ -231,7 +231,7 @@ alias: {
 # URL list
 3003ポートにURL一覧を表示します。
 
-/url-list/tmp.html がテンプレートファイルになっていて
+/url-list/tmp.html がテンプレートファイルになっていて  
 /url-list/index.html にファイル一覧のデータを追加して出力されます。
 
 ## テストサーバーへのリンク
@@ -246,9 +246,9 @@ var sbudomain = 'client--project--branch';
 ```
 
 ### テストサーバーにアップして表示
-以下を変更すると /url-list/index.html と同じファイルが
-/htdocs/url-list.html として出力されます。
-（変更後に url-list タスクの実行が必要）
+以下を変更すると /url-list/index.html と同じファイルが  
+/htdocs/url-list.html として出力されます。  
+（変更後に url-list タスクの実行が必要）  
 このファイルをテストサーバーにアップして表示。
 
 ```js:gulpfile.babel.js
@@ -259,7 +259,7 @@ const outputUrlListToHtdocs = false;
 ```js:gulpfile.babel.js
 const outputUrlListToHtdocs = true;
 ```
-※ 不要ファイルですので納品ファイルに含めないように注意。
+※ 不要ファイルですので納品ファイルに含めないように注意。  
 　直接消すか、納品時に gulp production か gulp clean するなどで対応。
 
 
