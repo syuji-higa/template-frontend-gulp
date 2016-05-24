@@ -20,7 +20,7 @@
 const gulp = require('gulp');
 const gulpif = require('gulp-if');
 const argv = require('minimist')(process.argv.slice(2));
-const { forEach, map, merge, union, reduce } = require('lodash');
+const { forEach, map, merge, union, reduce, every } = require('lodash');
 const { File, PluginError, log, replaceExtension } = require('gulp-util');
 const { join, relative, dirname, basename } = require('path');
 const fs = require('fs');
@@ -263,8 +263,12 @@ gulp.task('production-watch', () => {
  * browser-sync
  */
 const browserSyncMiddleware = (req, res, next) => {
+  const exclusionFiles = [
+    '/scripts/loading.php',
+  ];
   const url = req.url.match(/^.*\/(.+\.(html|php))?$/);
-  if(url) {
+
+  if(url && every(exclusionFiles, (file) => !file.match(url[0]))) {
     if(url[0].match(/\/$/)) {
       viewingPage = `${ url[0] }index.html`;
     } else {
