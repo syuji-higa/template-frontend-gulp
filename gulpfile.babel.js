@@ -326,6 +326,7 @@ const jadeMember = (file, callback) => {
       const pathName = relative(ret.dirname, path);
       return pathName ? `${ pathName }/` : './';
     },
+    isProduction: isProduction,
   };
   callback(null, ret);
 };
