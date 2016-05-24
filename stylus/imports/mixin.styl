@@ -1,0 +1,67 @@
+size(width, height = width)
+  width width
+  height height
+
+min-size(width, height = width)
+  min-width width
+  min-height height
+
+font-size-rem(size)
+  if support-ie8
+    font-size size px
+  font-size (size / 10)rem
+
+img-replace()
+  overflow hidden
+  text-indent -100%
+  white-space nowrap
+
+triangle(shape = 'left', size = 10px, color = #000, top = auto, right = auto, bottom = auto, left = auto)
+  content ""
+  display block
+  width 0
+  height 0
+  if shape is 'top'
+    colors = color transparent transparent
+  else if shape is 'right'
+    colors = transparent color transparent transparent
+  else if shape is 'bottom'
+    colors = transparent transparent color
+  else if shape is 'left'
+    colors = transparent transparent transparent color
+  else if shape is 'topLeft'
+    colors = color transparent transparent color
+  else if shape is 'topRight'
+    colors = color color transparent transparent
+  else if shape is 'bottomRight'
+    colors = transparent color color transparent
+  else if shape is 'bottomLeft'
+    colors = transparent transparent color color
+  border-width size
+  border-style solid
+  border-color colors
+  position absolute
+  top top
+  right right
+  bottom bottom
+  left left
+
+sprite-hover(image, before-suffix = '-off', after-suffix = '-on', duration = .2)
+  position relative
+  animation fadeFirstSet (duration)s linear
+  &, &:hover:before
+    sprite image + before-suffix + '.png'
+  &:before, &:after
+    content ''
+    display block
+    opacity 0
+    absolute top 0 left 0
+  &:after
+    sprite image + after-suffix + '.png'
+    animation fadeOut (duration)s linear
+  &:hover
+    background none
+    &:before, &:after
+      opacity 1
+    &:after
+      animation fadeIn (duration)s linear

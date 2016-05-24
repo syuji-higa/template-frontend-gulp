@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>URL LIST</title>
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+<style>
+body {
+  margin: 0;
+}
+ul {
+  padding-left: 0;
+  margin: 0;
+}
+#list li {
+  box-sizing: border-box;
+}
+#list a {
+  display: block;
+  background-color: #f9f9f9;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+}
+@media screen and (min-width: 737px) {
+  #list {
+    padding: 10px;
+  }
+  #list::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+  #list li {
+    width: 50%;
+    padding: 10px;
+    float: left;
+    font-size: 12px;
+  }
+  #list a {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  #list a:hover {
+    background-color: #fff;
+  }
+}
+@media screen and (max-width: 736px) {
+  body {
+    padding: 10px;
+  }
+  #list {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  #list li {
+    font-size: 14px;
+  }
+  #list li ~ li {
+    border-top: 1px solid #ccc;
+  }
+  #list a {
+    padding: 15px;
+  }
+}
+</style>
+<script>
+var sbudomain = 'client--project--branch';
+var data = [ {{data}} ];
+window.addEventListener('DOMContentLoaded', () => {
+  var $list     = document.getElementById('list');
+  var $fragment = document.createDocumentFragment();
+  var hostname  = location.hostname;
+  var port      = location.port;
+  if(hostname) {
+    var host = port ? (hostname + ':3000') : hostname;
+  } else {
+    var host = sbudomain + '.repo.testup.me';
+  }
+  for(let i_ = 0; data.length > i_; i_++) {
+    var $li_  = document.createElement('li');
+    var $a_   = document.createElement('a');
+    var indexFile_ = data[i_].match(/^(.*\/)(index\.(html|php))$/);
+    if(indexFile_) {
+      var data_ = indexFile_[1];
+    } else {
+      var data_ = data[i_];
+    }
+    $a_.href = 'http://' + host + data_;
+    $a_.setAttribute('target', '_blank');
+    $a_.textContent = data[i_];
+    $li_.appendChild($a_);
+    $fragment.appendChild($li_);
+  }
+  $list.appendChild($fragment);
+});
+</script>
+</head>
+<body>
+<ul id="list">
+</ul>
+</body>
+</html>

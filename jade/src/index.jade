@@ -1,0 +1,39 @@
+extends /extends/pc/layout
+
+append vars
+  - var title       = 'top title'
+  - var description = 'top description'
+  - var keywords    = 'top keywords'
+  - var bodyAttrs = { 'id': 'body-id', 'class': 'body-class' };
+
+//- append metas
+//-   meta()
+//- append styles
+//-   link(rel="stylesheet", href="", media="all")
+//- append scripts
+//-   script(src="")
+
+block contents
+  .contents
+    p I'm hungry.
+    p
+      img(src="images/sample.gif", alt="")
+    ul.sprite
+      - var i = 3
+      while i--
+        li
+    p.btn
+
+  //- lodash template
+  .result
+  script.template(type="text/template")
+    | <% _.forEach(data, function(v) { %>
+    | <p data-<%= v.class %>>-----</p>
+    p(class!="<%= v.class %>") <%= v.name %>
+    p <%= v.age %>
+    | <% }); %>
+
+  button button
+  p.txt test
+  
+  div(style="width: 100px; height: 1000px; background-color: #ddd;")

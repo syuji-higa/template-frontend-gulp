@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+@import "nib"
+@import "../../imports/pc/setting"
+
+@import "../../imports/mixin"
+@import "../../imports/normalize"
+@import "../../imports/pc/default"
+@import "../../imports/sprite"
+@import "../../imports/keyframes"
+
+.sprite
+  for name, i in "blue" "green" "red"
+    li:nth-child({ i + 1 })
+      sprite "images/circle/" + name + ".png"
+
+.btn
+  sprite-hover('images/btn/btn')
+
+sprite-hover-anime()

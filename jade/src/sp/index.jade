@@ -1,0 +1,25 @@
+extends /extends/sp/layout
+block vars
+  - var bodyAttrs = { 'id': 'body-id', 'class': 'body-class' };
+//- append metas
+//-   meta()
+//- append styles
+//-   link(rel="stylesheet", href="", media="all")
+//- append scripts
+//-   script(src="")
+block contents
+  .contents
+    p I'm hungry.
+    p
+      img(src="images/circle.png", alt="")
+    p
+      img(src="images/sample.gif", alt="")
+
+  //- lodash template
+  .result
+  script.template(type="text/template")
+    | <% _.each(data, function(v) { %>
+    | <p data-<%= v.class %>>-----</p>
+    p(class!="<%= v.class %>") <%= v.name %>
+    p <%= v.age %>
+    | <% }); %>
