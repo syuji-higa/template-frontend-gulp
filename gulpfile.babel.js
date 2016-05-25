@@ -263,12 +263,10 @@ gulp.task('production-watch', () => {
  * browser-sync
  */
 const browserSyncMiddleware = (req, res, next) => {
-  const exclusionFiles = [
-    '/scripts/loading.php',
-  ];
+  const exclusionFiles = [];
   const url = req.url.match(/^.*\/(.+\.(html|php))?$/);
 
-  if(url && every(exclusionFiles, (file) => !file.match(url[0]))) {
+  if(url && every(exclusionFiles, (file) => (file !== url[0]))) {
     if(url[0].match(/\/$/)) {
       viewingPage = `${ url[0] }index.html`;
     } else {
