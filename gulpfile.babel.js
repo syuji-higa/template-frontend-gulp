@@ -27,6 +27,7 @@ const fs = require('fs');
 const recursive = require('recursive-readdir');
 const through = require('through2');
 const sort = require('gulp-sort');
+const filter = require('gulp-filter');
 const del = require('del');
 const watch = require('gulp-watch');
 const connect = require('gulp-connect-php');
@@ -370,6 +371,8 @@ const jadeOpts = {
   basedir: join(__dirname, JADE_BASE),
 };
 
+// const jadeExtensonChangeFilter = ['*'];
+
 const jadeTask = (srcPath, destPath, isSrcDirUpdate, done = null) => {
   return gulp.src(srcPath)
     .pipe(plumber(PLUMBER_OPTS))
@@ -379,6 +382,7 @@ const jadeTask = (srcPath, destPath, isSrcDirUpdate, done = null) => {
     // .pipe(crLfReplace({ changeCode: 'CR+LF' }))
     // .pipe(gulpif(isProduction, iconv({ encoding: 'shift_jis' })))
     .pipe(gulp.dest(destPath))
+    // .pipe(filter(jadeExtensonChangeFilter))
     // .pipe(extensonChange({
     //   afterExtension: 'php',
     //   copy: true,
