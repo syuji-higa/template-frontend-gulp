@@ -336,9 +336,9 @@ const jadeMember = (file, callback) => {
   callback(null, ret);
 };
 
-// jade.filters.sample = (block) => {
-//   return block;
-// };
+jade.filters.doNothing = (block) => {
+  return block;
+};
 
 gulp.task('jade', (done) => {
   jadeTask(join(JADE_SRC, '/**/*.jade'), JADE_DEST, true, done);
