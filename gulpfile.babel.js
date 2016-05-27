@@ -34,8 +34,8 @@ const connect = require('gulp-connect-php');
 const browserSync = require('browser-sync').create();
 const browserSyncUrlList = require('browser-sync').create();
 const runSequence = require('run-sequence');
-const jade = require('jade');
-const gulpJade = require('gulp-jade');
+const pug = require('pug');
+const gulpPug = require('gulp-pug');
 const data = require('gulp-data');
 const htmlhint = require('gulp-htmlhint');
 const stylus = require('gulp-stylus');
@@ -91,11 +91,11 @@ let viewingPage = '';
  */
 const DEST_ROOT = 'htdocs';
 
-const JADE_BASE    = 'jade';
-const JADE_SRC     = join(JADE_BASE, 'src');
-const JADE_FACTORY = join(JADE_BASE, 'factorys');
-const JADE_OTHER   = join(JADE_BASE, '!(src|factorys)');
-const JADE_DEST    = DEST_ROOT;
+const PUG_BASE    = 'pug';
+const PUG_SRC     = join(PUG_BASE, 'src');
+const PUG_FACTORY = join(PUG_BASE, 'factorys');
+const PUG_OTHER   = join(PUG_BASE, '!(src|factorys)');
+const PUG_DEST    = DEST_ROOT;
 
 const STYLUS_BASE  = 'stylus';
 const STYLUS_SRC   = join(STYLUS_BASE, 'src');
@@ -118,7 +118,6 @@ const WEBPACK_DEST  = DEST_ROOT;
 
 const TEST_CONFIG_SRC = `${ __dirname }/karma.conf.js`;
 const TEST_SRC        = 'test';
-
 
 const URL_LIST = 'url-list';
 
@@ -157,7 +156,7 @@ gulp.task('coding', () => {
   runSequence(
     'coding-watch',
     (() => isProduction ? [ 'sprite', 'imagemin' ] : 'sprite')(),
-    [ 'jade', 'jade-factory', 'stylus' ],
+    [ 'pug', 'pug-factory', 'stylus' ],
     [ 'browser-sync', 'url-list' ]
   );
 });
@@ -182,7 +181,7 @@ gulp.task('all', () => {
   runSequence(
     (() => isProduction ? 'production-watch' : 'all-watch')(),
     (() => isProduction ? [ 'sprite', 'imagemin' ] : 'sprite')(),
-    [ 'jade', 'jade-factory', 'stylus', 'webpack-first' ],
+    [ 'pug', 'pug-factory', 'stylus', 'webpack-first' ],
     (() => isProduction ? [ 'browser-sync', 'clean' ] : 'browser-sync')()
   );
 });
@@ -207,10 +206,10 @@ const watchStart = (files, cb = null) => {
  */
 gulp.task('coding-watch', () => {
 
-  watchStart([ join(JADE_SRC    , '/**/*.jade') ], () => gulp.start('jade'));
-  watchStart([ join(JADE_OTHER  , '/**/*.jade') ], () => gulp.start('jade-all'));
-  watchStart([ join(JADE_FACTORY, '/**/*.json') ], () => gulp.start('jade-factory'));
-  watchStart([ join(JADE_FACTORY, '/**/*.jade') ], () => gulp.start('jade-factory-all'));
+  watchStart([ join(PUG_SRC    , '/**/*.pug') ], () => gulp.start('pug'));
+  watchStart([ join(PUG_OTHER  , '/**/*.pug') ], () => gulp.start('pug-all'));
+  watchStart([ join(PUG_FACTORY, '/**/*.json') ], () => gulp.start('pug-factory'));
+  watchStart([ join(PUG_FACTORY, '/**/*.pug') ], () => gulp.start('pug-factory-all'));
 
   const styleTask = (stylusTask) => {
     runSequence.apply(this, [ 'sprite', stylusTask ]);
@@ -322,9 +321,9 @@ gulp.task('browser-sync', () => {
 
 
 /**
- * jade
+ * pug
  */
-const jadeMember = (file, callback) => {
+const pugMember = (file, callback) => {
   const ret = {
     dirname : dirname(file.relative),
     filename: replaceExtension(basename(file.relative), '.html'),
@@ -337,63 +336,64 @@ const jadeMember = (file, callback) => {
   callback(null, ret);
 };
 
-jade.filters.doNothing = (block) => {
-  return block;
-};
-
-gulp.task('jade', (done) => {
-  jadeTask(join(JADE_SRC, '/**/*.jade'), JADE_DEST, true, done);
+gulp.task('pug', (done) => {
+  pugTask(join(PUG_SRC, '/**/*.pug'), PUG_DEST, true, done);
 });
 
-gulp.task('jade-all', (done) => {
+gulp.task('pug-all', (done) => {
   if(viewingPage) {
-    const path = `${ viewingPage.match(/^(.+)(\.)(html|php)$/)[1] }.jade`;
+    const path = `${ viewingPage.match(/^(.+)(\.)(html|php)$/)[1] }.pug`;
     const dest = viewingPage.match(/^(.*\/)(.+\.)(html|php)$/)[1];
-    jadeTask(join(JADE_SRC, path), join(JADE_DEST, dest), false);
-    jadeTask([join(JADE_SRC, '/**/*.jade'), join(JADE_SRC, `!${ path }`)], JADE_DEST, false, done);
+    pugTask(join(PUG_SRC, path), join(PUG_DEST, dest), false);
+    pugTask([join(PUG_SRC, '/**/*.pug'), join(PUG_SRC, `!${ path }`)], PUG_DEST, false, done);
   } else {
-    jadeTask(join(JADE_SRC, '/**/*.jade'), JADE_DEST, false, done);
+    pugTask(join(PUG_SRC, '/**/*.pug'), PUG_DEST, false, done);
   }
 });
 
-gulp.task('jade-factory', (done) => {
-  jadeFactoryTask(true, done);
+gulp.task('pug-factory', (done) => {
+  pugFactoryTask(true, done);
 });
 
-gulp.task('jade-factory-all', (done) => {
-  jadeFactoryTask(false, done);
+gulp.task('pug-factory-all', (done) => {
+  pugFactoryTask(false, done);
 });
 
-const jadeOpts = {
-  jade   : jade,
+const pugOpts = {
+  pug   : pug,
   pretty : true,
   // pretty : !isProduction,
-  basedir: join(__dirname, JADE_BASE),
+  basedir: join(__dirname, PUG_BASE),
+  filters: {
+    'do-nothing': (block) => {
+      return block;
+    },
+  },
 };
 
-// const jadeExtensonChangeFilter = ['*'];
+// const pugExtensonChangeFilter = ['*'];
 
-const jadeTask = (srcPath, destPath, isSrcDirUpdate, done = null) => {
+const pugTask = (srcPath, destPath, isSrcDirUpdate, done = null) => {
   return gulp.src(srcPath)
     .pipe(plumber(PLUMBER_OPTS))
-    .pipe(gulpif(isSrcDirUpdate, cache('jade')))
-    .pipe(data(jadeMember))
-    .pipe(gulpJade(jadeOpts))
+    .pipe(gulpif(isSrcDirUpdate, cache('pug')))
+    .pipe(data(pugMember))
+    .pipe(gulpPug(pugOpts))
     // .pipe(crLfReplace({ changeCode: 'CR+LF' }))
     // .pipe(gulpif(isProduction, iconv({ encoding: 'shift_jis' })))
     .pipe(gulp.dest(destPath))
-    // .pipe(filter(jadeExtensonChangeFilter))
+    // .pipe(filter(pugExtensonChangeFilter))
     // .pipe(extensonChange({
     //   afterExtension: 'php',
     //   copy: true,
     // }))
-    // .pipe(gulp.dest(JADE_DEST))
+    // .pipe(gulp.dest(PUG_DEST))
     .on('end', () => {
       if(done) done();
     });
 };
 
-const jadeFactoryTask = (isJsonFileUpdate, done) => {
+const pugFactoryTask = (isJsonFileUpdate, done) => {
 
   const factory = () => {
     const transform = function(data, encode, callback) {
@@ -403,7 +403,7 @@ const jadeFactoryTask = (isJsonFileUpdate, done) => {
           const vals = reduce(page, (memo, val, key) => {
             return `${ memo }  - var ${ key } = '${ val }'\n`;
           }, '');
-          const tmpContent = fs.readFileSync(join(JADE_BASE, tmpPath)).toString().split('{{vars}}');
+          const tmpContent = fs.readFileSync(join(PUG_BASE, tmpPath)).toString().split('{{vars}}');
           const contents   = tmpContent[0] + vals + tmpContent[1];
           this.push(new File({
             path    : destPath,
@@ -419,13 +419,13 @@ const jadeFactoryTask = (isJsonFileUpdate, done) => {
     return through.obj(transform, flush);
   };
 
-  gulp.src(join(JADE_FACTORY, '/**/*.json'))
+  gulp.src(join(PUG_FACTORY, '/**/*.json'))
     .pipe(plumber(PLUMBER_OPTS))
-    .pipe(gulpif(isJsonFileUpdate, cache('jade-factory')))
+    .pipe(gulpif(isJsonFileUpdate, cache('pug-factory')))
     .pipe(factory())
-    .pipe(data(jadeMember))
-    .pipe(gulpJade(jadeOpts))
-    .pipe(gulp.dest(JADE_DEST))
+    .pipe(data(pugMember))
+    .pipe(gulpPug(pugOpts))
+    .pipe(gulp.dest(PUG_DEST))
     .on('end', done);
 
 };

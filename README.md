@@ -32,16 +32,16 @@ npm install
 | unnecessary files delete    | gulp clean           |
 
 #### **gulp**
-Jade、Stylus、JavaScript、sprite のコンパイル等をして、関連ファイルを監視します。
+pug、Stylus、JavaScript、sprite のコンパイル等をして、関連ファイルを監視します。
 
 #### **gulp watch**
-Jade、Stylus、JavaScript、sprite の関連ファイルを監視します。
+pug、Stylus、JavaScript、sprite の関連ファイルを監視します。
 
 #### **gulp coding**
-Jade、Stylus、sprite のコンパイル等をして、関連ファイルを監視します。
+pug、Stylus、sprite のコンパイル等をして、関連ファイルを監視します。
 
 #### **gulp coding-watch**
-Jade、Stylus、sprite の関連ファイルを監視します。
+pug、Stylus、sprite の関連ファイルを監視します。
 
 #### **gulp scripting**
 JavaScript をコンパイル等をして、関連ファイルを監視します。
@@ -54,7 +54,7 @@ JavaScript の関連ファイルを監視します。
 
 現状は以下を設定しています。
 
-- Jade、Stylus、JavaScript、sprite のコンパイル等（map ファイルの出力はしない）
+- pug、Stylus、JavaScript、sprite のコンパイル等（map ファイルの出力はしない）
 - imagemin タスクの実行
 - clean タスクの実行
 
@@ -112,7 +112,7 @@ gulp coding --php
 
 
 # HTML
-基本は [Jade](http://jade-lang.com/) をコンパイルしています。
+基本は [pug](https://github.com/pugjs/pug) をコンパイルしています。
 
 ## コメントアウトで用意しているプラグイン
 
@@ -131,25 +131,31 @@ gulp coding --php
 | relative     | 相対パス                   |
 | isProduction | productionタスク時のフラグ |
 
+## 用意されている [filters](http://jade-lang.com/reference/filters/)
+
+| filters名  | 内容         |
+|:-----------|:-------------|
+| do-nothing | そのまま出力 |
+
 ## Factory
 テンプレートファイルと json から html 自動生成します。  
 一部だけ違うページを大量生成する際におすすめ。
 
 #### **テンプレートファイル**
-/json/factorys/ 以下の jade ファイル。  
+/json/factorys/ 以下の pug ファイル。  
 `{{vars}}` に json から取得したデータが変数として挿入されます。
 
 #### **データファイル**
 /json/factorys/ 以下の json ファイル。
 
 ```javascript
-{ "factorys/index.jade": {  // 使用するテンプレートを指定
+{ "factorys/index.pug": {  // 使用するテンプレートを指定
 
-  "factory/index.jade": {  // 出力先のパスを指定（拡張は.jade）
+  "factory/index.pug": {  // 出力先のパスを指定（拡張は.pug）
     "factoryTitle": "タイトル1",  // key が変数名、value が 値として出力される。
     "factoryContents": "コンテンツ1"
   },
-  "factory/hoge/index.jade": {
+  "factory/hoge/index.pug": {
     "factoryTitle": "タイトル2",
     "factoryContents": "コンテンツ2<br>コンテンツ2"
   }

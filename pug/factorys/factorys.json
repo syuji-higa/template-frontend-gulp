@@ -1,0 +1,16 @@
+{ "factorys/index.pug": {
+
+  "factory/index.pug": {
+    "factoryTitle": "タイトル1",
+    "factoryContents": "コンテンツ1"
+  },
+  "factory/hoge/index.pug": {
+    "factoryTitle": "タイトル2",
+    "factoryContents": "コンテンツ2<br>コンテンツ2"
+  },
+  "factory/fuga/fuga/index.pug": {
+    "factoryTitle": "タイトル3",
+    "factoryContents": "コンテンツ3"
+  }
+
+}}
