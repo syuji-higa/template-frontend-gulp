@@ -46,20 +46,38 @@
 
 	'use strict';
 	
+	var _jquery = __webpack_require__(1);
+	
+	var _jquery2 = _interopRequireDefault(_jquery);
+	
+	var _lodash = __webpack_require__(2);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	var _module = __webpack_require__(4);
+	
+	var _module2 = _interopRequireDefault(_module);
+	
+	var _template = __webpack_require__(5);
+	
+	var _template2 = _interopRequireDefault(_template);
+	
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"html5shiv\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"Velocity\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../books-es2015/polyfill/function\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
 	
-	var $ = window.jQuery = __webpack_require__(1);
-	var _ = __webpack_require__(2);
-	var Module = __webpack_require__(4);
-	var Template = __webpack_require__(5);
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"html5shiv\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"Velocity\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-	// require('Velocity.ui');
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../books-es2015/polyfill/function\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	window.jQuery = _jquery2.default;
+	// import 'Velocity.ui';
 	
 	// multiple new class
 	var newClass = function newClass(className, el, opts) {
-	  $(el).each(function (_ref, _el) {
+	  (0, _jquery2.default)(el).each(function (_ref, _el) {
 	    _objectDestructuringEmpty(_ref);
 	
 	    if (opts) {
@@ -72,7 +90,7 @@
 	
 	// single new class
 	var newClassSingle = function newClassSingle(className, el, opts) {
-	  var $el = $(el);
+	  var $el = (0, _jquery2.default)(el);
 	  if ($el.size()) {
 	    if (opts) {
 	      new className(el, opts);
@@ -95,10 +113,10 @@
 	  return pathName;
 	};
 	
-	$(document).one('ready', function () {
+	(0, _jquery2.default)(document).one('ready', function () {
 	
-	  new Module();
-	  new Template();
+	  new _module2.default();
+	  new _template2.default();
 	
 	  // var page = getPathName()
 	
@@ -24419,6 +24437,10 @@
 
 	'use strict';
 	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -24584,18 +24606,22 @@
 	}();
 	
 	/**
-	 * class exports
+	 * class export
 	 */
 	
 	
 	Module.staticPublicProp = 'static public prop';
-	module.exports = Module;
+	exports.default = Module;
 
 /***/ },
 /* 5 */
 /***/ function(module, exports) {
 
 	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -24622,11 +24648,11 @@
 	};
 	
 	/**
-	 * class exports
+	 * class export
 	 */
 	
 	
-	module.exports = Template;
+	exports.default = Template;
 
 /***/ }
 /******/ ]);

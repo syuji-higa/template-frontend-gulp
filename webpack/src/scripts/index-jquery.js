@@ -1,11 +1,12 @@
-const $ = window.jQuery = require('jquery');
-const _ = require('lodash');
-const Module = require('../../requires/modules/module');
-const Template = require('../../requires/modules/template');
-require('html5shiv');
-require('Velocity');
-// require('Velocity.ui');
-require('../../books-es2015/polyfill/function');
+import $ from 'jquery';
+window.jQuery = $;
+import _ from 'lodash';
+import Module from '../../requires/modules/module';
+import Template from '../../requires/modules/template';
+import 'html5shiv';
+import 'Velocity';
+// import 'Velocity.ui';
+import '../../books-es2015/polyfill/function';
 
 // multiple new class
 const newClass = (className, el, opts) => {

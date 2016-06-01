@@ -126,6 +126,6 @@ class Module { // extends Pearent
 }
 
 /**
- * class exports
+ * class export
  */
-module.exports = Module;
+export default Module;

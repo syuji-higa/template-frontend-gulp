@@ -1,15 +1,15 @@
-const Module = require('../../requires/modules/module');
-const Template = require('../../requires/modules/template');
-// require('lodash');
-// require('Velocity');
-// require('Velocity.ui');
-// require('../../vendors/velocity.easeplus');
-// require('custom-event-polyfill');  // https://github.com/krambuhl/custom-event-polyfill.git
-// require('html5-polyfills/classList');
-// require('html5-polyfills/dataset');
-// require('fetch');
-// require('../../vendors/rAF');  // https://gist.github.com/paulirish/1579671
-// require('../../requires/polyfill/function');
+import Module from '../../imports/modules/module';
+import Template from '../../imports/modules/template';
+// import 'lodash';
+// import 'Velocity';
+// import 'Velocity.ui';
+// import '../../vendors/velocity.easeplus';
+// import 'custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git
+// import 'html5-polyfills/classList';
+// import 'html5-polyfills/dataset';
+// import 'fetch');
+// import '../../vendors/rAF';  // https://gist.github.com/paulirish/1579671
+// import '../../requires/polyfill/function';
 
 // create multiple incetance
 const createIncetance = (_class, _selector, _opts) => {

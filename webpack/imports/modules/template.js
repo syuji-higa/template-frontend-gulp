@@ -24,6 +24,6 @@ class Template {
 }
 
 /**
- * class exports
+ * class export
  */
-module.exports = Template;
+export default Template;
