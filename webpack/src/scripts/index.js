@@ -39,6 +39,8 @@ const getPathName = () => {
 
 window.addEventListener('DOMContentLoaded', () => {
 
+  new Module();
+
   // new Template();
 
   // const page = getPathName();

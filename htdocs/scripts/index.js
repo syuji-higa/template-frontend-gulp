@@ -46,11 +46,11 @@
 
 	'use strict';
 	
-	var _module = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../imports/modules/module\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _module = __webpack_require__(1);
 	
 	var _module2 = _interopRequireDefault(_module);
 	
-	var _template = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../imports/modules/template\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _template = __webpack_require__(2);
 	
 	var _template2 = _interopRequireDefault(_template);
 	
@@ -97,6 +97,8 @@
 	
 	window.addEventListener('DOMContentLoaded', function () {
 	
+	  new _module2.default();
+	
 	  // new Template();
 	
 	  // const page = getPathName();
@@ -113,6 +115,229 @@
 	    createSingleIncetance.apply(undefined, _toConsumableArray(_arr));
 	  });
 	});
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	// Pearent = require './pearetn'
+	
+	/**
+	 * Module
+	 * @class
+	 */
+	
+	var Module = function () {
+	  _createClass(Module, [{
+	    key: 'CONST',
+	
+	
+	    /**
+	     * public const
+	     * @instance
+	     * @return {string}
+	     */
+	    get: function get() {
+	      return 'public const';
+	    }
+	
+	    /**
+	     * public propertie
+	     * @instance
+	     * @prop {string}
+	     */
+	
+	  }], [{
+	    key: 'CONST',
+	    // extends Pearent
+	
+	    /**
+	     * static public propertie
+	     * @static
+	     * @return {string}
+	     */
+	    get: function get() {
+	      return 'static public const';
+	    }
+	
+	    /**
+	     * static public propertie
+	     * @static
+	     * @prop {string}
+	     */
+	
+	  }]);
+	
+	  /**
+	   * @instance
+	   * @param arg {string|number|Object|Array} argument
+	   */
+	
+	  function Module(arg) {
+	    _classCallCheck(this, Module);
+	
+	    this.publicProp = 'public prop';
+	
+	    // super
+	
+	    this.prop = arg;
+	
+	    console.log(Module.CONST);
+	
+	    console.log(Module.staticPublicProp);
+	
+	    console.log(this.CONST);
+	
+	    console.log(this.publicProp);
+	
+	    Module.staticPublicMethod();
+	
+	    this.publicMethod();
+	
+	    console.log(Module.StaticPublicGetter);
+	
+	    console.log(this.publicGetter);
+	
+	    Module.staticPublicSetter = 'static public setter';
+	    console.log(Module.staticPublicProp);
+	
+	    this.publicSetter = 'public setter';
+	    console.log(this.publicProp);
+	  }
+	
+	  /**
+	   * static public method
+	   * @static
+	   */
+	
+	
+	  _createClass(Module, [{
+	    key: 'publicMethod',
+	
+	
+	    /**
+	     * public method
+	     * @instance
+	     */
+	    value: function publicMethod() {
+	      console.log('public');
+	    }
+	
+	    /**
+	     * static public getter
+	     * @static
+	     * @return {string}
+	     */
+	
+	  }, {
+	    key: 'publicGetter',
+	
+	
+	    /**
+	     * public getter
+	     * @instance
+	     * @return {string}
+	     */
+	    get: function get() {
+	      return 'public getter';
+	    }
+	
+	    /**
+	     * static public setter
+	     * @static
+	     * @param str {string}
+	     */
+	
+	  }, {
+	    key: 'publicSetter',
+	
+	
+	    /**
+	     * public setter
+	     * @instance
+	     * @param str {string}
+	     */
+	    set: function set(str) {
+	      this.publicProp = str;
+	    }
+	  }], [{
+	    key: 'staticPublicMethod',
+	    value: function staticPublicMethod() {
+	      console.log('static method');
+	    }
+	  }, {
+	    key: 'StaticPublicGetter',
+	    get: function get() {
+	      return 'static public getter';
+	    }
+	  }, {
+	    key: 'staticPublicSetter',
+	    set: function set(str) {
+	      Module.staticPublicProp = str;
+	    }
+	  }]);
+	
+	  return Module;
+	}();
+	
+	/**
+	 * class export
+	 */
+	
+	
+	Module.staticPublicProp = 'static public prop';
+	exports.default = Module;
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	/**
+	 * Template
+	 * @class
+	 */
+	
+	var Template =
+	
+	/**
+	 * @instance
+	 */
+	function Template() {
+	  _classCallCheck(this, Template);
+	
+	  var $tmp_ = document.getElementsByClassName('template')[0];
+	  var $result_ = document.getElementsByClassName('result')[0];
+	  var tmp_ = _.template($tmp_.innerHTML);
+	  var obj_ = {
+	    data: [{ class: 'class1', name: 'taro', age: 25 }, { class: 'class2', name: 'jiro', age: 18 }, { class: 'class3', name: 'saburo', age: 15 }]
+	  };
+	  $result_.append(tmp_(obj));
+	};
+	
+	/**
+	 * class export
+	 */
+	
+	
+	exports.default = Template;
 
 /***/ }
 /******/ ]);
