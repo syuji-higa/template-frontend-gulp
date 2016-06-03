@@ -1,4 +1,4 @@
-# コンパイル環境の構築
+# ビルド環境の構築
 
 このプロジェクトは[Gulp](http://gulpjs.com/)で管理されています。
 
@@ -6,10 +6,10 @@
 - Node.js
 - Gulp
 
-## ローカル環境の構築
+## [npm](https://www.npmjs.com/) から必要なモジュールをインストール
 
 ```bash
-npm install
+$ npm install
 ```
 
 
@@ -92,7 +92,7 @@ URL一覧を表示するHTMLファイルを生成します。
 
 ```bash
 # 例
-gulp coding --php
+$ gulp coding --php
 ```
 
 #### **--php**
