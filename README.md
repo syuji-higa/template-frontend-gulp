@@ -3,8 +3,8 @@
 このプロジェクトは[Gulp](http://gulpjs.com/)で管理されています。
 
 ## グローバルにインストールが必要なモジュール
-- Node.js
-- Gulp
+- [node.js](https://nodejs.org/en/)
+- [gulp-cli](https://github.com/gulpjs/gulp-cli)
 
 ## [npm](https://www.npmjs.com/) から必要なモジュールをインストール
 
