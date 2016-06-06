@@ -8,7 +8,7 @@
   },
   "repository": {
     "Type": "git",
-    "URL": "git@github.com:syuji-higa/projects-base-gulp.git"
+    "URL": "git@github.com:syuji-higa/scoffold-frontend-gulp.git"
   },
   "auther": "syuji-higa",
   "license": "MIT",
