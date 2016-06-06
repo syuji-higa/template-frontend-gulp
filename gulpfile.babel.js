@@ -328,8 +328,15 @@ const pugMember = (file, callback) => {
     dirname : dirname(file.relative),
     filename: replaceExtension(basename(file.relative), '.html'),
     relative: (path) => {
-      const pathName = relative(ret.dirname, path);
-      return pathName ? `${ pathName }/` : './';
+      const isDirectory = path.match(/^.+\/$/) ? true : false;
+      const pathName    = relative(ret.dirname, path);
+      return (() => {
+        if(pathName) {
+          return isDirectory ? `${ pathName }/` : pathName;
+        } else {
+          return './';
+        }
+      })();
     },
     isProduction: isProduction,
   };
