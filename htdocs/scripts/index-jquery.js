@@ -54,11 +54,11 @@
 	
 	var _lodash2 = _interopRequireDefault(_lodash);
 	
-	var _module = __webpack_require__(4);
+	var _module = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../requires/modules/module\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _module2 = _interopRequireDefault(_module);
 	
-	var _template = __webpack_require__(5);
+	var _template = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../requires/modules/template\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _template2 = _interopRequireDefault(_template);
 	
@@ -135,7 +135,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
-	 * jQuery JavaScript Library v2.2.3
+	 * jQuery JavaScript Library v2.2.4
 	 * http://jquery.com/
 	 *
 	 * Includes Sizzle.js
@@ -145,7 +145,7 @@
 	 * Released under the MIT license
 	 * http://jquery.org/license
 	 *
-	 * Date: 2016-04-05T19:26Z
+	 * Date: 2016-05-20T17:23Z
 	 */
 	
 	(function( global, factory ) {
@@ -201,7 +201,7 @@
 	
 	
 	var
-		version = "2.2.3",
+		version = "2.2.4",
 	
 		// Define a local copy of jQuery
 		jQuery = function( selector, context ) {
@@ -5142,13 +5142,14 @@
 		isDefaultPrevented: returnFalse,
 		isPropagationStopped: returnFalse,
 		isImmediatePropagationStopped: returnFalse,
+		isSimulated: false,
 	
 		preventDefault: function() {
 			var e = this.originalEvent;
 	
 			this.isDefaultPrevented = returnTrue;
 	
-			if ( e ) {
+			if ( e && !this.isSimulated ) {
 				e.preventDefault();
 			}
 		},
@@ -5157,7 +5158,7 @@
 	
 			this.isPropagationStopped = returnTrue;
 	
-			if ( e ) {
+			if ( e && !this.isSimulated ) {
 				e.stopPropagation();
 			}
 		},
@@ -5166,7 +5167,7 @@
 	
 			this.isImmediatePropagationStopped = returnTrue;
 	
-			if ( e ) {
+			if ( e && !this.isSimulated ) {
 				e.stopImmediatePropagation();
 			}
 	
@@ -6096,19 +6097,6 @@
 			val = name === "width" ? elem.offsetWidth : elem.offsetHeight,
 			styles = getStyles( elem ),
 			isBorderBox = jQuery.css( elem, "boxSizing", false, styles ) === "border-box";
-	
-		// Support: IE11 only
-		// In IE 11 fullscreen elements inside of an iframe have
-		// 100x too small dimensions (gh-1764).
-		if ( document.msFullscreenElement && window.top !== window ) {
-	
-			// Support: IE11 only
-			// Running getBoundingClientRect on a disconnected node
-			// in IE throws an error.
-			if ( elem.getClientRects().length ) {
-				val = Math.round( elem.getBoundingClientRect()[ name ] * 100 );
-			}
-		}
 	
 		// Some non-html elements return undefined for offsetWidth, so check for null/undefined
 		// svg - https://bugzilla.mozilla.org/show_bug.cgi?id=649285
@@ -8000,6 +7988,7 @@
 		},
 	
 		// Piggyback on a donor event to simulate a different one
+		// Used only for `focus(in | out)` events
 		simulate: function( type, elem, event ) {
 			var e = jQuery.extend(
 				new jQuery.Event(),
@@ -8007,27 +7996,10 @@
 				{
 					type: type,
 					isSimulated: true
-	
-					// Previously, `originalEvent: {}` was set here, so stopPropagation call
-					// would not be triggered on donor event, since in our own
-					// jQuery.event.stopPropagation function we had a check for existence of
-					// originalEvent.stopPropagation method, so, consequently it would be a noop.
-					//
-					// But now, this "simulate" function is used only for events
-					// for which stopPropagation() is noop, so there is no need for that anymore.
-					//
-					// For the 1.x branch though, guard for "click" and "submit"
-					// events is still used, but was moved to jQuery.event.stopPropagation function
-					// because `originalEvent` should point to the original event for the constancy
-					// with other events and for more focused logic
 				}
 			);
 	
 			jQuery.event.trigger( e, null, elem );
-	
-			if ( e.isDefaultPrevented() ) {
-				event.preventDefault();
-			}
 		}
 	
 	} );
@@ -24430,229 +24402,6 @@
 		return module;
 	}
 
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	// Pearent = require './pearetn'
-	
-	/**
-	 * Module
-	 * @class
-	 */
-	
-	var Module = function () {
-	  _createClass(Module, [{
-	    key: 'CONST',
-	
-	
-	    /**
-	     * public const
-	     * @instance
-	     * @return {string}
-	     */
-	    get: function get() {
-	      return 'public const';
-	    }
-	
-	    /**
-	     * public propertie
-	     * @instance
-	     * @prop {string}
-	     */
-	
-	  }], [{
-	    key: 'CONST',
-	    // extends Pearent
-	
-	    /**
-	     * static public propertie
-	     * @static
-	     * @return {string}
-	     */
-	    get: function get() {
-	      return 'static public const';
-	    }
-	
-	    /**
-	     * static public propertie
-	     * @static
-	     * @prop {string}
-	     */
-	
-	  }]);
-	
-	  /**
-	   * @instance
-	   * @param arg {string|number|Object|Array} argument
-	   */
-	
-	  function Module(arg) {
-	    _classCallCheck(this, Module);
-	
-	    this.publicProp = 'public prop';
-	
-	    // super
-	
-	    this.prop = arg;
-	
-	    console.log(Module.CONST);
-	
-	    console.log(Module.staticPublicProp);
-	
-	    console.log(this.CONST);
-	
-	    console.log(this.publicProp);
-	
-	    Module.staticPublicMethod();
-	
-	    this.publicMethod();
-	
-	    console.log(Module.StaticPublicGetter);
-	
-	    console.log(this.publicGetter);
-	
-	    Module.staticPublicSetter = 'static public setter';
-	    console.log(Module.staticPublicProp);
-	
-	    this.publicSetter = 'public setter';
-	    console.log(this.publicProp);
-	  }
-	
-	  /**
-	   * static public method
-	   * @static
-	   */
-	
-	
-	  _createClass(Module, [{
-	    key: 'publicMethod',
-	
-	
-	    /**
-	     * public method
-	     * @instance
-	     */
-	    value: function publicMethod() {
-	      console.log('public');
-	    }
-	
-	    /**
-	     * static public getter
-	     * @static
-	     * @return {string}
-	     */
-	
-	  }, {
-	    key: 'publicGetter',
-	
-	
-	    /**
-	     * public getter
-	     * @instance
-	     * @return {string}
-	     */
-	    get: function get() {
-	      return 'public getter';
-	    }
-	
-	    /**
-	     * static public setter
-	     * @static
-	     * @param str {string}
-	     */
-	
-	  }, {
-	    key: 'publicSetter',
-	
-	
-	    /**
-	     * public setter
-	     * @instance
-	     * @param str {string}
-	     */
-	    set: function set(str) {
-	      this.publicProp = str;
-	    }
-	  }], [{
-	    key: 'staticPublicMethod',
-	    value: function staticPublicMethod() {
-	      console.log('static method');
-	    }
-	  }, {
-	    key: 'StaticPublicGetter',
-	    get: function get() {
-	      return 'static public getter';
-	    }
-	  }, {
-	    key: 'staticPublicSetter',
-	    set: function set(str) {
-	      Module.staticPublicProp = str;
-	    }
-	  }]);
-	
-	  return Module;
-	}();
-	
-	/**
-	 * class export
-	 */
-	
-	
-	Module.staticPublicProp = 'static public prop';
-	exports.default = Module;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	/**
-	 * Template
-	 * @class
-	 */
-	
-	var Template =
-	
-	/**
-	 * @instance
-	 */
-	function Template() {
-	  _classCallCheck(this, Template);
-	
-	  var $tmp_ = document.getElementsByClassName('template')[0];
-	  var $result_ = document.getElementsByClassName('result')[0];
-	  var tmp_ = _.template($tmp_.innerHTML);
-	  var obj_ = {
-	    data: [{ class: 'class1', name: 'taro', age: 25 }, { class: 'class2', name: 'jiro', age: 18 }, { class: 'class3', name: 'saburo', age: 15 }]
-	  };
-	  $result_.append(tmp_(obj));
-	};
-	
-	/**
-	 * class export
-	 */
-	
-	
-	exports.default = Template;
 
 /***/ }
 /******/ ]);
