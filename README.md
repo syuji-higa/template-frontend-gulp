@@ -1,6 +1,6 @@
-# ビルド環境の構築
+# 開発環境の構築
 
-このプロジェクトは[Gulp](http://gulpjs.com/)で管理されています。
+このプロジェクトは [Gulp](http://gulpjs.com/) で管理されています。
 
 ## グローバルにインストールが必要なモジュール
 - [node.js](https://nodejs.org/en/)
@@ -112,7 +112,7 @@ $ gulp coding --php
 
 
 # HTML
-基本は [pug](https://github.com/pugjs/pug) をコンパイルしています。
+[pug](https://github.com/pugjs/pug) をコンパイルしています。
 
 ## コメントアウトで用意しているプラグイン
 
@@ -138,7 +138,7 @@ $ gulp coding --php
 | do-nothing | そのまま出力 |
 
 ## Factory
-テンプレートファイルと json から html 自動生成します。  
+テンプレートファイル（pug）と json から html 自動生成します。  
 一部だけ違うページを大量生成する際におすすめ。
 
 #### **テンプレートファイル**
@@ -167,7 +167,7 @@ $ gulp coding --php
 
 
 # CSS
-基本は [Stylus](http://stylus-lang.com/) をコンパイルしています。
+[Stylus](http://stylus-lang.com/) をコンパイルしています。
 
 
 
@@ -184,7 +184,7 @@ $ gulp coding --php
 /htdocs/images/sample.png
 
 Stylus で使用する為に /stylus/imports/sprite.styl が出力されます。  
-mixin が用意されているので import して使用します。
+[mixins](http://stylus-lang.com/docs/mixins.html) が用意されているので import して使用します。
 
 ```stylus
 // 例
@@ -206,7 +206,7 @@ mixin が用意されているので import して使用します。
 
 
 # JavaScript
-基本は [Babel（es2015、stage-0）](https://babeljs.io/) をトランスパイルして、  
+[Babel](https://babeljs.io/)（[es2015](https://babeljs.io/docs/plugins/preset-es2015/)、[stage-0](https://babeljs.io/docs/plugins/preset-stage-0/)）をトランスパイルして、  
 [webpack](https://webpack.github.io/) で結合します。
 
 
