@@ -114,6 +114,8 @@ $ gulp coding --php
 # HTML
 [pug](https://github.com/pugjs/pug) をコンパイルしています。
 
+/pug/src/ 以下の pug ファイルをコンパイルし /htdocs/ 以下に出力します。
+
 ## コメントアウトで用意しているプラグイン
 
 | 関数名         | 内容           |
@@ -169,6 +171,8 @@ $ gulp coding --php
 # CSS
 [Stylus](http://stylus-lang.com/) をコンパイルしています。
 
+/stylus/src/ 以下の stylus ファイルをコンパイルし /htdocs/ 以下に出力します。
+
 
 
 # Image
@@ -208,6 +212,8 @@ Stylus で使用する為に /stylus/imports/sprite.styl が出力されます�
 # JavaScript
 [Babel](https://babeljs.io/)（[es2015](https://babeljs.io/docs/plugins/preset-es2015/)、[stage-0](https://babeljs.io/docs/plugins/preset-stage-0/)）をトランスパイルして、  
 [webpack](https://webpack.github.io/) で結合します。
+
+/webpac/src/ 以下の js ファイルをトランスパイルし /htdocs/ 以下に出力します。
 
 
 ## webpack
