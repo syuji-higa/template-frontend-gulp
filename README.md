@@ -240,11 +240,10 @@ alias: {
 テストサーバーへリンクさせたい場合は2パターンあります。
 
 ### ローカル（サーバーなし）で表示
-以下を変更して url-list タスクを実行し /url-list/index.html を更新して、ブラウザで直接表示。
+以下のドメインを変更して url-list タスクを実行し /url-list/index.html を更新して、ブラウザで直接表示。
 
 ```js:/url-list/tmp.html
-var sbudomain = 'client--project--branch';
-// 上記だと http://client--project--branch.repo.testup.me にアクセスします
+var domain = 'domain.com';
 ```
 
 ### テストサーバーにアップして表示

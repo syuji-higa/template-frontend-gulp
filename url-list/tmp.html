@@ -65,7 +65,7 @@ ul {
 }
 </style>
 <script>
-var sbudomain = 'client--project--branch';
+var domain = 'domain.com';
 var data = [ {{data}} ];
 window.addEventListener('DOMContentLoaded', () => {
   var $list     = document.getElementById('list');
@@ -75,7 +75,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if(hostname) {
     var host = port ? (hostname + ':3000') : hostname;
   } else {
-    var host = sbudomain + '.repo.testup.me';
+    var host = domain;
   }
   for(let i_ = 0; data.length > i_; i_++) {
     var $li_  = document.createElement('li');
