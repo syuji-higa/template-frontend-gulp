@@ -594,10 +594,11 @@ const webpackTask = (isSrcDir, done) => {
       resolve: {
         root      : [ join(__dirname, 'bower_components') ],
         extensions: [ '', '.js' ],
-        alias: {
-        //   'lodash'     : 'lodash/dist/lodash.min',
-        //   'Velocity'   : 'velocity/velocity.min',
-        //   'Velocity.ui': 'velocity/velocity.ui.min',
+        alias:
+          // 'es6-promise': 'es6-promise/es6-promise.min',
+          // 'lodash'     : 'lodash/dist/lodash.min',
+          // 'Velocity'   : 'velocity/velocity.min',
+          // 'Velocity.ui': 'velocity/velocity.ui.min',
         },
       },
       module: {
