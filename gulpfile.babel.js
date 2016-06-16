@@ -377,7 +377,18 @@ const pugOpts = {
   basedir: join(__dirname, PUG_BASE),
   filters: {
     'do-nothing': (block) => {
-      return block;
+      const indentData     = block.match(/^\{\{indent=([0-9])\}\}\n/);
+      const block_ = (() => {
+        if(indentData) {
+          const block__ = block.replace(indentData[0], '');
+          let indent_ = '';
+          for(let i = 0; indentData[1] > i; i++) indent_ += ' ';
+          return indent_ + block__.replace(/\n/g, `\n${ indent_ }`);
+        } else {
+          return block;
+        }
+      })();
+      return `\n${ block_ }`
     },
   },
 };

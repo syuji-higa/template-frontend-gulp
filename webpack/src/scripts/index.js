@@ -12,23 +12,23 @@ import Template from '../../imports/modules/template';
 // import '../../requires/polyfill/function';
 
 // create multiple incetance
-const createIncetance = (_class, _selector, _opts) => {
+const createIncetance = (_class, _selector, ..._opts) => {
   const $$el_ = document.querySelectorAll(_selector);
   const instances = [];
   for(let i_ = 0; $$el_.length > i_; i_++) {
     const arg_ = [ $$el_[i_] ];
-    if(_opts) arg_.push(_opts);
+    if(_opts) Array.prototype.push.apply(arg_, _opts);
     instances.push(new _class(...arg_));
   }
   return instances;
 };
 
 // create single incetance
-const createSingleIncetance = (_class, _selector, _opts) => {
+const createSingleIncetance = (_class, _selector, ..._opts) => {
   const $$el_ = document.querySelectorAll(_selector);
   if(!$$el_.length) return false;
   const arg_ = [$$el_];
-  if(_opts) arg_.push(_opts);
+  if(_opts) Array.prototype.push.apply(arg_, _opts);
   return new _class(...arg_);
 };
 

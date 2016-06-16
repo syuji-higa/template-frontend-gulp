@@ -135,9 +135,21 @@ $ gulp coding --php
 
 ## 用意されている [filters](http://jade-lang.com/reference/filters/)
 
-| filters名  | 内容         |
-|:-----------|:-------------|
-| do-nothing | そのまま出力 |
+| filters名  | 内容                                                    |
+|:-----------|:--------------------------------------------------------|
+| do-nothing | そのまま出力（先頭は改行。インデントオプションあり。 ） |
+
+### do-nothing のインデントオプション
+1行目に `{{indent=[数値]}}` を追加することで数値の数だけスペースを追加します。
+
+```jade
+// 例
+:do-nothing
+  {{indent=2}}
+  <div>
+    <p>sample</p>
+  </div>
+```
 
 ## Factory
 テンプレートファイル（pug）と json から html 自動生成します。  
