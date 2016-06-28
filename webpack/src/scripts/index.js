@@ -7,9 +7,10 @@ import Template from '../../imports/modules/template';
 // import 'custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git
 // import 'html5-polyfills/classList';
 // import 'html5-polyfills/dataset';
-// import 'fetch');
+// import 'fetch';
 // import '../../vendors/rAF';  // https://gist.github.com/paulirish/1579671
 // import '../../requires/polyfill/function';
+// import '../../vendors/html-domparser';
 
 // create multiple incetance
 const createIncetance = (_class, _selector, ..._opts) => {

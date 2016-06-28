@@ -70,23 +70,31 @@
 	// import '../../requires/polyfill/function';
 	
 	// create multiple incetance
-	var createIncetance = function createIncetance(_class, _selector, _opts) {
+	var createIncetance = function createIncetance(_class, _selector) {
+	  for (var _len = arguments.length, _opts = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+	    _opts[_key - 2] = arguments[_key];
+	  }
+	
 	  var $$el_ = document.querySelectorAll(_selector);
 	  var instances = [];
 	  for (var i_ = 0; $$el_.length > i_; i_++) {
 	    var arg_ = [$$el_[i_]];
-	    if (_opts) arg_.push(_opts);
+	    if (_opts) Array.prototype.push.apply(arg_, _opts);
 	    instances.push(new (Function.prototype.bind.apply(_class, [null].concat(arg_)))());
 	  }
 	  return instances;
 	};
 	
 	// create single incetance
-	var createSingleIncetance = function createSingleIncetance(_class, _selector, _opts) {
+	var createSingleIncetance = function createSingleIncetance(_class, _selector) {
+	  for (var _len2 = arguments.length, _opts = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+	    _opts[_key2 - 2] = arguments[_key2];
+	  }
+	
 	  var $$el_ = document.querySelectorAll(_selector);
 	  if (!$$el_.length) return false;
 	  var arg_ = [$$el_];
-	  if (_opts) arg_.push(_opts);
+	  if (_opts) Array.prototype.push.apply(arg_, _opts);
 	  return new (Function.prototype.bind.apply(_class, [null].concat(arg_)))();
 	};
 	
