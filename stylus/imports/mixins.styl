@@ -65,3 +65,11 @@ sprite-hover(image, before-suffix = '-off', after-suffix = '-on', duration = .2)
       opacity 1
     &:after
       animation fadeIn (duration)s linear
+
+create-animation(name, duration, interval, animationHash)
+  @keyframes name
+    durationRatio = duration / (duration + interval)
+    for progress, cssHash in animationHash
+      {durationRatio * progress}{unquote('%')}
+        for key, val in cssHash
+          {key} val
