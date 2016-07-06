@@ -159,7 +159,8 @@ gulp.task('production', () => {
 gulp.task('coding', () => {
   runSequence(
     'coding-watch',
-    (() => isProduction ? [ 'sprite', 'imagemin' ] : 'sprite')(),
+    'sprite',
+    (() => isProduction ? imagemin : null)(),
     [ 'pug', 'pug-factory', 'stylus' ],
     [ 'browser-sync', 'url-list' ]
   );
@@ -504,6 +505,8 @@ gulp.task('sprite', () => {
 
   isSpritesChanged = false;
 
+  const imageDest = isProduction ? IMAGEMIN_SRC : SPRITE_DEST;
+
   gulp.src(join(SPRITE_SRC, '/**/*.png'))
     .pipe(plumber(PLUMBER_OPTS))
     .pipe(sort())
@@ -516,7 +519,7 @@ gulp.task('sprite', () => {
         algorithmOpts: { sort: false },
       },
     }))
-    .pipe(gulpif('*.png', gulp.dest(SPRITE_DEST)))
+    .pipe(gulpif('*.png', gulp.dest(imageDest)))
     .pipe(gulpif('*.styl', cache('stylus')))
     .pipe(gulpif('*.styl', gulp.dest(SPRITE_CSS_DEST)));
 
