@@ -213,6 +213,8 @@ Stylus で使用する為に /stylus/imports/sprite.styl が出力されます�
   sprite("images/sample/b.png")
 ```
 
+`gulp production` 実行時には /images/src/ 以下に出力されて、image minimizing タスクが実行されます。
+
 
 ## image minimizing
 /images/src/ 以下の画像を圧縮して /htdocs/ 以下に出力します。  
