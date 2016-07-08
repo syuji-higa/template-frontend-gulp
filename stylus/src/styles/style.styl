@@ -8,6 +8,7 @@
 @import "../../imports/pc/default"
 @import "../../imports/sprite"
 @import "../../imports/keyframes"
+@import "../../imports/easings"
 
 .sprite
   for name, i in "blue" "green" "red"
@@ -16,5 +17,30 @@
 
 .btn
   sprite-hover('images/btn/btn')
+
+.size
+  background-color #fcc
+  width 15%
+  // aspect-ratio('../../../htdocs/images/sample.gif')
+  aspect-ratio('images/btn/btn-off.png')
+
+.aspect
+  width 10%
+  background-color #ccc
+  aspect-ratio(200, 100)
+
+.arrow
+  position relative
+  &::after
+    triangle('bottom', 15px, #999)
+
+.box-wrap
+  size 200px
+  background-color #ccf
+  position relative
+  .box
+    size 100px
+    background-color #cfc
+    centering(100)
 
 sprite-hover-anime()

@@ -6,28 +6,69 @@ min-size(width, height = width)
   min-width width
   min-height height
 
-font-size-rem(size)
-  if support-ie8
-    font-size size px
-  font-size (size / 10)rem
+max-size(width, height = width)
+  max-width width
+  max-height height
 
-img-replace()
+get-percent-size(size, base-size)
+  (size / base-size * 100)%
+
+get-img-size(imgpath)
+  if match('^.+(htdocs).+$', imgpath)
+    img-size = image-size(imgpath)
+    return {
+      width : img-size[0]
+      height: img-size[1]
+    }
+  else
+    return {
+      width : sprite-hash[imgpath].width
+      height: sprite-hash[imgpath].height
+    }
+
+centering(width = null, height = width)
+  if width
+    margin (width / -2)px 0 0 (width / -2)px
+  else
+    transform translateX(-50%) translateY(-50%)
+  absolute top 50% left 50%
+
+aspect-ratio(width-or-imgpath, height = null)
+  if typeof(width-or-imgpath) is 'string'
+    img-size = get-img-size(width-or-imgpath)
+    width  = img-size.width
+    height = img-size.height
+  else
+    width = width-or-imgpath
+  position relative
+  &::before
+    content ""
+    display block
+    padding-top get-percent-size(height, width)
+  > *
+    position absolute
+
+img-replace(indent-dir = 'left')
+  if indent-dir is 'left'
+    indent-dir-num = -100%
+  else if indent-dir is 'right'
+    indent-dir-num = 100%
   overflow hidden
-  text-indent -100%
+  text-indent indent-dir-num
   white-space nowrap
 
-triangle(shape = 'left', size = 10px, color = #000, top = auto, right = auto, bottom = auto, left = auto)
+triangle(shape = 'left', size = 10px, color = #000, positions = { top: auto, right: auto, bottom: auto, left: auto })
   content ""
   display block
   width 0
   height 0
   if shape is 'top'
-    colors = color transparent transparent
-  else if shape is 'right'
-    colors = transparent color transparent transparent
-  else if shape is 'bottom'
     colors = transparent transparent color
   else if shape is 'left'
+    colors = transparent color transparent transparent
+  else if shape is 'bottom'
+    colors = color transparent transparent
+  else if shape is 'right'
     colors = transparent transparent transparent color
   else if shape is 'topLeft'
     colors = color transparent transparent color
@@ -41,31 +82,42 @@ triangle(shape = 'left', size = 10px, color = #000, top = auto, right = auto, bo
   border-style solid
   border-color colors
   position absolute
-  top top
-  right right
-  bottom bottom
-  left left
+  for prop, pos in positions
+    {prop} pos
 
-sprite-hover(image, before-suffix = '-off', after-suffix = '-on', duration = .2)
+
+// ==============================
+// animations
+// ==============================
+
+sprite-hover(image, duration = .2, suffix = { before: '-off', after: '-on' })
   position relative
-  animation fadeFirstSet (duration)s linear
-  &, &:hover:before
-    sprite image + before-suffix + '.png'
-  &:before, &:after
+  animation delayView (duration)s linear
+  &, &:hover::before
+    sprite(image + suffix.before + '.png')
+  &::before, &::after
     content ''
     display block
     opacity 0
     absolute top 0 left 0
-  &:after
-    sprite image + after-suffix + '.png'
+  &::after
+    sprite(image + suffix.after + '.png')
     animation fadeOut (duration)s linear
   &:hover
     background none
-    &:before, &:after
+    &::before, &::after
       opacity 1
-    &:after
+    &::after
       animation fadeIn (duration)s linear
 
+// @example
+// ----------
+// create-animation(sampleAnime, 3, 10, {
+//     '0': { opacity: 1 },
+//    '50': { opacity: 0 },
+//   '100': { opacity: 1 }
+// })
+// ----------
 create-animation(name, duration, interval, animationHash)
   @keyframes name
     durationRatio = duration / (duration + interval)
@@ -73,3 +125,16 @@ create-animation(name, duration, interval, animationHash)
       {durationRatio * progress}{unquote('%')}
         for key, val in cssHash
           {key} val
+
+
+// ==============================
+// nib override
+// ==============================
+
+opacity(val)
+  opacity val
+
+
+// ==============================
+// polyfiles
+// ==============================
