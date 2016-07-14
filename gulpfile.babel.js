@@ -20,7 +20,7 @@
 import gulp from 'gulp';
 import gulpif from 'gulp-if';
 import minimist from 'minimist';
-import { forEach, merge, union, reduce, every, some } from 'lodash';
+import { forEach, merge, union, reduce, every } from 'lodash';
 import { File, PluginError, log, replaceExtension } from 'gulp-util';
 import { join, relative, dirname, basename } from 'path';
 import fs from 'fs';
@@ -270,9 +270,13 @@ gulp.task('coding-watch', (done) => {
     });
 
     watchStart([ join(DEST_ROOT, '/**/*.+(css|js|png|jpg|jpeg|gif|svg)') ], (file) => {
-      if(some(viewPageFiles, (filePath) => file.path === filePath)) {
-        gulp.src(file.path)
-          .pipe(browserSync.reload({ stream: true }));
+      for(let i = 0; viewPageFiles.length > i; i++) {
+        if(file.path === viewPageFiles[i]) {
+          gulp.src(file.path)
+            .pipe(browserSync.reload({ stream: true }));
+          viewPageFiles.splice(i, 1);
+          break;
+        }
       }
     });
 
@@ -322,7 +326,10 @@ const browserSyncMiddleware = (req, res, next) => {
   const otherUrl = req.url.match(/^(.+\.(css|js|png|jpg|jpeg|gif|svg)).*?$/);
 
   if(otherUrl) {
-    viewPageFiles.push(join(__dirname, DEST_ROOT, otherUrl[1]));
+    const url = join(__dirname, DEST_ROOT, otherUrl[1]);
+    if((viewPageFiles.length === 0) || (every(viewPageFiles, (file) => url !== file))) {
+      viewPageFiles.push(url);
+    }
   }
 
   if(pageUrl && every(exclusionFiles, (file) => (file !== pageUrl[0]))) {
@@ -336,8 +343,6 @@ const browserSyncMiddleware = (req, res, next) => {
 };
 
 gulp.task('browser-sync', (done) => {
-  viewPageFiles = [];
-
   if(!argv.php) {
     browserSync.init({
       server: {
