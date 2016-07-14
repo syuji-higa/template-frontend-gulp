@@ -20,7 +20,7 @@
 import gulp from 'gulp';
 import gulpif from 'gulp-if';
 import minimist from 'minimist';
-import { forEach, map, merge, union, reduce, every } from 'lodash';
+import { forEach, merge, union, reduce, every, some } from 'lodash';
 import { File, PluginError, log, replaceExtension } from 'gulp-util';
 import { join, relative, dirname, basename } from 'path';
 import fs from 'fs';
@@ -87,7 +87,8 @@ let isSpritesChanged = true;
 /**
  * viewing page
  */
-let viewingPage = '';
+let viewingPage   = '';
+let viewPageFiles = [];
 
 
 /**
@@ -249,18 +250,18 @@ const watchStart = (files, cb = null) => {
 gulp.task('coding-watch', (done) => {
   return (() => {
 
-    watchStart([ join(PUG_SRC    , '/**/*.pug') ], () => gulp.start('pug'));
-    watchStart([ join(PUG_OTHER  , '/**/*.pug') ], () => gulp.start('pug-all'));
+    watchStart([ join(PUG_SRC    , '/**/*.pug')  ], () => gulp.start('pug'));
+    watchStart([ join(PUG_OTHER  , '/**/*.pug')  ], () => gulp.start('pug-all'));
     watchStart([ join(PUG_FACTORY, '/**/*.json') ], () => gulp.start('pug-factory'));
-    watchStart([ join(PUG_FACTORY, '/**/*.pug') ], () => gulp.start('pug-factory-all'));
+    watchStart([ join(PUG_FACTORY, '/**/*.pug')  ], () => gulp.start('pug-factory-all'));
 
-    watchStart([ join(STYLUS_SRC   , '/**/*.styl') ], () => runSequence([ 'sprite', 'stylus' ]));
-    watchStart([ join(STYLUS_OTHER , '/**/*.styl') ], () => runSequence([ 'sprite', 'stylus-all' ]));
+    watchStart([ join(STYLUS_SRC  , '/**/*.styl') ], () => runSequence([ 'sprite', 'stylus' ]));
+    watchStart([ join(STYLUS_OTHER, '/**/*.styl') ], () => runSequence([ 'sprite', 'stylus-all' ]));
 
     watchStart([ join(IMAGEMIN_SRC, '/**/*.+(png|jpg|gif|svg)') ], () => isImagesChanged  = true);
     watchStart([ join(SPRITE_SRC  , '/**/*.+(png|jpg|gif|svg)') ], () => isSpritesChanged = true);
 
-    watchStart([ join(DEST_ROOT , '/**/*.+(html|php)') ], (file) => {
+    watchStart([ join(DEST_ROOT, '/**/*.+(html|php)') ], (file) => {
       const page = viewingPage ? join(__dirname, DEST_ROOT, viewingPage) : '*.+(html|php)';
 
       gulp.src(file.path)
@@ -268,9 +269,11 @@ gulp.task('coding-watch', (done) => {
         .pipe(gulpif('*.html', htmlhint()));
     });
 
-    watchStart([ join(DEST_ROOT , '/**/*.+(css|js|png|jpg|jpeg|gif|svg)') ], (file) => {
-      gulp.src(file.path)
-        .pipe(browserSync.reload({ stream: true }));
+    watchStart([ join(DEST_ROOT, '/**/*.+(css|js|png|jpg|jpeg|gif|svg)') ], (file) => {
+      if(some(viewPageFiles, (filePath) => file.path === filePath)) {
+        gulp.src(file.path)
+          .pipe(browserSync.reload({ stream: true }));
+      }
     });
 
     done();
@@ -315,19 +318,26 @@ gulp.task('production-watch', (done) => {
  */
 const browserSyncMiddleware = (req, res, next) => {
   const exclusionFiles = [];
-  const url = req.url.match(/^.*\/(.+\.(html|php))?$/);
+  const pageUrl  = req.url.match(/^.*\/(.+\.(html|php))?$/);
+  const otherUrl = req.url.match(/^(.+\.(css|js|png|jpg|jpeg|gif|svg)).*?$/);
 
-  if(url && every(exclusionFiles, (file) => (file !== url[0]))) {
-    if(url[0].match(/\/$/)) {
-      viewingPage = `${ url[0] }index.html`;
+  if(otherUrl) {
+    viewPageFiles.push(join(__dirname, DEST_ROOT, otherUrl[1]));
+  }
+
+  if(pageUrl && every(exclusionFiles, (file) => (file !== pageUrl[0]))) {
+    if(pageUrl[0].match(/\/$/)) {
+      viewingPage = `${ pageUrl[0] }index.html`;
     } else {
-      viewingPage = url[0];
+      viewingPage = pageUrl[0];
     }
   }
   next();
 };
 
 gulp.task('browser-sync', (done) => {
+  viewPageFiles = [];
+
   if(!argv.php) {
     browserSync.init({
       server: {
@@ -435,7 +445,7 @@ const pugOpts = {
           return block;
         }
       })();
-      return `\n${ block_ }`
+      return `\n${ block_ }`;
     },
   },
 };
