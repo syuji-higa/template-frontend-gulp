@@ -66,9 +66,9 @@
 	// import 'html5-polyfills/classList';
 	// import 'html5-polyfills/dataset';
 	// import 'fetch';
-	// import '../../vendors/rAF';  // https://gist.github.com/paulirish/1579671
+	// import '../../vendors/rAF';  // https://gist.github.com/1579671.git
+	// import '../../vendors/html-domparser';  // https://gist.github.com/1129031.git
 	// import '../../requires/polyfill/function';
-	// import '../../vendors/html-domparser';
 	
 	// create multiple incetance
 	var createIncetance = function createIncetance(_class, _selector) {
