@@ -105,9 +105,11 @@ sprite-animate-hover(image, duration = .2, suffix = { before: '-off', after: '-o
     animation fadeOut (duration)s linear
   &:hover
     background none
-    &::before, &::after
-      opacity 1
+    &::before
+      opacity 0
+      animation fadeOut (duration)s linear
     &::after
+      opacity 1
       animation fadeIn (duration)s linear
 
 // @example
