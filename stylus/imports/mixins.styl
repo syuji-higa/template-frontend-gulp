@@ -112,13 +112,13 @@ sprite-hover(image, duration = .2, suffix = { before: '-off', after: '-on' })
 
 // @example
 // ----------
-// create-animation(sampleAnime, 3, 10, {
+// create-keyframes(sampleAnime, 3, 10, {
 //     '0': { opacity: 1 },
 //    '50': { opacity: 0 },
 //   '100': { opacity: 1 }
 // })
 // ----------
-create-animation(name, duration, interval, animationHash)
+create-keyframes(name, duration, interval, animationHash)
   @keyframes name
     durationRatio = duration / (duration + interval)
     for progress, cssHash in animationHash
