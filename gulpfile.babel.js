@@ -697,7 +697,13 @@ const webpackTask = (isSrcDir, done) => {
               loader : 'babel',
               query  : {
                 presets: [ 'es2015', 'stage-0' ],
-                plugins: [ 'transform-object-assign' ],
+                plugins: [
+                  'transform-object-assign',
+                  ['transform-runtime', {
+                    'polyfill'   : false,
+                    'regenerator': true,
+                  }],
+                ],
               },
               exclude: /(node_modules|bower_components)/,
             },
