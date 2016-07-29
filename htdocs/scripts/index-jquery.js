@@ -46,15 +46,11 @@
 
 	'use strict';
 	
-	var _objectDestructuringEmpty2 = __webpack_require__(1);
-	
-	var _objectDestructuringEmpty3 = _interopRequireDefault(_objectDestructuringEmpty2);
-	
 	var _jquery = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"jquery\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _jquery2 = _interopRequireDefault(_jquery);
 	
-	var _lodash = __webpack_require__(2);
+	var _lodash = __webpack_require__(1);
 	
 	var _lodash2 = _interopRequireDefault(_lodash);
 	
@@ -74,6 +70,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
+	
 	window.jQuery = _jquery2.default;
 	// import 'Velocity.ui';
 	
@@ -81,7 +79,7 @@
 	// multiple new class
 	var newClass = function newClass(className, el, opts) {
 	  (0, _jquery2.default)(el).each(function (_ref, _el) {
-	    (0, _objectDestructuringEmpty3.default)(_ref);
+	    _objectDestructuringEmpty(_ref);
 	
 	    if (opts) {
 	      new className(_el, opts);
@@ -135,18 +133,6 @@
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	exports.__esModule = true;
-	
-	exports.default = function (obj) {
-	  if (obj == null) throw new TypeError("Cannot destructure undefined");
-	};
-
-/***/ },
-/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {/**
@@ -16741,10 +16727,10 @@
 	  }
 	}.call(this));
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(3)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(2)(module)))
 
 /***/ },
-/* 3 */
+/* 2 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {

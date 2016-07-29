@@ -699,10 +699,10 @@ const webpackTask = (isSrcDir, done) => {
                 presets: [ 'es2015', 'stage-0' ],
                 plugins: [
                   'transform-object-assign',
-                  ['transform-runtime', {
-                    'polyfill'   : false,
-                    'regenerator': true,
-                  }],
+                  // ['transform-runtime', {
+                  //   'polyfill'   : false,
+                  //   'regenerator': true,
+                  // }],
                 ],
               },
               exclude: /(node_modules|bower_components)/,
