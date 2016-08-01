@@ -93,13 +93,13 @@ triangle(shape = 'left', size = 10px, color = #000, positions = { top: auto, rig
 sprite-animate-hover(image, duration = .2, suffix = { before: '-off', after: '-on' })
   position relative
   animation delayView (duration)s linear
-  &, &:hover::before
-    sprite(image + suffix.before + '.png')
   &::before, &::after
     content ''
     display block
     opacity 0
     absolute top 0 left 0
+  &, &::before
+    sprite(image + suffix.before + '.png')
   &::after
     sprite(image + suffix.after + '.png')
     animation fadeOut (duration)s linear
