@@ -281,7 +281,7 @@ gulp.task('coding-watch', (done) => {
     }
   });
 
-  return done();
+  done();
 });
 
 
@@ -291,7 +291,7 @@ gulp.task('coding-watch', (done) => {
 gulp.task('scripting-watch', (done) => {
   watchStart([ join(WEBPACK_SRC  , '/**/*.js') ], () => gulp.start('webpack'));
   watchStart([ join(WEBPACK_OTHER, '/**/*.js') ], () => gulp.start('webpack-all'));
-  return done();
+  done();
 });
 
 
@@ -352,7 +352,7 @@ gulp.task('browser-sync', (done) => {
     reloadOnRestart: true,
   });
   if(!argv.php) {
-    return browserSync.init({
+    browserSync.init({
       server: {
         baseDir   : DEST_ROOT,
         middleware: browserSyncMiddleware,
@@ -369,7 +369,7 @@ gulp.task('browser-sync', (done) => {
       base: DEST_ROOT,
       keepalive: false,
     });
-    return browserSync.init({
+    browserSync.init({
       proxy     : 'localhost:3002',
       middleware: browserSyncMiddleware,
       open      : false,
@@ -499,7 +499,7 @@ const pugFactoryTask = (isJsonFileUpdate) => {
     .pipe(factory())
     .pipe(data(pugMember))
     .pipe(gulpPug(pugOpts))
-    .pipe(gulp.dest(PUG_DEST))
+    .pipe(gulp.dest(PUG_DEST));
 };
 
 
@@ -609,7 +609,7 @@ const imageminConfig = {
 };
 
 forEach(imageminConfig, (val, key) => {
-  gulp.task(`imagemin-${ key }`, (done) => {
+  gulp.task(`imagemin-${ key }`, () => {
     return gulp.src(join(IMAGEMIN_SRC, `/**/*.${ val.extension }`))
       .pipe(plumber(PLUMBER_OPTS))
       .pipe(changed(IMAGEMIN_DEST))
