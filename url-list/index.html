@@ -65,8 +65,8 @@ ul {
 }
 </style>
 <script>
-var sbudomain = 'client--project--branch';
-var data = [ '/index.html', '/sample/01.html', '/sample/02.html', '/sample/03.html', '/sample/04.html', '/sample/05.html', '/sample/06.html', '/sample/07.html', '/sample/08.html', '/sample/09.html', '/sample/10.html', '/sample/11.html', '/sample/12.html', '/sample/13.html', '/sample/14.html', '/sample/15.html', '/sample/16.html', '/sample/17.html', '/sample/18.html', '/sample/19.html', '/sample/20.html', '/sample/21.html', '/sample/22.html', '/sample/23.html', '/sample/24.html', '/sample/25.html', '/sample/26.html', '/sample/27.html', '/sample/28.html', '/sample/29.html', '/sample/30.html', '/sample/31.html', '/sample/32.html', '/sample/33.html', '/sample/34.html', '/sample/35.html', '/sample/36.html', '/sample/37.html', '/sample/38.html', '/sample/39.html', '/sample/40.html', '/sample/41.html', '/sample/42.html', '/sample/43.html', '/sample/44.html', '/sample/45.html', '/sample/46.html', '/sample/47.html', '/sample/48.html', '/sample/49.html', '/sample/50.html', '/sample/51.html', '/sample/52.html', '/sample/53.html', '/sample/54.html', '/sample/55.html', '/sample/56.html', '/sample/57.html', '/sample/58.html', '/sample/59.html', '/sample/60.html', '/sample/61.html', '/sample/62.html', '/sample/63.html', '/sample/64.html', '/sample/65.html', '/sample/66.html', '/sample/67.html', '/sample/68.html', '/sample/69.html', '/sample/70.html', '/sample/71.html', '/sample/72.html', '/sample/73.html', '/sample/74.html', '/sample/75.html', '/sample/76.html', '/sample/77.html', '/sample/78.html', '/sample/79.html', '/sample/80.html', '/sample/81.html', '/sample/82.html', '/sample/83.html', '/sample/84.html', '/sample/85.html', '/sample/86.html', '/sample/87.html', '/sample/88.html', '/sample/89.html', '/sample/90.html', '/sample/91.html', '/sample/92.html', '/sample/93.html', '/sample/94.html', '/sample/95.html', '/sample/96.html', '/sample/97.html', '/sample/98.html', '/sample/99.html', '/factory/index.html', '/factory/hoge/index.html', '/factory/fuga/fuga/index.html', '/factory2/index.html', '/factory2/hoge/index.html', '/factory2/fuga/fuga/index.html', '/sp/index.html' ];
+var domain = 'domain.com';
+var data = [ '/index.html', '/factory/index.html', '/factory/hoge/index.html', '/factory/fuga/fuga/index.html', '/sp/index.html' ];
 window.addEventListener('DOMContentLoaded', () => {
   var $list     = document.getElementById('list');
   var $fragment = document.createDocumentFragment();
@@ -75,7 +75,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if(hostname) {
     var host = port ? (hostname + ':3000') : hostname;
   } else {
-    var host = sbudomain + '.repo.testup.me';
+    var host = domain;
   }
   for(let i_ = 0; data.length > i_; i_++) {
     var $li_  = document.createElement('li');
