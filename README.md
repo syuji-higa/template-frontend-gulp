@@ -31,25 +31,25 @@ $ npm install
 | create url list             | gulp url-list        |
 | unnecessary files delete    | gulp clean           |
 
-#### **gulp**
+### gulp
 pug、Stylus、JavaScript、sprite のコンパイル等をして、関連ファイルを監視します。
 
-#### **gulp watch**
+### gulp watch
 pug、Stylus、JavaScript、sprite の関連ファイルを監視します。
 
-#### **gulp coding**
+### gulp coding
 pug、Stylus、sprite のコンパイル等をして、関連ファイルを監視します。
 
-#### **gulp coding-watch**
+### gulp coding-watch
 pug、Stylus、sprite の関連ファイルを監視します。
 
-#### **gulp scripting**
-JavaScript をコンパイル等をして、関連ファイルを監視します。
+### gulp scripting
+JavaScript のコンパイル等をして、関連ファイルを監視します。
 
-#### **gulp scripting-watch**
+### gulp scripting-watch
 JavaScript の関連ファイルを監視します。
 
-#### **gulp production**
+### gulp production
 本番・納品用のタスクを実行します。
 
 現状は以下を設定しています。
@@ -65,16 +65,16 @@ JavaScript の関連ファイルを監視します。
 - 文字コードを shift-jis に変更
 
 
-#### **gulp imagemin**
+### gulp imagemin
 画像を圧縮します。
 
-#### **gulp test**
+### gulp test
 JavaScrpt のテストを実行します。
 
-#### **gulp url-list**
+### gulp url-list
 URL一覧を表示するHTMLファイルを生成します。
 
-#### **gulp clean**
+### gulp clean
 不要なファイルを削除します。  
 通常は gulp production で合わせて実行されますが、  
 ファイルの削除だけする場合に使用。  
@@ -95,7 +95,7 @@ URL一覧を表示するHTMLファイルを生成します。
 $ gulp coding --php
 ```
 
-#### **--php**
+### --php
 ローカルサーバーをPHPで起動します。
 
 
@@ -103,7 +103,7 @@ $ gulp coding --php
 # local server
 ローカルサーバーは [BrowserSync](https://www.browsersync.io/) を使用しています。
 
-#### ポート
+### ポート
 - 3000 -> /htdocs/ をルートとして起動
 - 3001 -> BrowserSync のコントロールパネルを起動
 - 3002 -> PHP 起動時のプロキシで使用
@@ -155,11 +155,11 @@ $ gulp coding --php
 テンプレートファイル（pug）と json から html 自動生成します。  
 一部だけ違うページを大量生成する際におすすめ。
 
-#### **テンプレートファイル**
+### テンプレートファイル
 /json/factorys/ 以下の pug ファイル。  
 `{{vars}}` に json から取得したデータが変数として挿入されます。
 
-#### **データファイル**
+### データファイル
 /json/factorys/ 以下の json ファイル。
 
 ```javascript
