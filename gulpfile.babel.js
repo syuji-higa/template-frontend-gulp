@@ -67,6 +67,9 @@ const browserSyncUrlList = bsUrlList.create();
  * options
  */
 
+// javascript compiler
+const jsCompiler = 'babel';  // 'babel' or 'typescript'
+
 // output url list to htdocs
 const outputUrlListToHtdocs = false;
 
@@ -125,6 +128,17 @@ const TEST_CONFIG_SRC = `${ __dirname }/karma.conf.js`;
 const TEST_SRC        = 'test';
 
 const URL_LIST = 'url-list';
+
+
+/**
+ * javascript extension
+ */
+const jsExtension = (() => {
+  return ({
+    babel     : '.js',
+    typescript: '.ts',
+  })[jsCompiler];
+})();
 
 
 /**
@@ -289,8 +303,8 @@ gulp.task('coding-watch', (done) => {
  * scripting watch
  */
 gulp.task('scripting-watch', (done) => {
-  watchStart([ join(WEBPACK_SRC  , '/**/*.js') ], () => gulp.start('webpack'));
-  watchStart([ join(WEBPACK_OTHER, '/**/*.js') ], () => gulp.start('webpack-all'));
+  watchStart([ join(WEBPACK_SRC  , '/**/*.+(js|ts)') ], () => gulp.start('webpack'));
+  watchStart([ join(WEBPACK_OTHER, '/**/*.+(js|ts)') ], () => gulp.start('webpack-all'));
   done();
 });
 
@@ -643,7 +657,7 @@ const webpackTask = (isSrcDir) => {
     const opts = {
       resolve: {
         root      : [ join(__dirname, 'bower_components') ],
-        extensions: [ '', '.js' ],
+        extensions: [ '', '.js', '.ts' ],
         alias: {
           // 'es6-promise': 'es6-promise/es6-promise.min',
           // 'lodash'     : 'lodash/dist/lodash.min',
@@ -652,23 +666,7 @@ const webpackTask = (isSrcDir) => {
         },
       },
       module: {
-        loaders: [
-          {
-            test   : /\.js$/,
-            loader : 'babel',
-            query  : {
-              presets: [ 'es2015', 'stage-0' ],
-              plugins: [
-                'transform-object-assign',
-                // ['transform-runtime', {
-                //   'polyfill'   : false,
-                //   'regenerator': true,
-                // }],
-              ],
-            },
-            exclude: /(node_modules|bower_components)/,
-          },
-        ],
+        loaders: [],
       },
       plugins: [
         new webpack.ResolverPlugin(
@@ -676,6 +674,32 @@ const webpackTask = (isSrcDir) => {
         )
       ],
     };
+    ({
+      babel: () => {
+        opts.module.loaders.push({
+          test   : /\.js$/,
+          loader : 'babel',
+          query  : {
+            presets: [ 'es2015', 'stage-0' ],
+            plugins: [
+              'transform-object-assign',
+              // [ 'transform-runtime', {
+              //   'polyfill'   : false,
+              //   'regenerator': true,
+              // }],
+            ],
+          },
+          exclude: /(node_modules|bower_components)/,
+        });
+      },
+      typescript: () => {
+        opts.module.loaders.push({
+          test   : /\.ts$/,
+          loader : 'ts-loader',
+          exclude: /(node_modules|bower_components)/,
+        });
+      },
+    })[jsCompiler]();
     if(!isProduction) {
       merge(opts, { devtool: 'source-map' });
     }
@@ -703,7 +727,7 @@ const webpackTask = (isSrcDir) => {
     };
     const transform = (data, encode, callback) => {
       const destDirname    = dirname(join(basedir, dest, relative(src, data.path)));
-      const destFilename   = basename(data.path, '.js');
+      const destFilename   = basename(data.path, jsExtension);
       const webpackAllOpts = merge(webpackBaseOpts(data.path, destDirname, destFilename), webpackOpts);
       webpack(webpackAllOpts, (err, stats) => {
         if(err) {
@@ -719,7 +743,7 @@ const webpackTask = (isSrcDir) => {
     return through.obj(transform, flush);
   };
 
-  return gulp.src(join(WEBPACK_SRC, '/**/*.js'))
+  return gulp.src(join(WEBPACK_SRC, `/**/*${ jsExtension }`))
     .pipe(plumber(PLUMBER_OPTS))
     .pipe(gulpif(isSrcDir, cache('webpack')))
     .pipe(eslint())

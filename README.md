@@ -224,11 +224,24 @@ Stylus で使用する為に /stylus/imports/sprite.styl が出力されます�
 
 
 # JavaScript
-[Babel](https://babeljs.io/)（[es2015](https://babeljs.io/docs/plugins/preset-es2015/)、[stage-0](https://babeljs.io/docs/plugins/preset-stage-0/)）をトランスパイルして、  
-[webpack](https://webpack.github.io/) で結合します。
+[Babel](https://babeljs.io/)（[es2015](https://babeljs.io/docs/plugins/preset-es2015/)、[stage-0](https://babeljs.io/docs/plugins/preset-stage-0/)）をトランスパイル、  
+または [TypeScript](https://www.typescriptlang.org/) をコンパイルして、  
+[webpack](https://webpack.github.io/) でバンドルします。
 
-/webpac/src/ 以下の js ファイルをトランスパイルし /htdocs/ 以下に出力します。
+/webpac/src/ 以下の js または ts ファイルをコンパイル（トランスパイル）し /htdocs/ 以下に出力します。
 
+## コンパイラ
+デフォルトは Babel を使用するようになっています。  
+TypeScript を使用する場合は、以下を変更します。
+
+```js:gulpfile.babel.js
+const jsCompiler = 'babel';
+```
+↓
+
+```js:gulpfile.babel.js
+const jsCompiler = 'typescript';
+```
 
 ## webpack
 パッケージマネージャーに [Bower](http://bower.io/) を使用しています。
