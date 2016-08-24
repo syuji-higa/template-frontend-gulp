@@ -58,8 +58,8 @@ img-replace(indent-dir = 'left')
   white-space nowrap
 
 triangle(shape = 'left', size = 10px, color = #000, positions = {})
-  default-positions-hash = { top: auto, right: auto, bottom: auto, left: auto }
-  positions = merge(default-positions-hash, positions)
+  default-positions = { top: auto, right: auto, bottom: auto, left: auto }
+  positions = merge(default-positions, positions)
   content ""
   display block
   width 0
@@ -93,13 +93,13 @@ triangle(shape = 'left', size = 10px, color = #000, positions = {})
 // ==============================
 
 sprite-fade-hover(image, opts = {})
-  default-opts-hash = {
+  default-opts = {
     duration    : .2
     crossFade   : false
     suffixBefore: '-off'
     suffixAfter : '-on'
   }
-  opts = merge(default-opts-hash, opts)
+  opts = merge(default-opts, opts)
   image-size = get-img-size(image + opts.suffixBefore + '.png')
   width      = image-size.width
   height     = image-size.height
