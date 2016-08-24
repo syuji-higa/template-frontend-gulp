@@ -101,35 +101,30 @@ sprite-fade-hover(image, opts = {})
   }
   opts = merge(default-opts, opts)
   image-size = get-img-size(image + opts.suffixBefore + '.png')
-  width      = image-size.width
-  height     = image-size.height
-  duration     = opts.duration
-  crossFade    = opts.crossFade
-  suffixBefore = opts.suffixBefore
-  suffixAfter  = opts.suffixAfter
-  size (width)px (height)px
+  width : (image-size.width)px
+  height: (image-size.height)px
   position relative
-  animation delayView (duration)s linear
+  animation: delayView (opts.duration)s linear
   &::before, &::after
     content ''
     display block
     absolute top 0 left 0
   &::before
-    sprite(image + suffixBefore + '.png')
-    if crossFade
-      animation fadeIn (duration)s linear
+    sprite(image + opts.suffixBefore + '.png')
+    if opts.crossFade
+      animation: fadeIn (opts.duration)s linear
   &::after
     opacity 0
-    sprite(image + suffixAfter + '.png')
-    animation fadeOut (duration)s linear
+    sprite(image + opts.suffixAfter + '.png')
+    animation: fadeOut (opts.duration)s linear
   &:hover
-    if crossFade
+    if opts.crossFade
       &::before
         opacity 0
-        animation fadeOut (duration)s linear
+        animation: fadeOut (opts.duration)s linear
     &::after
       opacity 1
-      animation fadeIn (duration)s linear
+      animation: fadeIn (opts.duration)s linear
 
 // @example
 // ----------
