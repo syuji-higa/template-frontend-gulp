@@ -57,7 +57,9 @@ img-replace(indent-dir = 'left')
   text-indent indent-dir-num
   white-space nowrap
 
-triangle(shape = 'left', size = 10px, color = #000, positions = { top: auto, right: auto, bottom: auto, left: auto })
+triangle(shape = 'left', size = 10px, color = #000, positions = {})
+  default-positions-hash = { top: auto, right: auto, bottom: auto, left: auto }
+  positions = merge(default-positions-hash, opts)
   content ""
   display block
   width 0
@@ -90,24 +92,41 @@ triangle(shape = 'left', size = 10px, color = #000, positions = { top: auto, rig
 // animations
 // ==============================
 
-sprite-animate-hover(image, duration = .2, suffix = { before: '-off', after: '-on' })
+sprite-fade-hover(image, opts = {})
+  default-opts-hash = {
+    duration    : .2
+    crossFade   : false
+    suffixBefore: '-off'
+    suffixAfter : '-on'
+  }
+  opts = merge(default-opts-hash, opts)
+  image-size = get-img-size(image + opts.suffixBefore + '.png')
+  width      = image-size.width
+  height     = image-size.height
+  duration     = opts.duration
+  crossFade    = opts.crossFade
+  suffixBefore = opts.suffixBefore
+  suffixAfter  = opts.suffixAfter
+  size (width)px (height)px
   position relative
   animation delayView (duration)s linear
   &::before, &::after
     content ''
     display block
-    opacity 0
     absolute top 0 left 0
-  &, &::before
-    sprite(image + suffix.before + '.png')
+  &::before
+    sprite(image + suffixBefore + '.png')
+    if crossFade
+      animation fadeIn (duration)s linear
   &::after
-    sprite(image + suffix.after + '.png')
+    opacity 0
+    sprite(image + suffixAfter + '.png')
     animation fadeOut (duration)s linear
   &:hover
-    background none
-    &::before
-      opacity 0
-      animation fadeOut (duration)s linear
+    if crossFade
+      &::before
+        opacity 0
+        animation fadeOut (duration)s linear
     &::after
       opacity 1
       animation fadeIn (duration)s linear
