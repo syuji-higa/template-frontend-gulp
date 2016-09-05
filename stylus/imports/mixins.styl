@@ -1,18 +1,29 @@
-size(width, height = width)
-  width width
-  height height
+use('plugins/has-own-property.js')
 
-min-size(width, height = width)
-  min-width width
-  min-height height
+// ==============================
+// getter
+// ==============================
 
-max-size(width, height = width)
-  max-width width
-  max-height height
+get-deep-merge(a, b)
+  for key in b
+    if has-own-property(b, key)
+      if has-own-property(a, key) && (typeof(a[key]) == 'object' && typeof(b[key]) == 'object')
+        a[key] = get-deep-merge(a[key], b[key])
+      else
+        a[key] = b[key]
+  return a
+
+get-add-unit(val)
+  unit(val) ? val : unit(val, 'px')
 
 get-percent-size(size, base-size)
   (size / base-size * 100)%
 
+// @example
+// ----------
+// get-img-size('../../htdocs/images/sample.png')  // image
+// get-img-size('images/sample/a.png')  // sprite
+// ----------
 get-img-size(imgpath)
   if match('^.+(htdocs).+$', imgpath)
     img-size = image-size(imgpath)
@@ -26,6 +37,29 @@ get-img-size(imgpath)
       height: sprite-hash[imgpath].height
     }
 
+
+// ==============================
+// size & position
+// ==============================
+
+size(width, height = width)
+  width get-add-unit(width)
+  height get-add-unit(height)
+
+min-size(width, height = width)
+  min-width get-add-unit(width)
+  min-height get-add-unit(height)
+
+max-size(width, height = width)
+  max-width get-add-unit(width)
+  max-height get-add-unit(height)
+
+// @example
+// ----------
+// centering()  // translate
+// centering(500)  // margin
+// centering(500, 200)  // margin
+// ----------
 centering(width = null, height = width)
   if width
     margin (width / -2)px 0 0 (width / -2)px
@@ -33,6 +67,12 @@ centering(width = null, height = width)
     transform translateX(-50%) translateY(-50%)
   absolute top 50% left 50%
 
+// @example
+// ----------
+// aspect-ratio('../../htdocs/images/sample.png')  // image
+// aspect-ratio('images/sample/a.png')  // sprite
+// aspect-ratio(500, 300)  // size
+// ----------
 aspect-ratio(width-or-imgpath, height = null)
   if typeof(width-or-imgpath) is 'string'
     img-size = get-img-size(width-or-imgpath)
@@ -48,43 +88,60 @@ aspect-ratio(width-or-imgpath, height = null)
   > *
     position absolute
 
+
+// ==============================
+// replace
+// ==============================
+
 img-replace(indent-dir = 'left')
-  if indent-dir is 'left'
-    indent-dir-num = -100%
-  else if indent-dir is 'right'
-    indent-dir-num = 100%
+  indent-set = {
+    'left' : -100%
+    'right':  100%
+  }
   overflow hidden
-  text-indent indent-dir-num
+  text-indent: indent-set[indent-dir]
   white-space nowrap
 
-triangle(shape = 'left', size = 10px, color = #000, positions = {})
-  default-positions = { top: auto, right: auto, bottom: auto, left: auto }
-  positions = merge(default-positions, positions)
+
+// ==============================
+// shape
+// ==============================
+
+// @example
+// ----------
+// triangle()
+// triangle({ dirction: 'bottom', size: 15, color: #ccc, { right: 0 }})
+// ----------
+triangle(opts = {})
+  default-opts = {
+    dirction : 'left'
+    size     : 10
+    color    : #000
+    positions: { top: auto, right: auto, bottom: auto, left: auto }
+  }
+  opts = get-deep-merge(default-opts, opts)
+  color-set = {
+    'top'        : 0 0 1
+    'left'       : 0 1 0 0
+    'bottom'     : 1 0 0
+    'right'      : 0 0 0 1
+    'topLeft'    : 1 0 0 1
+    'topRight'   : 1 1 0 0
+    'bottomRight': 0 1 1 0
+    'bottomLeft' : 0 0 1 1
+  }
+  colors = null
+  for val in color-set[opts.dirction]
+    colors = colors (val ? opts.color : transparent)
   content ""
   display block
   width 0
   height 0
-  if shape is 'top'
-    colors = transparent transparent color
-  else if shape is 'left'
-    colors = transparent color transparent transparent
-  else if shape is 'bottom'
-    colors = color transparent transparent
-  else if shape is 'right'
-    colors = transparent transparent transparent color
-  else if shape is 'topLeft'
-    colors = color transparent transparent color
-  else if shape is 'topRight'
-    colors = color color transparent transparent
-  else if shape is 'bottomRight'
-    colors = transparent color color transparent
-  else if shape is 'bottomLeft'
-    colors = transparent transparent color color
-  border-width size
+  border-width: get-add-unit(opts.size)
   border-style solid
   border-color colors
   position absolute
-  for prop, pos in positions
+  for prop, pos in opts.positions
     {prop} pos
 
 
@@ -92,6 +149,13 @@ triangle(shape = 'left', size = 10px, color = #000, positions = {})
 // animations
 // ==============================
 
+// @example
+// ----------
+// sprite-fade-hover('images/sample/a.png')
+// sprite-fade-hover('images/sample/a.png', {
+//   duration: .5, crossFade: true, suffixBefore: '_off', suffixAfter: '_on'
+// })
+// ----------
 sprite-fade-hover(image, opts = {})
   default-opts = {
     duration    : .2
@@ -150,6 +214,12 @@ create-keyframes(name, duration, interval, animationHash)
 opacity(val)
   opacity val
 
+clearfix()
+  +cache('clearfix')
+    &::after
+      content ""
+      display block
+      clear both
 
 // ==============================
 // polyfiles

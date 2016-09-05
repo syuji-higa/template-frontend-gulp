@@ -658,6 +658,8 @@ dd {
   position: absolute;
 }
 .arrow {
+  width: 15px;
+  height: 15px;
   position: relative;
 }
 .arrow::after {
@@ -667,11 +669,11 @@ dd {
   height: 0;
   border-width: 15px;
   border-style: solid;
-  border-color: #999 transparent transparent;
+  border-color: transparent transparent transparent #999;
   position: absolute;
   top: auto;
   right: auto;
-  bottom: auto;
+  bottom: 0;
   left: auto;
 }
 .box-wrap {

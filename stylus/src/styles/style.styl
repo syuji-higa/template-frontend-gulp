@@ -10,9 +10,9 @@
 @import "../../imports/easings"
 
 .sprite
-  for name, i in "blue" "green" "red"
+  for name, i in 'blue' 'green' 'red'
     li:nth-child({ i + 1 })
-      sprite "images/circle/" + name + ".png"
+      sprite('images/circle/' + name + '.png')
 
 .btn
   sprite-fade-hover('images/btn/btn')
@@ -29,9 +29,10 @@
   aspect-ratio(200, 100)
 
 .arrow
+  size(15px)
   position relative
   &::after
-    triangle('bottom', 15px, #999)
+    triangle({ dirction: 'right', size: 15px, color: #999, positions: { bottom: 0 } })
 
 .box-wrap
   size 200px
