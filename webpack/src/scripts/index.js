@@ -1,5 +1,5 @@
-import Module from '../../imports/modules/module';
-import Template from '../../imports/modules/template';
+import Module from '../../imports/module/module';
+import Template from '../../imports/module/template';
 // import 'lodash';
 // import 'Velocity';
 // import 'Velocity.ui';
@@ -13,24 +13,24 @@ import Template from '../../imports/modules/template';
 // import '../../requires/polyfill/function';
 
 // create multiple incetance
-const createIncetance = (_class, _selector, ..._opts) => {
-  const $$el_ = document.querySelectorAll(_selector);
-  const instances = [];
-  for(let i_ = 0; $$el_.length > i_; i_++) {
-    const arg_ = [ $$el_[i_] ];
-    if(_opts) Array.prototype.push.apply(arg_, _opts);
-    instances.push(new _class(...arg_));
+const createIncetance = (useClass, selector, ...opts) => {
+  const _$$el = document.querySelectorAll(selector);
+  const _instances = [];
+  for(let _i = 0; _$$el.length > _i; _i++) {
+    const _arg = [ _$$el[_i] ];
+    if(opts) Array.prototype.push.apply(_arg, opts);
+    _instances.push(new useClass(..._arg));
   }
-  return instances;
+  return _instances;
 };
 
 // create single incetance
-const createSingleIncetance = (_class, _selector, ..._opts) => {
-  const $$el_ = document.querySelectorAll(_selector);
-  if(!$$el_.length) return false;
-  const arg_ = [$$el_];
-  if(_opts) Array.prototype.push.apply(arg_, _opts);
-  return new _class(...arg_);
+const createSingleIncetance = (useClass, selector, ...opts) => {
+  const _$$el = document.querySelectorAll(selector);
+  if(!_$$el.length) return false;
+  const _arg = [_$$el];
+  if(opts) Array.prototype.push.apply(_arg, opts);
+  return new useClass(..._arg);
 };
 
 // get path name
@@ -46,20 +46,20 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // const page = getPathName();
 
-  const modules_ = [
+  const _modules = [
     [ Template, '.sample1' ],
   ];
 
-  const singleModules_ = [
+  const _singleModules = [
     [ Template, '.sample2' ],
   ];
 
-  modules_.forEach((_arr) => {
-    createIncetance(..._arr);
+  _modules.forEach((arr) => {
+    createIncetance(...arr);
   });
 
-  singleModules_.forEach((_arr) => {
-    createSingleIncetance(..._arr);
+  _singleModules.forEach((arr) => {
+    createSingleIncetance(...arr);
   });
 
 });
