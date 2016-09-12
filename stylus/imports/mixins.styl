@@ -5,13 +5,14 @@ use('../plugins/has-own-property.js')
 // ==============================
 
 get-deep-merge(a, b)
+  c = merge({}, a)
   for key in b
     if has-own-property(b, key)
       if has-own-property(a, key) && (typeof(a[key]) == 'object' && typeof(b[key]) == 'object')
-        a[key] = get-deep-merge(a[key], b[key])
+        c[key] = get-deep-merge(a[key], b[key])
       else
-        a[key] = b[key]
-  return a
+        c[key] = b[key]
+  return c
 
 get-add-unit(val)
   unit(val) ? val : unit(val, 'px')
