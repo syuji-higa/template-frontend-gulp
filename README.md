@@ -122,7 +122,7 @@ $ gulp coding --php
 |:---------------|:---------------|
 | crLfReplace    | 改行コード変換 |
 | iconv          | 文字コード変換 |
-| extensonChange | 拡張子変換     |
+| rename         | 拡張子変換     |
 
 ## 用意されている変数
 

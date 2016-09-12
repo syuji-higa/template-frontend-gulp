@@ -71,32 +71,32 @@
 	// import '../../requires/polyfill/function';
 	
 	// create multiple incetance
-	var createIncetance = function createIncetance(_class, _selector) {
-	  for (var _len = arguments.length, _opts = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
-	    _opts[_key - 2] = arguments[_key];
+	var createIncetance = function createIncetance(useClass, selector) {
+	  for (var _len = arguments.length, opts = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+	    opts[_key - 2] = arguments[_key];
 	  }
 	
-	  var $$el_ = document.querySelectorAll(_selector);
-	  var instances = [];
-	  for (var i_ = 0; $$el_.length > i_; i_++) {
-	    var arg_ = [$$el_[i_]];
-	    if (_opts) Array.prototype.push.apply(arg_, _opts);
-	    instances.push(new (Function.prototype.bind.apply(_class, [null].concat(arg_)))());
+	  var _$$el = document.querySelectorAll(selector);
+	  var _instances = [];
+	  for (var _i = 0; _$$el.length > _i; _i++) {
+	    var _arg = [_$$el[_i]];
+	    if (opts) Array.prototype.push.apply(_arg, opts);
+	    _instances.push(new (Function.prototype.bind.apply(useClass, [null].concat(_arg)))());
 	  }
-	  return instances;
+	  return _instances;
 	};
 	
 	// create single incetance
-	var createSingleIncetance = function createSingleIncetance(_class, _selector) {
-	  for (var _len2 = arguments.length, _opts = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-	    _opts[_key2 - 2] = arguments[_key2];
+	var createSingleIncetance = function createSingleIncetance(useClass, selector) {
+	  for (var _len2 = arguments.length, opts = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+	    opts[_key2 - 2] = arguments[_key2];
 	  }
 	
-	  var $$el_ = document.querySelectorAll(_selector);
-	  if (!$$el_.length) return false;
-	  var arg_ = [$$el_];
-	  if (_opts) Array.prototype.push.apply(arg_, _opts);
-	  return new (Function.prototype.bind.apply(_class, [null].concat(arg_)))();
+	  var _$$el = document.querySelectorAll(selector);
+	  if (!_$$el.length) return false;
+	  var _arg = [_$$el];
+	  if (opts) Array.prototype.push.apply(_arg, opts);
+	  return new (Function.prototype.bind.apply(useClass, [null].concat(_arg)))();
 	};
 	
 	// get path name
@@ -112,16 +112,16 @@
 	
 	  // const page = getPathName();
 	
-	  var modules_ = [[_template2.default, '.sample1']];
+	  var _modules = [[_template2.default, '.sample1']];
 	
-	  var singleModules_ = [[_template2.default, '.sample2']];
+	  var _singleModules = [[_template2.default, '.sample2']];
 	
-	  modules_.forEach(function (_arr) {
-	    createIncetance.apply(undefined, _toConsumableArray(_arr));
+	  _modules.forEach(function (arr) {
+	    createIncetance.apply(undefined, _toConsumableArray(arr));
 	  });
 	
-	  singleModules_.forEach(function (_arr) {
-	    createSingleIncetance.apply(undefined, _toConsumableArray(_arr));
+	  _singleModules.forEach(function (arr) {
+	    createSingleIncetance.apply(undefined, _toConsumableArray(arr));
 	  });
 	});
 
@@ -329,13 +329,13 @@
 	function Template() {
 	  _classCallCheck(this, Template);
 	
-	  var $tmp_ = document.getElementsByClassName('template')[0];
-	  var $result_ = document.getElementsByClassName('result')[0];
-	  var tmp_ = _.template($tmp_.innerHTML);
-	  var obj_ = {
+	  var _$tmp = document.getElementsByClassName('template')[0];
+	  var _$result = document.getElementsByClassName('result')[0];
+	  var _tmp = _.template(_$tmp.innerHTML);
+	  var _obj = {
 	    data: [{ class: 'class1', name: 'taro', age: 25 }, { class: 'class2', name: 'jiro', age: 18 }, { class: 'class3', name: 'saburo', age: 15 }]
 	  };
-	  $result_.append(tmp_(obj));
+	  _$result.append(_tmp(_obj));
 	};
 	
 	/**

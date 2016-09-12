@@ -51,7 +51,7 @@ import pngquant from 'imagemin-pngquant';
 import sourcemaps from 'gulp-sourcemaps';
 import crLfReplace from 'gulp-cr-lf-replace';
 import iconv from 'gulp-iconv';
-import extensonChange from 'gulp-extension-change';
+import rename from 'gulp-rename';
 import cache from 'gulp-cached';
 import changed from 'gulp-changed';
 import plumber from 'gulp-plumber';
@@ -441,13 +441,13 @@ gulp.task('pug-factory-all', () => {
 });
 
 const pugOpts = {
-  pug   : pug,
+  pug    : pug,
   pretty : true,
   // pretty : !isProduction,
   basedir: join(__dirname, PUG_BASE),
   filters: {
     'do-nothing': (block) => {
-      const indentData     = block.match(/^\{\{indent=([0-9])\}\}\n/);
+      const indentData = block.match(/^\{\{indent=([0-9])\}\}\n/);
       const block_ = (() => {
         if(indentData) {
           const block__ = block.replace(indentData[0], '');
@@ -463,7 +463,10 @@ const pugOpts = {
   },
 };
 
-// const pugExtensonChangeFilter = ['*'];
+// pugExtensonChangeFilter info
+// for convert -> [ join(__dirname, 'pug/src/index.html') ]
+// for copy    -> [ 'htdocs/index.html' ]
+const pugExtensonChangeFilter = [];
 
 const pugTask = (srcPath, destPath, isSrcDirUpdate) => {
   return gulp.src(srcPath)
@@ -471,14 +474,15 @@ const pugTask = (srcPath, destPath, isSrcDirUpdate) => {
     .pipe(gulpif(isSrcDirUpdate, cache('pug')))
     .pipe(data(pugMember))
     .pipe(gulpPug(pugOpts))
+    // .pipe(rename({ extname: '.php' }))
+    // .pipe(gulpif(pugExtensonChangeFilter, rename({ extname: '.php' })))
     // .pipe(crLfReplace({ changeCode: 'CR+LF' }))
     // .pipe(gulpif(isProduction, iconv({ encoding: 'shift_jis' })))
     .pipe(gulp.dest(destPath));
     // .pipe(filter(pugExtensonChangeFilter))
-    // .pipe(extensonChange({
-    //   afterExtension: 'php',
-    //   copy: true,
-    // }))
+    // .pipe(rename({ extname: '.php' }))
+    // .pipe(crLfReplace({ changeCode: 'CR+LF' }))
+    // .pipe(gulpif(isProduction, iconv({ encoding: 'shift_jis' })))
     // .pipe(gulp.dest(PUG_DEST));
 };
 
