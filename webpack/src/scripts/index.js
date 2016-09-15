@@ -1,5 +1,4 @@
-import Module from '../../imports/module/module';
-import Template from '../../imports/module/template';
+import Sample from '../../imports/sample';
 // import 'lodash';
 // import 'Velocity';
 // import 'Velocity.ui';
@@ -12,7 +11,13 @@ import Template from '../../imports/module/template';
 // import '../../vendors/html-domparser';  // https://gist.github.com/1129031.git
 // import '../../requires/polyfill/function';
 
-// create multiple incetance
+/**
+ * create multiple incetance
+ * @param {Class} useClass
+ * @param {string} selector
+ * @param {...*} opts
+ * @return {Array<Instance>}
+ */
 const createIncetance = (useClass, selector, ...opts) => {
   const _$$el = document.querySelectorAll(selector);
   const _instances = [];
@@ -24,7 +29,13 @@ const createIncetance = (useClass, selector, ...opts) => {
   return _instances;
 };
 
-// create single incetance
+/**
+ * create single incetance
+ * @param {Class} useClass
+ * @param {string} selector
+ * @param {...*} opts
+ * @return {Instance}
+ */
 const createSingleIncetance = (useClass, selector, ...opts) => {
   const _$$el = document.querySelectorAll(selector);
   if(!_$$el.length) return false;
@@ -33,25 +44,23 @@ const createSingleIncetance = (useClass, selector, ...opts) => {
   return new useClass(..._arg);
 };
 
-// get path name
+/**
+ * get path name
+ */
 const getPathName = () => {
   return location.pathname.replace('index.html', '');
 };
 
 window.addEventListener('DOMContentLoaded', () => {
 
-  new Module();
-
-  // new Template();
-
   // const page = getPathName();
 
   const _modules = [
-    [ Template, '.sample1' ],
+    [ Sample, '.js-sample' ]
   ];
 
   const _singleModules = [
-    [ Template, '.sample2' ],
+    [ Sample, '.js-sample' ]
   ];
 
   _modules.forEach((arr) => {

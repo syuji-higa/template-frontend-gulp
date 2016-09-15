@@ -262,6 +262,12 @@ alias: {
 /test/ 以下に [Jasmine](http://jasmine.github.io/) & [Karma](https://karma-runner.github.io/) でテストできる環境を用意しています。
 
 
+## ESDoc
+以下コマンドで /_esdoc/ 以下にAPIドキュメントを出力します。
+```
+esdoc -c esdoc.json
+```
+
 
 # URL list
 3003ポートにURL一覧を表示します。

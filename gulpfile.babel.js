@@ -679,7 +679,7 @@ const webpackTask = (isSrcDir) => {
       ],
     };
     ({
-      babel: () => {
+      babel() {
         opts.module.loaders.push({
           test   : /\.js$/,
           loader : 'babel',
@@ -696,7 +696,7 @@ const webpackTask = (isSrcDir) => {
           exclude: /(node_modules|bower_components)/,
         });
       },
-      typescript: () => {
+      typescript() {
         opts.module.loaders.push({
           test   : /\.ts$/,
           loader : 'ts-loader',
@@ -750,7 +750,7 @@ const webpackTask = (isSrcDir) => {
   return gulp.src(join(WEBPACK_SRC, `/**/*${ jsExtension }`))
     .pipe(plumber(PLUMBER_OPTS))
     .pipe(gulpif(isSrcDir, cache('webpack')))
-    .pipe(eslint())
+    .pipe(eslint({ useEslintrc: true }))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
     .pipe(build({

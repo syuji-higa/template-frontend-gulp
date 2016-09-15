@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-">&#x958B;&#x767A;&#x74B0;&#x5883;&#x306E;&#x69CB;&#x7BC9;</h1>
+<p>&#x3053;&#x306E;&#x30D7;&#x30ED;&#x30B8;&#x30A7;&#x30AF;&#x30C8;&#x306F; <a href="http://gulpjs.com/">Gulp</a> &#x3067;&#x7BA1;&#x7406;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="-">&#x30B0;&#x30ED;&#x30FC;&#x30D0;&#x30EB;&#x306B;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x304C;&#x5FC5;&#x8981;&#x306A;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;</h2>
+<ul>
+<li><a href="https://nodejs.org/en/">node.js</a></li>
+<li><a href="https://github.com/gulpjs/gulp-cli">gulp-cli</a></li>
+</ul>
+<h2 id="-npm-https-www-npmjs-com-"><a href="https://www.npmjs.com/">npm</a> &#x304B;&#x3089;&#x5FC5;&#x8981;&#x306A;&#x30E2;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3092;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;</h2>
+<pre><code class="lang-bash"><code class="source-code prettyprint">$ npm install</code>
+</code></pre>
+<h1 id="gulp-">Gulp &#x30B3;&#x30DE;&#x30F3;&#x30C9;</h1>
+<h2 id="-">&#x30BF;&#x30B9;&#x30AF;</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x30BF;&#x30B9;&#x30AF;</th>
+<th style="text-align:left">&#x30B3;&#x30DE;&#x30F3;&#x30C9;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">development</td>
+<td style="text-align:left">gulp</td>
+</tr>
+<tr>
+<td style="text-align:left">development watch</td>
+<td style="text-align:left">gulp watch</td>
+</tr>
+<tr>
+<td style="text-align:left">development coding</td>
+<td style="text-align:left">gulp coding</td>
+</tr>
+<tr>
+<td style="text-align:left">development coding watch</td>
+<td style="text-align:left">gulp coding-watch</td>
+</tr>
+<tr>
+<td style="text-align:left">development scripting</td>
+<td style="text-align:left">gulp scripting</td>
+</tr>
+<tr>
+<td style="text-align:left">development scripting watch</td>
+<td style="text-align:left">gulp scripting-watch</td>
+</tr>
+<tr>
+<td style="text-align:left">production</td>
+<td style="text-align:left">gulp production</td>
+</tr>
+<tr>
+<td style="text-align:left">image minimizing</td>
+<td style="text-align:left">gulp imagemin</td>
+</tr>
+<tr>
+<td style="text-align:left">javascript test</td>
+<td style="text-align:left">gulp test</td>
+</tr>
+<tr>
+<td style="text-align:left">create url list</td>
+<td style="text-align:left">gulp url-list</td>
+</tr>
+<tr>
+<td style="text-align:left">unnecessary files delete</td>
+<td style="text-align:left">gulp clean</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gulp">gulp</h3>
+<p>pug&#x3001;Stylus&#x3001;JavaScript&#x3001;sprite &#x306E;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x7B49;&#x3092;&#x3057;&#x3066;&#x3001;&#x95A2;&#x9023;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x76E3;&#x8996;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="gulp-watch">gulp watch</h3>
+<p>pug&#x3001;Stylus&#x3001;JavaScript&#x3001;sprite &#x306E;&#x95A2;&#x9023;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x76E3;&#x8996;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="gulp-coding">gulp coding</h3>
+<p>pug&#x3001;Stylus&#x3001;sprite &#x306E;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x7B49;&#x3092;&#x3057;&#x3066;&#x3001;&#x95A2;&#x9023;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x76E3;&#x8996;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="gulp-coding-watch">gulp coding-watch</h3>
+<p>pug&#x3001;Stylus&#x3001;sprite &#x306E;&#x95A2;&#x9023;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x76E3;&#x8996;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="gulp-scripting">gulp scripting</h3>
+<p>JavaScript &#x306E;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x7B49;&#x3092;&#x3057;&#x3066;&#x3001;&#x95A2;&#x9023;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x76E3;&#x8996;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="gulp-scripting-watch">gulp scripting-watch</h3>
+<p>JavaScript &#x306E;&#x95A2;&#x9023;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x76E3;&#x8996;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="gulp-production">gulp production</h3>
+<p>&#x672C;&#x756A;&#x30FB;&#x7D0D;&#x54C1;&#x7528;&#x306E;&#x30BF;&#x30B9;&#x30AF;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x73FE;&#x72B6;&#x306F;&#x4EE5;&#x4E0B;&#x3092;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li>pug&#x3001;Stylus&#x3001;JavaScript&#x3001;sprite &#x306E;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x7B49;&#xFF08;map &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x51FA;&#x529B;&#x306F;&#x3057;&#x306A;&#x3044;&#xFF09;</li>
+<li>imagemin &#x30BF;&#x30B9;&#x30AF;&#x306E;&#x5B9F;&#x884C;</li>
+<li>clean &#x30BF;&#x30B9;&#x30AF;&#x306E;&#x5B9F;&#x884C;</li>
+</ul>
+<p>&#x5FC5;&#x8981;&#x306A;&#x30BF;&#x30B9;&#x30AF;&#x3092;&#x6848;&#x4EF6;&#x3054;&#x3068;&#x306B;&#x8A2D;&#x5B9A;&#x3057;&#x3066;&#x304F;&#x3060;&#x3055;&#x3044;&#x3002;
+&#x4EE5;&#x4E0B;&#x306F;&#x4F8B;&#x3067;&#x3059;&#x3002;</p>
+<ul>
+<li>HTML&#x3001;CSS&#x3001;JavaScript &#x306E;&#x5727;&#x7E2E;</li>
+<li>&#x6587;&#x5B57;&#x30B3;&#x30FC;&#x30C9;&#x3092; shift-jis &#x306B;&#x5909;&#x66F4;</li>
+</ul>
+<h3 id="gulp-imagemin">gulp imagemin</h3>
+<p>&#x753B;&#x50CF;&#x3092;&#x5727;&#x7E2E;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="gulp-test">gulp test</h3>
+<p>JavaScrpt &#x306E;&#x30C6;&#x30B9;&#x30C8;&#x3092;&#x5B9F;&#x884C;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="gulp-url-list">gulp url-list</h3>
+<p>URL&#x4E00;&#x89A7;&#x3092;&#x8868;&#x793A;&#x3059;&#x308B;HTML&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x751F;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="gulp-clean">gulp clean</h3>
+<p>&#x4E0D;&#x8981;&#x306A;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x524A;&#x9664;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x901A;&#x5E38;&#x306F; gulp production &#x3067;&#x5408;&#x308F;&#x305B;&#x3066;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x304C;&#x3001;<br>&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x524A;&#x9664;&#x3060;&#x3051;&#x3059;&#x308B;&#x5834;&#x5408;&#x306B;&#x4F7F;&#x7528;&#x3002;<br>&#x203B; CSS&#x3001;JavaScript &#x5185;&#x306B;&#x306F;&#x30BD;&#x30FC;&#x30B9;&#x30DE;&#x30C3;&#x30D7;&#x3078;&#x306E;&#x53C2;&#x7167;&#x304C;&#x6B8B;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="-">&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;</th>
+<th style="text-align:left">&#x30B3;&#x30DE;&#x30F3;&#x30C9;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">php server</td>
+<td style="text-align:left">--php</td>
+</tr>
+</tbody>
+</table>
+<p>&#x30BF;&#x30B9;&#x30AF;&#x30B3;&#x30DE;&#x30F3;&#x30C9;&#x306E;&#x5F8C;&#x306B;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x4F7F;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-bash"><code class="source-code prettyprint"># &#x4F8B;
+$ gulp coding --php</code>
+</code></pre>
+<h3 id="-php">--php</h3>
+<p>&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3092;PHP&#x3067;&#x8D77;&#x52D5;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h1 id="local-server">local server</h1>
+<p>&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306F; <a href="https://www.browsersync.io/">BrowserSync</a> &#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="-">&#x30DD;&#x30FC;&#x30C8;</h3>
+<ul>
+<li>3000 -&gt; /htdocs/ &#x3092;&#x30EB;&#x30FC;&#x30C8;&#x3068;&#x3057;&#x3066;&#x8D77;&#x52D5;</li>
+<li>3001 -&gt; BrowserSync &#x306E;&#x30B3;&#x30F3;&#x30C8;&#x30ED;&#x30FC;&#x30EB;&#x30D1;&#x30CD;&#x30EB;&#x3092;&#x8D77;&#x52D5;</li>
+<li>3002 -&gt; PHP &#x8D77;&#x52D5;&#x6642;&#x306E;&#x30D7;&#x30ED;&#x30AD;&#x30B7;&#x3067;&#x4F7F;&#x7528;</li>
+<li>3003 -&gt; /url-list/ &#x3092;&#x30EB;&#x30FC;&#x30C8;&#x3068;&#x3057;&#x3066;&#x8D77;&#x52D5;&#xFF08;URL&#x4E00;&#x89A7;&#x8868;&#x793A;&#x7528;&#xFF09;</li>
+</ul>
+<h1 id="html">HTML</h1>
+<p><a href="https://github.com/pugjs/pug">pug</a> &#x3092;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>/pug/src/ &#x4EE5;&#x4E0B;&#x306E; pug &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x3057; /htdocs/ &#x4EE5;&#x4E0B;&#x306B;&#x51FA;&#x529B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="-">&#x30B3;&#x30E1;&#x30F3;&#x30C8;&#x30A2;&#x30A6;&#x30C8;&#x3067;&#x7528;&#x610F;&#x3057;&#x3066;&#x3044;&#x308B;&#x30D7;&#x30E9;&#x30B0;&#x30A4;&#x30F3;</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x95A2;&#x6570;&#x540D;</th>
+<th style="text-align:left">&#x5185;&#x5BB9;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">crLfReplace</td>
+<td style="text-align:left">&#x6539;&#x884C;&#x30B3;&#x30FC;&#x30C9;&#x5909;&#x63DB;</td>
+</tr>
+<tr>
+<td style="text-align:left">iconv</td>
+<td style="text-align:left">&#x6587;&#x5B57;&#x30B3;&#x30FC;&#x30C9;&#x5909;&#x63DB;</td>
+</tr>
+<tr>
+<td style="text-align:left">rename</td>
+<td style="text-align:left">&#x62E1;&#x5F35;&#x5B50;&#x5909;&#x63DB;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-">&#x7528;&#x610F;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x5909;&#x6570;</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5909;&#x6570;&#x540D;</th>
+<th style="text-align:left">&#x5185;&#x5BB9;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">dirname</td>
+<td style="text-align:left">&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x540D;</td>
+</tr>
+<tr>
+<td style="text-align:left">filename</td>
+<td style="text-align:left">&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;</td>
+</tr>
+<tr>
+<td style="text-align:left">relative</td>
+<td style="text-align:left">&#x76F8;&#x5BFE;&#x30D1;&#x30B9;</td>
+</tr>
+<tr>
+<td style="text-align:left">isProduction</td>
+<td style="text-align:left">production&#x30BF;&#x30B9;&#x30AF;&#x6642;&#x306E;&#x30D5;&#x30E9;&#x30B0;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="-filters-http-jade-lang-com-reference-filters-">&#x7528;&#x610F;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B; <a href="http://jade-lang.com/reference/filters/">filters</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">filters&#x540D;</th>
+<th style="text-align:left">&#x5185;&#x5BB9;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">do-nothing</td>
+<td style="text-align:left">&#x305D;&#x306E;&#x307E;&#x307E;&#x51FA;&#x529B;&#xFF08;&#x5148;&#x982D;&#x306F;&#x6539;&#x884C;&#x3002;&#x30A4;&#x30F3;&#x30C7;&#x30F3;&#x30C8;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x3042;&#x308A;&#x3002; &#xFF09;</td>
+</tr>
+</tbody>
+</table>
+<h3 id="do-nothing-">do-nothing &#x306E;&#x30A4;&#x30F3;&#x30C7;&#x30F3;&#x30C8;&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;</h3>
+<p>1&#x884C;&#x76EE;&#x306B; <code>{{indent=[&#x6570;&#x5024;]}}</code> &#x3092;&#x8FFD;&#x52A0;&#x3059;&#x308B;&#x3053;&#x3068;&#x3067;&#x6570;&#x5024;&#x306E;&#x6570;&#x3060;&#x3051;&#x30B9;&#x30DA;&#x30FC;&#x30B9;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-jade"><code class="source-code prettyprint">// &#x4F8B;
+:do-nothing
+  {{indent=2}}
+  &lt;div&gt;
+    &lt;p&gt;sample&lt;/p&gt;
+  &lt;/div&gt;</code>
+</code></pre>
+<h2 id="factory">Factory</h2>
+<p>&#x30C6;&#x30F3;&#x30D7;&#x30EC;&#x30FC;&#x30C8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#xFF08;pug&#xFF09;&#x3068; json &#x304B;&#x3089; html &#x81EA;&#x52D5;&#x751F;&#x6210;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x4E00;&#x90E8;&#x3060;&#x3051;&#x9055;&#x3046;&#x30DA;&#x30FC;&#x30B8;&#x3092;&#x5927;&#x91CF;&#x751F;&#x6210;&#x3059;&#x308B;&#x969B;&#x306B;&#x304A;&#x3059;&#x3059;&#x3081;&#x3002;</p>
+<h3 id="-">&#x30C6;&#x30F3;&#x30D7;&#x30EC;&#x30FC;&#x30C8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;</h3>
+<p>/json/factorys/ &#x4EE5;&#x4E0B;&#x306E; pug &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3002;<br><code>{{vars}}</code> &#x306B; json &#x304B;&#x3089;&#x53D6;&#x5F97;&#x3057;&#x305F;&#x30C7;&#x30FC;&#x30BF;&#x304C;&#x5909;&#x6570;&#x3068;&#x3057;&#x3066;&#x633F;&#x5165;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="-">&#x30C7;&#x30FC;&#x30BF;&#x30D5;&#x30A1;&#x30A4;&#x30EB;</h3>
+<p>/json/factorys/ &#x4EE5;&#x4E0B;&#x306E; json &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3002;</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">{ &quot;factorys/index.pug&quot;: {  // &#x4F7F;&#x7528;&#x3059;&#x308B;&#x30C6;&#x30F3;&#x30D7;&#x30EC;&#x30FC;&#x30C8;&#x3092;&#x6307;&#x5B9A;
+
+  &quot;factory/index.pug&quot;: {  // &#x51FA;&#x529B;&#x5148;&#x306E;&#x30D1;&#x30B9;&#x3092;&#x6307;&#x5B9A;&#xFF08;&#x62E1;&#x5F35;&#x306F;.pug&#xFF09;
+    &quot;factoryTitle&quot;: &quot;&#x30BF;&#x30A4;&#x30C8;&#x30EB;1&quot;,  // key &#x304C;&#x5909;&#x6570;&#x540D;&#x3001;value &#x304C; &#x5024;&#x3068;&#x3057;&#x3066;&#x51FA;&#x529B;&#x3055;&#x308C;&#x308B;&#x3002;
+    &quot;factoryContents&quot;: &quot;&#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;1&quot;
+  },
+  &quot;factory/hoge/index.pug&quot;: {
+    &quot;factoryTitle&quot;: &quot;&#x30BF;&#x30A4;&#x30C8;&#x30EB;2&quot;,
+    &quot;factoryContents&quot;: &quot;&#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;2&lt;br&gt;&#x30B3;&#x30F3;&#x30C6;&#x30F3;&#x30C4;2&quot;
+  }
+
+}}
+// json &#x3067;&#x3059;&#x306E;&#x3067;&#x3001;&#x30AB;&#x30F3;&#x30DE;&#x306E;&#x4F4D;&#x7F6E;&#x306B;&#x6C17;&#x3092;&#x3064;&#x3051;&#x308B;&#x3002;</code>
+</code></pre>
+<h1 id="css">CSS</h1>
+<p><a href="http://stylus-lang.com/">Stylus</a> &#x3092;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>/stylus/src/ &#x4EE5;&#x4E0B;&#x306E; stylus &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x3057; /htdocs/ &#x4EE5;&#x4E0B;&#x306B;&#x51FA;&#x529B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h1 id="image">Image</h1>
+<h2 id="sprite">Sprite</h2>
+<p>/images/sprites/ &#x4EE5;&#x4E0B;&#x306E;&#x753B;&#x50CF;&#x3092;&#x30B9;&#x30D7;&#x30E9;&#x30A4;&#x30C8;&#x5316;&#x3057;&#x3066; /htdocs/ &#x4EE5;&#x4E0B;&#x306B;&#x51FA;&#x529B;&#x3057;&#x307E;&#x3059;&#x3002;<br>&#x6700;&#x7D42;&#x30C7;&#x30A3;&#x30EC;&#x30AF;&#x30C8;&#x30EA;&#x540D;&#x304C;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x540D;&#x306B;&#x306A;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<blockquote>
+<p>&#x4F8B;<br>/images/sprites/images/sample/a.png<br>/images/sprites/images/sample/b.png<br>&#x2193;<br>/htdocs/images/sample.png</p>
+</blockquote>
+<p>Stylus &#x3067;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x70BA;&#x306B; /stylus/imports/sprite.styl &#x304C;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;<br><a href="http://stylus-lang.com/docs/mixins.html">mixins</a> &#x304C;&#x7528;&#x610F;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B;&#x306E;&#x3067; import &#x3057;&#x3066;&#x4F7F;&#x7528;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-stylus"><code class="source-code prettyprint">// &#x4F8B;
+
+@import &quot;../../imports/sprite&quot;
+
+#a
+  sprite(&quot;images/sample/a.png&quot;)  // &#x30B9;&#x30D7;&#x30E9;&#x30A4;&#x30C8;&#x5316;&#x3059;&#x308B;&#x524D;&#x306E;&#x30D5;&#x30A3;&#x30A2;&#x30EB;&#x30D1;&#x30B9;&#x3092;&#x6307;&#x5B9A;
+#b
+  sprite(&quot;images/sample/b.png&quot;)</code>
+</code></pre>
+<p><code>gulp production</code> &#x5B9F;&#x884C;&#x6642;&#x306B;&#x306F; /images/src/ &#x4EE5;&#x4E0B;&#x306B;&#x51FA;&#x529B;&#x3055;&#x308C;&#x3066;&#x3001;image minimizing &#x30BF;&#x30B9;&#x30AF;&#x304C;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="image-minimizing">image minimizing</h2>
+<p>/images/src/ &#x4EE5;&#x4E0B;&#x306E;&#x753B;&#x50CF;&#x3092;&#x5727;&#x7E2E;&#x3057;&#x3066; /htdocs/ &#x4EE5;&#x4E0B;&#x306B;&#x51FA;&#x529B;&#x3057;&#x307E;&#x3059;&#x3002;<br><code>gulp production</code> &#x5B9F;&#x884C;&#x6642;&#x306B;&#x4E00;&#x5EA6;&#x3060;&#x3051;&#x5B9F;&#x884C;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;<br><code>gulp imagemin</code> &#x3067;&#x3082;&#x500B;&#x5225;&#x306B;&#x5B9F;&#x884C;&#x3067;&#x304D;&#x307E;&#x3059;&#x3002;</p>
+<h1 id="javascript">JavaScript</h1>
+<p><a href="https://babeljs.io/">Babel</a>&#xFF08;<a href="https://babeljs.io/docs/plugins/preset-es2015/">es2015</a>&#x3001;<a href="https://babeljs.io/docs/plugins/preset-stage-0/">stage-0</a>&#xFF09;&#x3092;&#x30C8;&#x30E9;&#x30F3;&#x30B9;&#x30D1;&#x30A4;&#x30EB;&#x3001;<br>&#x307E;&#x305F;&#x306F; <a href="https://www.typescriptlang.org/">TypeScript</a> &#x3092;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#x3057;&#x3066;&#x3001;<br><a href="https://webpack.github.io/">webpack</a> &#x3067;&#x30D0;&#x30F3;&#x30C9;&#x30EB;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>/webpac/src/ &#x4EE5;&#x4E0B;&#x306E; js &#x307E;&#x305F;&#x306F; ts &#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30EB;&#xFF08;&#x30C8;&#x30E9;&#x30F3;&#x30B9;&#x30D1;&#x30A4;&#x30EB;&#xFF09;&#x3057; /htdocs/ &#x4EE5;&#x4E0B;&#x306B;&#x51FA;&#x529B;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="-">&#x30B3;&#x30F3;&#x30D1;&#x30A4;&#x30E9;</h2>
+<p>&#x30C7;&#x30D5;&#x30A9;&#x30EB;&#x30C8;&#x306F; Babel &#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;<br>TypeScript &#x3092;&#x4F7F;&#x7528;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;&#x3001;&#x4EE5;&#x4E0B;&#x3092;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-js:gulpfile.babel.js"><code class="source-code prettyprint">const jsCompiler = &apos;babel&apos;;</code>
+</code></pre>
+<p>&#x2193;</p>
+<pre><code class="lang-js:gulpfile.babel.js"><code class="source-code prettyprint">const jsCompiler = &apos;typescript&apos;;</code>
+</code></pre>
+<h2 id="webpack">webpack</h2>
+<p>&#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x30DE;&#x30CD;&#x30FC;&#x30B8;&#x30E3;&#x30FC;&#x306B; <a href="http://bower.io/">Bower</a> &#x3092;&#x4F7F;&#x7528;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<p>min&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306A;&#x3069; package.json &#x3067;&#x6307;&#x5B9A;&#x3055;&#x308C;&#x3066;&#x3044;&#x308B; main &#x4EE5;&#x5916;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x4F7F;&#x7528;&#x3057;&#x305F;&#x3044;&#x5834;&#x5408;&#x306F;&#x3001;<br>&#x30AA;&#x30D7;&#x30B7;&#x30E7;&#x30F3;&#x306E; alias &#x306B;&#x6307;&#x5B9A;&#x3059;&#x308B;&#x3068;&#x4FBF;&#x5229;&#x3002;</p>
+<pre><code class="lang-js:gulpfile.babel.js"><code class="source-code prettyprint">// &#x4F8B;
+alias: {
+  &apos;lodash&apos;     : &apos;lodash/dist/lodash.min&apos;,
+  &apos;Velocity&apos;   : &apos;velocity/velocity.min&apos;,
+  &apos;Velocity.ui&apos;: &apos;velocity/velocity.ui.min&apos;,
+},</code>
+</code></pre>
+<h2 id="test">test</h2>
+<p>/test/ &#x4EE5;&#x4E0B;&#x306B; <a href="http://jasmine.github.io/">Jasmine</a> &amp; <a href="https://karma-runner.github.io/">Karma</a> &#x3067;&#x30C6;&#x30B9;&#x30C8;&#x3067;&#x304D;&#x308B;&#x74B0;&#x5883;&#x3092;&#x7528;&#x610F;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<h1 id="url-list">URL list</h1>
+<p>3003&#x30DD;&#x30FC;&#x30C8;&#x306B;URL&#x4E00;&#x89A7;&#x3092;&#x8868;&#x793A;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>/url-list/tmp.html &#x304C;&#x30C6;&#x30F3;&#x30D7;&#x30EC;&#x30FC;&#x30C8;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x306A;&#x3063;&#x3066;&#x3044;&#x3066;<br>/url-list/index.html &#x306B;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x4E00;&#x89A7;&#x306E;&#x30C7;&#x30FC;&#x30BF;&#x3092;&#x8FFD;&#x52A0;&#x3057;&#x3066;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;</p>
+<h2 id="-">&#x30C6;&#x30B9;&#x30C8;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3078;&#x306E;&#x30EA;&#x30F3;&#x30AF;</h2>
+<p>&#x30C6;&#x30B9;&#x30C8;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x3078;&#x30EA;&#x30F3;&#x30AF;&#x3055;&#x305B;&#x305F;&#x3044;&#x5834;&#x5408;&#x306F;2&#x30D1;&#x30BF;&#x30FC;&#x30F3;&#x3042;&#x308A;&#x307E;&#x3059;&#x3002;</p>
+<h3 id="-">&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#xFF08;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306A;&#x3057;&#xFF09;&#x3067;&#x8868;&#x793A;</h3>
+<p>&#x4EE5;&#x4E0B;&#x306E;&#x30C9;&#x30E1;&#x30A4;&#x30F3;&#x3092;&#x5909;&#x66F4;&#x3057;&#x3066; url-list &#x30BF;&#x30B9;&#x30AF;&#x3092;&#x5B9F;&#x884C;&#x3057; /url-list/index.html &#x3092;&#x66F4;&#x65B0;&#x3057;&#x3066;&#x3001;&#x30D6;&#x30E9;&#x30A6;&#x30B6;&#x3067;&#x76F4;&#x63A5;&#x8868;&#x793A;&#x3002;</p>
+<pre><code class="lang-js:/url-list/tmp.html"><code class="source-code prettyprint">var domain = &apos;domain.com&apos;;</code>
+</code></pre>
+<h3 id="-">&#x30C6;&#x30B9;&#x30C8;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306B;&#x30A2;&#x30C3;&#x30D7;&#x3057;&#x3066;&#x8868;&#x793A;</h3>
+<p>&#x4EE5;&#x4E0B;&#x3092;&#x5909;&#x66F4;&#x3059;&#x308B;&#x3068; /url-list/index.html &#x3068;&#x540C;&#x3058;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x304C;<br>/htdocs/url-list.html &#x3068;&#x3057;&#x3066;&#x51FA;&#x529B;&#x3055;&#x308C;&#x307E;&#x3059;&#x3002;<br>&#xFF08;&#x5909;&#x66F4;&#x5F8C;&#x306B; url-list &#x30BF;&#x30B9;&#x30AF;&#x306E;&#x5B9F;&#x884C;&#x304C;&#x5FC5;&#x8981;&#xFF09;<br>&#x3053;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x30C6;&#x30B9;&#x30C8;&#x30B5;&#x30FC;&#x30D0;&#x30FC;&#x306B;&#x30A2;&#x30C3;&#x30D7;&#x3057;&#x3066;&#x8868;&#x793A;&#x3002;</p>
+<pre><code class="lang-js:gulpfile.babel.js"><code class="source-code prettyprint">const outputUrlListToHtdocs = false;</code>
+</code></pre>
+<p>&#x2193;</p>
+<pre><code class="lang-js:gulpfile.babel.js"><code class="source-code prettyprint">const outputUrlListToHtdocs = true;</code>
+</code></pre>
+<p>&#x203B; &#x4E0D;&#x8981;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3067;&#x3059;&#x306E;&#x3067;&#x7D0D;&#x54C1;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306B;&#x542B;&#x3081;&#x306A;&#x3044;&#x3088;&#x3046;&#x306B;&#x6CE8;&#x610F;&#x3002;<br>&#x3000;&#x76F4;&#x63A5;&#x6D88;&#x3059;&#x304B;&#x3001;&#x7D0D;&#x54C1;&#x6642;&#x306B; gulp production &#x304B; gulp clean &#x3059;&#x308B;&#x306A;&#x3069;&#x3067;&#x5BFE;&#x5FDC;&#x3002;</p>
+<h1 id="clean">Clean</h1>
+<p>&#x4E0D;&#x8981;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x524A;&#x9664;&#x3092;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<p>&#x73FE;&#x72B6;&#x306F;&#x4EE5;&#x4E0B;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x524A;&#x9664;&#x3059;&#x308B;&#x3088;&#x3046;&#x306B;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;&#x3002;</p>
+<ul>
+<li>.DS_Store</li>
+<li>Thumb.db</li>
+<li>/htdocs/url-list.html</li>
+<li>/htdocs/ &#x4EE5;&#x4E0B;&#x306E; map &#x30D5;&#x30A1;&#x30A4;&#x30EB;</li>
+</ul>
+<p>&#x5909;&#x66F4;&#x3059;&#x308B;&#x5834;&#x5408;&#x306F;&#x4EE5;&#x4E0B;&#x3092;&#x5909;&#x66F4;&#x3057;&#x307E;&#x3059;&#x3002;</p>
+<pre><code class="lang-js:gulpfile.babel.js"><code class="source-code prettyprint">del([ &apos;./**/.DS_Store&apos;, &apos;./**/Thumb.db&apos;, &apos;./htdocs/url-list.html&apos;, &apos;./htdocs/**/*.map&apos; ]);</code>
+</code></pre>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

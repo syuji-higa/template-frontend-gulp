@@ -8,37 +8,3 @@
 @import "../../imports/sprite"
 @import "../../imports/keyframes"
 @import "../../imports/easings"
-
-.sprite
-  for name, i in 'blue' 'green' 'red'
-    li:nth-child({ i + 1 })
-      sprite('images/circle/' + name + '.png')
-
-.btn
-  sprite-fade-hover('images/btn/btn')
-
-.size
-  background-color #fcc
-  width 15%
-  // aspect-ratio('../../../htdocs/images/sample.gif')
-  aspect-ratio('images/btn/btn-off.png')
-
-.aspect
-  width 10%
-  background-color #ccc
-  aspect-ratio(200, 100)
-
-.arrow
-  size(15px)
-  position relative
-  &::after
-    triangle({ dirction: 'right', size: 15px, color: #999, positions: { bottom: 0 } })
-
-.box-wrap
-  size 200px
-  background-color #ccf
-  position relative
-  .box
-    size 100px
-    background-color #cfc
-    centering(100)

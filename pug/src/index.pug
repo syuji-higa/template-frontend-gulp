@@ -14,33 +14,3 @@ append vars
 //-   script(src="")
 
 block contents
-  .contents
-    p I'm hungry.
-    p
-      img(src="images/sample.gif", alt="")
-    ul.sprite
-      - var i = 3
-      while i--
-        li
-    p.btn
-
-  //- lodash template
-  .result
-  script.template(type="text/template")
-    | <% _.forEach(data, function(v) { %>
-    | <p data-<%= v.class %>>-----</p>
-    p(class!="<%= v.class %>") <%= v.name %>
-    p <%= v.age %>
-    | <% }); %>
-
-  button button
-  p.txt test
-
-  .size
-
-  .aspect
-
-  .arrow
-
-  .box-wrap
-    .box
