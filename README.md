@@ -264,8 +264,9 @@ alias: {
 
 ## ESDoc
 以下コマンドで /_esdoc/ 以下にAPIドキュメントを出力します。
+
 ```
-esdoc -c esdoc.json
+npm run esdoc
 ```
 
 

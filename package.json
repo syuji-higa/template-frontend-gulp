@@ -4,7 +4,8 @@
   "description": "",
   "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "esdoc": "esdoc -c esdoc.json"
   },
   "repository": {
     "Type": "git",
@@ -27,6 +28,8 @@
     "babel-preset-stage-0": "^6.5.0",
     "browser-sync": "^2.12.1",
     "del": "^2.2.0",
+    "esdoc": "^0.4.8",
+    "esdoc-es7-plugin": "0.0.3",
     "eslint": "^2.7.0",
     "gulp": "^3.9.1",
     "gulp-bower": "0.0.13",

@@ -330,6 +330,12 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "webpack/imports/sample.js",
+    "file/webpack/imports/sample.js.html",
+    "webpack/imports/sample.js",
+    "file"
+  ],
+  [
     "webpack/src/scripts/index.js",
     "file/webpack/src/scripts/index.js.html",
     "webpack/src/scripts/index.js",

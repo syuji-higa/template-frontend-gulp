@@ -37,7 +37,8 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">webpack/src/scripts/index.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">// import &apos;lodash&apos;;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Sample from &apos;../../imports/sample&apos;;
+// import &apos;lodash&apos;;
 // import &apos;Velocity&apos;;
 // import &apos;Velocity.ui&apos;;
 // import &apos;../../vendors/velocity.easeplus&apos;;
@@ -94,11 +95,11 @@ window.addEventListener(&apos;DOMContentLoaded&apos;, () =&gt; {
   // const page = getPathName();
 
   const _modules = [
-    [ Template, &apos;.sample1&apos; ],
+    [ Sample, &apos;.js-sample&apos; ]
   ];
 
   const _singleModules = [
-    [ Template, &apos;.sample2&apos; ],
+    [ Sample, &apos;.js-sample&apos; ]
   ];
 
   _modules.forEach((arr) =&gt; {

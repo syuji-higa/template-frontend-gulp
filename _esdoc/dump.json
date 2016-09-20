@@ -4,16 +4,66 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "webpack/imports/sample.js",
+    "memberof": null,
+    "longname": "webpack/imports/sample.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "class Sample {\n  say() {\n    return 'Hellow World';\n  }\n}\n"
+  },
+  {
+    "__docId__": 1,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Sample",
+    "memberof": "webpack/imports/sample.js",
+    "longname": "webpack/imports/sample.js~Sample",
+    "access": null,
+    "export": false,
+    "importPath": "project/webpack/imports/sample.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 2,
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "say",
+    "memberof": "webpack/imports/sample.js~Sample",
+    "longname": "webpack/imports/sample.js~Sample#say",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "string"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 3,
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "webpack/src/scripts/index.js",
     "memberof": null,
     "longname": "webpack/src/scripts/index.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "// import 'lodash';\n// import 'Velocity';\n// import 'Velocity.ui';\n// import '../../vendors/velocity.easeplus';\n// import 'custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git\n// import 'html5-polyfills/classList';\n// import 'html5-polyfills/dataset';\n// import 'fetch';\n// import '../../vendors/rAF';  // https://gist.github.com/1579671.git\n// import '../../vendors/html-domparser';  // https://gist.github.com/1129031.git\n// import '../../requires/polyfill/function';\n\n/**\n * create multiple incetance\n * @param {Class} useClass\n * @param {string} selector\n * @param {...*} opts\n * @return {Array<Instance>}\n */\nconst createIncetance = (useClass, selector, ...opts) => {\n  const _$$el = document.querySelectorAll(selector);\n  const _instances = [];\n  for(let _i = 0; _$$el.length > _i; _i++) {\n    const _arg = [ _$$el[_i] ];\n    if(opts) Array.prototype.push.apply(_arg, opts);\n    _instances.push(new useClass(..._arg));\n  }\n  return _instances;\n};\n\n/**\n * create single incetance\n * @param {Class} useClass\n * @param {string} selector\n * @param {...*} opts\n * @return {Instance}\n */\nconst createSingleIncetance = (useClass, selector, ...opts) => {\n  const _$$el = document.querySelectorAll(selector);\n  if(!_$$el.length) return false;\n  const _arg = [_$$el];\n  if(opts) Array.prototype.push.apply(_arg, opts);\n  return new useClass(..._arg);\n};\n\n/**\n * get path name\n */\nconst getPathName = () => {\n  return location.pathname.replace('index.html', '');\n};\n\nwindow.addEventListener('DOMContentLoaded', () => {\n\n  // const page = getPathName();\n\n  const _modules = [\n    [ Template, '.sample1' ],\n  ];\n\n  const _singleModules = [\n    [ Template, '.sample2' ],\n  ];\n\n  _modules.forEach((arr) => {\n    createIncetance(...arr);\n  });\n\n  _singleModules.forEach((arr) => {\n    createSingleIncetance(...arr);\n  });\n\n});\n"
+    "content": "import Sample from '../../imports/sample';\n// import 'lodash';\n// import 'Velocity';\n// import 'Velocity.ui';\n// import '../../vendors/velocity.easeplus';\n// import 'custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git\n// import 'html5-polyfills/classList';\n// import 'html5-polyfills/dataset';\n// import 'fetch';\n// import '../../vendors/rAF';  // https://gist.github.com/1579671.git\n// import '../../vendors/html-domparser';  // https://gist.github.com/1129031.git\n// import '../../requires/polyfill/function';\n\n/**\n * create multiple incetance\n * @param {Class} useClass\n * @param {string} selector\n * @param {...*} opts\n * @return {Array<Instance>}\n */\nconst createIncetance = (useClass, selector, ...opts) => {\n  const _$$el = document.querySelectorAll(selector);\n  const _instances = [];\n  for(let _i = 0; _$$el.length > _i; _i++) {\n    const _arg = [ _$$el[_i] ];\n    if(opts) Array.prototype.push.apply(_arg, opts);\n    _instances.push(new useClass(..._arg));\n  }\n  return _instances;\n};\n\n/**\n * create single incetance\n * @param {Class} useClass\n * @param {string} selector\n * @param {...*} opts\n * @return {Instance}\n */\nconst createSingleIncetance = (useClass, selector, ...opts) => {\n  const _$$el = document.querySelectorAll(selector);\n  if(!_$$el.length) return false;\n  const _arg = [_$$el];\n  if(opts) Array.prototype.push.apply(_arg, opts);\n  return new useClass(..._arg);\n};\n\n/**\n * get path name\n */\nconst getPathName = () => {\n  return location.pathname.replace('index.html', '');\n};\n\nwindow.addEventListener('DOMContentLoaded', () => {\n\n  // const page = getPathName();\n\n  const _modules = [\n    [ Sample, '.js-sample' ]\n  ];\n\n  const _singleModules = [\n    [ Sample, '.js-sample' ]\n  ];\n\n  _modules.forEach((arr) => {\n    createIncetance(...arr);\n  });\n\n  _singleModules.forEach((arr) => {\n    createSingleIncetance(...arr);\n  });\n\n});\n"
   },
   {
-    "__docId__": 1,
+    "__docId__": 4,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -25,7 +75,7 @@
     "importPath": "project/webpack/src/scripts/index.js",
     "importStyle": null,
     "description": "create multiple incetance",
-    "lineNumber": 20,
+    "lineNumber": 21,
     "params": [
       {
         "nullable": null,
@@ -73,7 +123,7 @@
     }
   },
   {
-    "__docId__": 2,
+    "__docId__": 5,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -85,7 +135,7 @@
     "importPath": "project/webpack/src/scripts/index.js",
     "importStyle": null,
     "description": "create single incetance",
-    "lineNumber": 38,
+    "lineNumber": 39,
     "params": [
       {
         "nullable": null,
@@ -133,7 +183,7 @@
     }
   },
   {
-    "__docId__": 3,
+    "__docId__": 6,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -145,7 +195,7 @@
     "importPath": "project/webpack/src/scripts/index.js",
     "importStyle": null,
     "description": "get path name",
-    "lineNumber": 49,
+    "lineNumber": 50,
     "type": {
       "types": [
         "*"
@@ -153,7 +203,7 @@
     }
   },
   {
-    "__docId__": 5,
+    "__docId__": 8,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -166,7 +216,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 6,
+    "__docId__": 9,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -179,7 +229,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 7,
+    "__docId__": 10,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -192,7 +242,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 8,
+    "__docId__": 11,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -205,7 +255,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 9,
+    "__docId__": 12,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -218,7 +268,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 10,
+    "__docId__": 13,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -231,7 +281,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 11,
+    "__docId__": 14,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -244,7 +294,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 12,
+    "__docId__": 15,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -257,7 +307,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 13,
+    "__docId__": 16,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -270,7 +320,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 14,
+    "__docId__": 17,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -283,7 +333,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 15,
+    "__docId__": 18,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -296,7 +346,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 16,
+    "__docId__": 19,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -309,7 +359,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 17,
+    "__docId__": 20,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -322,7 +372,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 18,
+    "__docId__": 21,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -335,7 +385,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 19,
+    "__docId__": 22,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -348,7 +398,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 20,
+    "__docId__": 23,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -361,7 +411,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 21,
+    "__docId__": 24,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -374,7 +424,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 22,
+    "__docId__": 25,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -387,7 +437,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 23,
+    "__docId__": 26,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -400,7 +450,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 24,
+    "__docId__": 27,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -413,7 +463,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 25,
+    "__docId__": 28,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -426,7 +476,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 26,
+    "__docId__": 29,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -439,7 +489,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 27,
+    "__docId__": 30,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -452,7 +502,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 28,
+    "__docId__": 31,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -465,7 +515,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 29,
+    "__docId__": 32,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -478,7 +528,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 30,
+    "__docId__": 33,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -491,7 +541,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 31,
+    "__docId__": 34,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -504,7 +554,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 32,
+    "__docId__": 35,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -517,7 +567,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 33,
+    "__docId__": 36,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -530,7 +580,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 34,
+    "__docId__": 37,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -543,7 +593,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 35,
+    "__docId__": 38,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -556,7 +606,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 36,
+    "__docId__": 39,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -569,7 +619,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 37,
+    "__docId__": 40,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -582,7 +632,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 38,
+    "__docId__": 41,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -595,7 +645,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 39,
+    "__docId__": 42,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -608,7 +658,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 40,
+    "__docId__": 43,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -621,7 +671,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 41,
+    "__docId__": 44,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -634,7 +684,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 42,
+    "__docId__": 45,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -647,7 +697,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 43,
+    "__docId__": 46,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -660,7 +710,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 44,
+    "__docId__": 47,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -673,7 +723,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 45,
+    "__docId__": 48,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -686,7 +736,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 46,
+    "__docId__": 49,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -699,7 +749,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 47,
+    "__docId__": 50,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -712,7 +762,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 48,
+    "__docId__": 51,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -725,7 +775,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 49,
+    "__docId__": 52,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -738,7 +788,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 50,
+    "__docId__": 53,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -751,7 +801,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 51,
+    "__docId__": 54,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -764,7 +814,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 53,
+    "__docId__": 56,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -777,7 +827,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 54,
+    "__docId__": 57,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -790,7 +840,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 55,
+    "__docId__": 58,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -803,7 +853,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 56,
+    "__docId__": 59,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -816,7 +866,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 57,
+    "__docId__": 60,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -829,7 +879,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 61,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -842,7 +892,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 62,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -855,7 +905,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 60,
+    "__docId__": 63,
     "kind": "external",
     "static": true,
     "variation": null,
