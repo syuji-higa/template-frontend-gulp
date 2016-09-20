@@ -27,7 +27,6 @@ $ npm install
 | development scripting watch | gulp scripting-watch |
 | production                  | gulp production      |
 | image minimizing            | gulp imagemin        |
-| javascript test             | gulp test            |
 | create url list             | gulp url-list        |
 | unnecessary files delete    | gulp clean           |
 
@@ -67,9 +66,6 @@ JavaScript の関連ファイルを監視します。
 
 ### gulp imagemin
 画像を圧縮します。
-
-### gulp test
-JavaScrpt のテストを実行します。
 
 ### gulp url-list
 URL一覧を表示するHTMLファイルを生成します。
@@ -259,15 +255,20 @@ alias: {
 },
 ```
 
-## test
-/test/ 以下に [Jasmine](http://jasmine.github.io/) & [Karma](https://karma-runner.github.io/) でテストできる環境を用意しています。
-
-
 ## ESDoc
-以下コマンドで /_esdoc/ 以下にAPIドキュメントを出力します。
+/_esdoc/ 以下に [ESDoc](https://esdoc.org/) でAPIドキュメントを出力します。
 
+出力コマンド
 ```
 npm run esdoc
+```
+
+## ユニットテスト
+/test/ 以下に [Jasmine](http://jasmine.github.io/) & [Karma](https://karma-runner.github.io/) でテストできる環境を用意しています。
+
+テストコマンド
+```
+npm run test
 ```
 
 

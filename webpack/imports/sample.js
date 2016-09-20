@@ -1,5 +1,7 @@
 class Sample {
   say() {
-    return 'Hellow World';
+    return 'Hello World';
   }
 }
+
+export default Sample;

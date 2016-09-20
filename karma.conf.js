@@ -4,6 +4,28 @@
 module.exports = (config) => {
   config.set({
 
+    // webpack
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+        loaders: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel-loader',
+            query: {
+              presets: ['es2015'],
+              plugins: ['babel-plugin-espower'],
+            }
+          },
+          {
+            test: /\.json$/,
+            loader: 'json',
+          }
+        ]
+      }
+    },
+
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
@@ -24,7 +46,8 @@ module.exports = (config) => {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.html'  : 'html2js',
+      '**/*.html': 'html2js',
+      'test/**/*.js': ['webpack'],
     },
 
     // test results reporter to use
@@ -47,12 +70,12 @@ module.exports = (config) => {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    // browsers: ['Chrome']
+    // browsers: ['Chrome'],
     browsers: ['PhantomJS'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true
+    singleRun: true,
 
   });
 }

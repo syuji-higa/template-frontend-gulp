@@ -8,7 +8,6 @@
  * - development scripting watch -> [ gulp scripting-watch ]
  * - production                  -> [ gulp production ]
  * - image minimizing            -> [ gulp imagemin ]
- * - javascript test             -> [ gulp test ]
  * - create url list             -> [ gulp url-list ]
  * - unnecessary files delete    -> [ gulp clean ]
  *
@@ -55,7 +54,6 @@ import cache from 'gulp-cached';
 import changed from 'gulp-changed';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
-import karma from 'karma';
 
 const argv = minimist(process.argv.slice(2));
 const browserSync = bs.create();
@@ -123,9 +121,6 @@ const WEBPACK_BASE  = 'webpack';
 const WEBPACK_SRC   = join(WEBPACK_BASE, 'src');
 const WEBPACK_OTHER = join(WEBPACK_BASE, '!(src)');
 const WEBPACK_DEST  = DEST_ROOT;
-
-const TEST_CONFIG_SRC = `${ __dirname }/karma.conf.js`;
-const TEST_SRC        = 'test';
 
 const URL_LIST = 'url-list';
 
@@ -772,18 +767,6 @@ const webpackTask = (isSrcDir) => {
       webpackOpts: webpackOpts(),
     }));
 };
-
-
-/**
- * javascript test
- */
-gulp.task('test', (done) => {
-  return watch([ join(TEST_SRC , '/**/*') ], () => gulp.start('test-run'));
-});
-
-gulp.task('test-run', () => {
-  return karma.server.start({ configFile: TEST_CONFIG_SRC });
-});
 
 
 /**

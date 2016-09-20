@@ -1,10 +1,12 @@
+import Sample from '../webpack/imports/sample';
+
 /** @test {Sample} */
 describe('sample', () => {
 
   /** @test {Sample#say} */
-  it('Hellow World', () => {
+  it('Hello World', () => {
     const sample = new Sample();
-    expect(sample.say()).toEqual('Hellow World');
+    expect(sample.say()).toEqual('Hello World');
   });
 
 });
