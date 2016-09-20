@@ -91,7 +91,7 @@ let isSpritesChanged = true;
  * viewing page
  */
 let viewingPage   = '';
-let viewPageFiles = [];
+const viewPageFiles = [];
 
 
 /**
@@ -402,7 +402,7 @@ const pugMember = (file, callback) => {
     dirname : dirname(file.relative),
     filename: replaceExtension(basename(file.relative), '.html'),
     relative: (path) => {
-      const isDirectory = path.match(/^.+\/$/) ? true : false;
+      const isDirectory = !!path.match(/^.+\/$/);
       const pathName    = relative(ret.dirname, path);
       return (() => {
         if(pathName) {
