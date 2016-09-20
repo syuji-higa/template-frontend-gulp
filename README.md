@@ -103,8 +103,8 @@ $ gulp coding --php
 - 3000 -> /htdocs/ をルートとして起動
 - 3001 -> BrowserSync のコントロールパネルを起動
 - 3002 -> PHP 起動時のプロキシで使用
-- 3003 -> /url-list/ をルートとして起動（URL一覧表示用）
-- 3004 -> /_esdoc/ をルートとして起動（ESDoc覧表示用）
+- 3003 -> /.url-list/ をルートとして起動（URL一覧表示用）
+- 3004 -> /.esdoc/ をルートとして起動（ESDoc覧表示用）
 
 
 
@@ -256,7 +256,7 @@ alias: {
 ```
 
 ## ESDoc
-/_esdoc/ 以下に [ESDoc](https://esdoc.org/) でAPIドキュメントを出力します。
+/.esdoc/ 以下に [ESDoc](https://esdoc.org/) でAPIドキュメントを出力します。
 
 出力コマンド
 ```
@@ -275,21 +275,21 @@ npm run test
 # URL list
 3003ポートにURL一覧を表示します。
 
-/url-list/tmp.html がテンプレートファイルになっていて  
-/url-list/index.html にファイル一覧のデータを追加して出力されます。
+/.url-list/tmp.html がテンプレートファイルになっていて  
+/.url-list/index.html にファイル一覧のデータを追加して出力されます。
 
 ## テストサーバーへのリンク
 テストサーバーへリンクさせたい場合は2パターンあります。
 
 ### ローカル（サーバーなし）で表示
-以下のドメインを変更して url-list タスクを実行し /url-list/index.html を更新して、ブラウザで直接表示。
+以下のドメインを変更して url-list タスクを実行し /.url-list/index.html を更新して、ブラウザで直接表示。
 
-```js:/url-list/tmp.html
+```js:/.url-list/tmp.html
 var domain = 'domain.com';
 ```
 
 ### テストサーバーにアップして表示
-以下を変更すると /url-list/index.html と同じファイルが  
+以下を変更すると /.url-list/index.html と同じファイルが  
 /htdocs/url-list.html として出力されます。  
 （変更後に url-list タスクの実行が必要）  
 このファイルをテストサーバーにアップして表示。

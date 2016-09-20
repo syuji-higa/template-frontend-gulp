@@ -1,6 +1,6 @@
 {
   "source": "./webpack/",
-  "destination": "./_esdoc",
+  "destination": "./.esdoc",
   "plugins": [
     { "name": "esdoc-es7-plugin" }
   ]

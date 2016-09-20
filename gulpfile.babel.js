@@ -122,9 +122,9 @@ const WEBPACK_SRC   = join(WEBPACK_BASE, 'src');
 const WEBPACK_OTHER = join(WEBPACK_BASE, '!(src)');
 const WEBPACK_DEST  = DEST_ROOT;
 
-const URL_LIST = 'url-list';
+const URL_LIST = '.url-list';
 
-const ESDOC = '_esdoc';
+const ESDOC = '.esdoc';
 
 
 /**
