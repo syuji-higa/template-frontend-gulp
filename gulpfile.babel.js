@@ -757,9 +757,9 @@ const webpackTask = (isSrcDir) => {
   return gulp.src(join(WEBPACK_SRC, `/**/*${ jsExtension }`))
     .pipe(plumber(PLUMBER_OPTS))
     .pipe(gulpif(isSrcDir, cache('webpack')))
-    .pipe(eslint({ useEslintrc: true }))
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
+    .pipe(gulpif(jsCompiler === 'babel', eslint({ useEslintrc: true })))
+    .pipe(gulpif(jsCompiler === 'babel', eslint.format()))
+    .pipe(gulpif(jsCompiler === 'babel', eslint.failAfterError()))
     .pipe(build({
       basedir    : __dirname,
       src        : WEBPACK_SRC,
