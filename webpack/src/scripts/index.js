@@ -1,4 +1,4 @@
-import Sample from '../../imports/sample';
+import Sample from 'sample';
 // import 'lodash';
 // import 'Velocity';
 // import 'Velocity.ui';

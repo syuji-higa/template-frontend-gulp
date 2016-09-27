@@ -667,8 +667,12 @@ const webpackTask = (isSrcDir) => {
   const webpackOpts = () => {
     const opts = {
       resolve: {
-        root      : [ join(__dirname, 'bower_components') ],
-        extensions: [ '', '.js', '.ts' ],
+        modules: [
+          join(__dirname, 'webpack/imports'),
+          join(__dirname, 'bower_components'),
+          'node_modules'
+        ],
+        descriptionFiles: [ 'package.json', 'bower.json' ],
         alias: {
           // 'es6-promise': 'es6-promise/es6-promise.min',
           // 'lodash'     : 'lodash/dist/lodash.min',
@@ -676,24 +680,19 @@ const webpackTask = (isSrcDir) => {
           // 'Velocity.ui': 'velocity/velocity.ui.min',
         },
       },
-      module: {
-        loaders: [],
-      },
-      plugins: [
-        new webpack.ResolverPlugin(
-          new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', [ 'main' ])
-        )
-      ],
+      module : { rules: [] },
+      devtool: 'source-map',
+      plugins: [],
     };
     ({
       babel() {
-        opts.module.loaders.push({
+        opts.module.rules.push({
           test   : /\.js$/,
-          loader : 'babel',
-          query  : {
+          use    : 'babel',
+          options: {
             presets: [ 'es2015', 'stage-0' ],
             plugins: [
-              'transform-object-assign',
+              // 'transform-object-assign',
               // [ 'transform-runtime', {
               //   'polyfill'   : false,
               //   'regenerator': true,
@@ -704,22 +703,26 @@ const webpackTask = (isSrcDir) => {
         });
       },
       typescript() {
-        opts.module.loaders.push({
+        opts.module.rules.push({
           test   : /\.ts$/,
-          loader : 'ts-loader',
+          use    : 'ts-loader',
           exclude: /(node_modules|bower_components)/,
         });
       },
     })[jsCompiler]();
-    if(!isProduction) {
-      merge(opts, { devtool: 'source-map' });
-    }
     // if(isProduction) {
     //   merge(opts.plugins, [
-    //     new webpack.optimize.DedupePlugin(),
-    //     new webpack.optimize.UglifyJsPlugin(),
-    //     new webpack.optimize.OccurenceOrderPlugin(),
-    //     new webpack.optimize.AggressiveMergingPlugin(),
+    //     new webpack.LoaderOptionsPlugin({
+    //       minimize: true,
+    //       debug   : false,
+    //     }),
+    //     new webpack.optimize.UglifyJsPlugin({
+    //       compress : true,
+    //       mangle   : true,
+    //       beautify : false,
+    //       output   : { comments: false },
+    //       sourceMap: false,
+    //     })
     //   ]);
     // }
     return opts;
