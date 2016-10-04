@@ -66,24 +66,50 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 "use strict";
-class Sample {
-  say() {
-    return 'Hello World';
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Sample = function () {
+  function Sample() {
+    _classCallCheck(this, Sample);
   }
-}
 
-/* harmony default export */ exports["a"] = Sample;
+  _createClass(Sample, [{
+    key: 'say',
+    value: function say() {
+      return 'Hello World';
+    }
+  }]);
 
+  return Sample;
+}();
+
+exports.default = Sample;
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sample__ = __webpack_require__(0);
+'use strict';
+
+var _sample = __webpack_require__(0);
+
+var _sample2 = _interopRequireDefault(_sample);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 // import 'lodash';
 // import 'Velocity';
@@ -104,13 +130,17 @@ class Sample {
  * @param {...*} opts
  * @return {Array<Instance>}
  */
-const createIncetance = (useClass, selector, ...opts) => {
-  const _$$el = document.querySelectorAll(selector);
-  const _instances = [];
-  for(let _i = 0; _$$el.length > _i; _i++) {
-    const _arg = [ _$$el[_i] ];
-    if(opts) Array.prototype.push.apply(_arg, opts);
-    _instances.push(new useClass(..._arg));
+var createIncetance = function createIncetance(useClass, selector) {
+  for (var _len = arguments.length, opts = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    opts[_key - 2] = arguments[_key];
+  }
+
+  var _$$el = document.querySelectorAll(selector);
+  var _instances = [];
+  for (var _i = 0; _$$el.length > _i; _i++) {
+    var _arg = [_$$el[_i]];
+    if (opts) Array.prototype.push.apply(_arg, opts);
+    _instances.push(new (Function.prototype.bind.apply(useClass, [null].concat(_arg)))());
   }
   return _instances;
 };
@@ -122,43 +152,41 @@ const createIncetance = (useClass, selector, ...opts) => {
  * @param {...*} opts
  * @return {Instance}
  */
-const createSingleIncetance = (useClass, selector, ...opts) => {
-  const _$$el = document.querySelectorAll(selector);
-  if(!_$$el.length) return false;
-  const _arg = [_$$el];
-  if(opts) Array.prototype.push.apply(_arg, opts);
-  return new useClass(..._arg);
+var createSingleIncetance = function createSingleIncetance(useClass, selector) {
+  for (var _len2 = arguments.length, opts = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+    opts[_key2 - 2] = arguments[_key2];
+  }
+
+  var _$$el = document.querySelectorAll(selector);
+  if (!_$$el.length) return false;
+  var _arg = [_$$el];
+  if (opts) Array.prototype.push.apply(_arg, opts);
+  return new (Function.prototype.bind.apply(useClass, [null].concat(_arg)))();
 };
 
 /**
  * get path name
  */
-const getPathName = () => {
+var getPathName = function getPathName() {
   return location.pathname.replace('index.html', '');
 };
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', function () {
 
   // const page = getPathName();
 
-  const _modules = [
-    [ __WEBPACK_IMPORTED_MODULE_0_sample__["a" /* default */], '.js-sample' ]
-  ];
+  var _modules = [[_sample2.default, '.js-sample']];
 
-  const _singleModules = [
-    [ __WEBPACK_IMPORTED_MODULE_0_sample__["a" /* default */], '.js-sample' ]
-  ];
+  var _singleModules = [[_sample2.default, '.js-sample']];
 
-  _modules.forEach((arr) => {
-    createIncetance(...arr);
+  _modules.forEach(function (arr) {
+    createIncetance.apply(undefined, _toConsumableArray(arr));
   });
 
-  _singleModules.forEach((arr) => {
-    createSingleIncetance(...arr);
+  _singleModules.forEach(function (arr) {
+    createSingleIncetance.apply(undefined, _toConsumableArray(arr));
   });
-
 });
-
 
 /***/ }
 /******/ ]);
