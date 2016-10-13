@@ -356,20 +356,20 @@ gulp.task('browser-sync', (done) => {
         next();
       },
     },
-    port  : '3003',
-    ui    : false,
-    open  : false,
-    notify: false,
+    port           : '3003',
+    ui             : false,
+    open           : false,
+    notify         : false,
     reloadOnRestart: true,
   });
   browserSyncEsdoc.init({
     server: {
       baseDir: ESDOC,
     },
-    port  : '3004',
-    ui    : false,
-    open  : false,
-    notify: false,
+    port           : '3004',
+    ui             : false,
+    open           : false,
+    notify         : false,
     reloadOnRestart: true,
   });
   if(!argv.php) {
@@ -378,23 +378,23 @@ gulp.task('browser-sync', (done) => {
         baseDir   : DEST_ROOT,
         middleware: browserSyncMiddleware,
       },
-      open  : false,
-      notify: false,
+      open           : false,
+      notify         : false,
       reloadOnRestart: true,
-      // directory: true,
+      // directory      : true,
     }, done);
   }
   else {
     connect.server({
-      port: 3002,
-      base: DEST_ROOT,
+      port     : 3002,
+      base     : DEST_ROOT,
       keepalive: false,
     });
     browserSync.init({
-      proxy     : 'localhost:3002',
-      middleware: browserSyncMiddleware,
-      open      : false,
-      notify    : false,
+      proxy          : 'localhost:3002',
+      middleware     : browserSyncMiddleware,
+      open           : false,
+      notify         : false,
       reloadOnRestart: true,
     }, done);
   }
@@ -587,7 +587,7 @@ gulp.task('sprite', () => {
       imgSrcBase     : SPRITE_SRC.replace('./', '/'),
       stylusFileName : 'sprite',
       spritesmithOpts: {
-        engine: 'pngsmith',
+        engine       : 'pngsmith',
         algorithmOpts: { sort: false },
       },
     }))
@@ -611,27 +611,22 @@ gulp.task('imagemin', (done) => {
 const imageminConfig = {
   png: {
     extension: 'png',
-    opts: {
+    opts     : {
       optimizationLevel: 0,
-      use: [
-        pngquant({
-          quality: 80,
-          speed: 1,
-        }),
-      ],
+      use              : [ pngquant({ quality: 80, speed: 1 }) ],
     },
   },
   jpg: {
     extension: 'jpg',
-    opts: { progressive: true },
+    opts     : { progressive: true },
   },
   gif: {
     extension: 'gif',
-    opts: { interlaced: false },
+    opts     : { interlaced: false },
   },
   svg: {
     extension: 'svg',
-    opts: { multipass: false },
+    opts     : { multipass: false },
   },
 };
 
@@ -734,7 +729,7 @@ const webpackTask = (isSrcDir) => {
       return {
         entry: entry,
         output: {
-          path: outputPath,
+          path    : outputPath,
           filename: `${ outputFilename }.js`,
         },
       };
@@ -779,14 +774,10 @@ gulp.task('url-list', () => {
   return recursive(DEST_ROOT, ['!*.+(html|php)'], (err, files) => {
     const pathData = reduce(files, (memo, path, i) => {
       const pathName = path.replace('htdocs', '');
-      if(i) {
-        return `${ memo }, '${ pathName }'`;
-      } else {
-        return `'${ pathName }'`;
-      }
+      return i ? `${ memo }, '${ pathName }'` : `'${ pathName }'`;
     }, '');
     const tmpContent = fs.readFileSync(join(URL_LIST, 'tmp.html')).toString().split('{{data}}');
-    const data = tmpContent[0] + pathData + tmpContent[1];
+    const data       = tmpContent[0] + pathData + tmpContent[1];
     fs.writeFile(join(URL_LIST, 'index.html'), data);
     if(outputUrlListToHtdocs && !isProduction) {
       fs.writeFile(join(DEST_ROOT, 'url-list.html'), data);
