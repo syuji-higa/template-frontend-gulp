@@ -55,10 +55,10 @@ import changed from 'gulp-changed';
 import plumber from 'gulp-plumber';
 import notify from 'gulp-notify';
 
-const argv = minimist(process.argv.slice(2));
-const browserSync = bs.create();
+const argv               = minimist(process.argv.slice(2));
+const browserSync        = bs.create();
 const browserSyncUrlList = bs.create();
-const browserSyncEsdoc = bs.create();
+const browserSyncEsdoc   = bs.create();
 
 
 /**
