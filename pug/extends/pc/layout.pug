@@ -9,11 +9,11 @@ block html
       block head
         block metas
           include /includes/metas
-          link(rel="shortcut icon", href=favicon)
+          link(rel="shortcut icon" href=relative('favicon.ico'))
         block styles
-          link(rel="stylesheet", href="/styles/style.css", media="all")
+          link(rel="stylesheet" href=relative('styles/style.css') media="all")
         block scripts
-          script(src="/scripts/index.js")
+          script(src=relative('scripts/bundle.js'))
     body&attributes(bodyAttrs)
       block body
         .wrap
