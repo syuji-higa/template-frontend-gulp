@@ -448,7 +448,7 @@ const pugOpts = {
     'do-nothing': (block) => {
       const _indentData = block.match(/^\{\{indent=([0-9])\}\}\n/);
       const _block = (() => {
-        if(_indentData) return block;
+        if(!_indentData) return block;
         const _notVarBlock = block.replace(_indentData[0], '');
         let _indent = '';
         for(let i = 0; _indentData[1] > i; i++) _indent += ' ';
