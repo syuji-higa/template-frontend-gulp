@@ -173,7 +173,7 @@ gulp.task('production', (done) => {
  * coding
  */
 gulp.task('coding', (done) => {
-  const sequence = (() => {
+  const _sequence = (() => {
     if(isProduction) {
       return [
         'sprite',
@@ -195,7 +195,7 @@ gulp.task('coding', (done) => {
     }
   })();
 
-  runSequence(...union(sequence, [done]));
+  runSequence(...union(_sequence, [done]));
 });
 
 
@@ -216,7 +216,7 @@ gulp.task('scripting', (done) => {
  * all
  */
 gulp.task('all', (done) => {
-  const sequence = (() => {
+  const _sequence = (() => {
     if(isProduction) {
       return [
         'sprite',
@@ -238,7 +238,7 @@ gulp.task('all', (done) => {
     }
   })();
 
-  runSequence(...union(sequence, [done]));
+  runSequence(...union(_sequence, [done]));
 });
 
 
@@ -274,10 +274,10 @@ gulp.task('coding-watch', (done) => {
   watchStart([ join(SPRITE_SRC  , '/**/*.+(png|jpg|gif|svg)') ], () => isSpritesChanged = true);
 
   watchStart([ join(DEST_ROOT, '/**/*.+(html|php)') ], (file) => {
-    const page = viewingPage ? join(__dirname, DEST_ROOT, viewingPage) : '*.+(html|php)';
+    const _page = viewingPage ? join(__dirname, DEST_ROOT, viewingPage) : '*.+(html|php)';
 
     gulp.src(file.path)
-      .pipe(gulpif(page, browserSync.reload({ stream: true })))
+      .pipe(gulpif(_page, browserSync.reload({ stream: true })))
       .pipe(gulpif('*.html', htmlhint()));
   });
 
@@ -326,23 +326,19 @@ gulp.task('production-watch', () => {
  * browser-sync
  */
 const browserSyncMiddleware = (req, res, next) => {
-  const exclusionFiles = [];
-  const pageUrl  = req.url.match(/^.*\/(.+\.(html|php))?$/);
-  const otherUrl = req.url.match(/^(.+\.(css|js|png|jpg|jpeg|gif|svg)).*?$/);
+  const _exclusionFiles = [];
+  const _pageUrl        = req.url.match(/^.*\/(.+\.(html|php))?$/);
+  const _otherUrl       = req.url.match(/^(.+\.(css|js|png|jpg|jpeg|gif|svg)).*?$/);
 
-  if(otherUrl) {
-    const url = join(__dirname, DEST_ROOT, otherUrl[1]);
-    if((viewPageFiles.length === 0) || (every(viewPageFiles, (file) => url !== file))) {
-      viewPageFiles.push(url);
+  if(_otherUrl) {
+    const _url = join(__dirname, DEST_ROOT, _otherUrl[1]);
+    if((viewPageFiles.length === 0) || (every(viewPageFiles, (file) => _url !== file))) {
+      viewPageFiles.push(_url);
     }
   }
 
-  if(pageUrl && every(exclusionFiles, (file) => (file !== pageUrl[0]))) {
-    if(pageUrl[0].match(/\/$/)) {
-      viewingPage = `${ pageUrl[0] }index.html`;
-    } else {
-      viewingPage = pageUrl[0];
-    }
+  if(_pageUrl && every(_exclusionFiles, (file) => (file !== _pageUrl[0]))) {
+    viewingPage = _pageUrl[0].match(/\/$/) ? `${ _pageUrl[0] }index.html` : _pageUrl[0];
   }
   next();
 };
@@ -405,23 +401,19 @@ gulp.task('browser-sync', (done) => {
  * pug
  */
 const pugMember = (file, callback) => {
-  const ret = {
+  const _ret = {
     dirname : dirname(file.relative),
     filename: replaceExtension(basename(file.relative), '.html'),
     relative: (path) => {
-      const isDirectory = !!path.match(/^.+\/$/);
-      const pathName    = relative(ret.dirname, path);
-      return (() => {
-        if(pathName) {
-          return isDirectory ? `${ pathName }/` : pathName;
-        } else {
-          return './';
-        }
-      })();
+      const _isDirectory = !!path.match(/^.+\/$/);
+      const _pathName    = relative(_ret.dirname, path);
+      return _pathName
+        ? (_isDirectory ? `${ _pathName }/` : _pathName)
+        : './';
     },
     isProduction: isProduction,
   };
-  callback(null, ret);
+  callback(null, _ret);
 };
 
 gulp.task('pug', () => {
@@ -430,10 +422,10 @@ gulp.task('pug', () => {
 
 gulp.task('pug-all', () => {
   if(viewingPage) {
-    const path = `${ viewingPage.match(/^(.+)(\.)(html|php)$/)[1] }.pug`;
-    const dest = viewingPage.match(/^(.*\/)(.+\.)(html|php)$/)[1];
-    pugTask(join(PUG_SRC, path), join(PUG_DEST, dest));
-    return pugTask([join(PUG_SRC, '/**/*.pug'), join(PUG_SRC, `!${ path }`)], PUG_DEST, false);
+    const _path = `${ viewingPage.match(/^(.+)(\.)(html|php)$/)[1] }.pug`;
+    const _dest = viewingPage.match(/^(.*\/)(.+\.)(html|php)$/)[1];
+    pugTask(join(PUG_SRC, _path), join(PUG_DEST, _dest));
+    return pugTask([join(PUG_SRC, '/**/*.pug'), join(PUG_SRC, `!${ _path }`)], PUG_DEST, false);
   } else {
     return pugTask(join(PUG_SRC, '/**/*.pug'), PUG_DEST, false);
   }
@@ -454,18 +446,15 @@ const pugOpts = {
   basedir: join(__dirname, PUG_BASE),
   filters: {
     'do-nothing': (block) => {
-      const indentData = block.match(/^\{\{indent=([0-9])\}\}\n/);
-      const block_ = (() => {
-        if(indentData) {
-          const block__ = block.replace(indentData[0], '');
-          let indent_ = '';
-          for(let i = 0; indentData[1] > i; i++) indent_ += ' ';
-          return indent_ + block__.replace(/\n/g, `\n${ indent_ }`);
-        } else {
-          return block;
-        }
+      const _indentData = block.match(/^\{\{indent=([0-9])\}\}\n/);
+      const _block = (() => {
+        if(_indentData) return block;
+        const _notVarBlock = block.replace(_indentData[0], '');
+        let _indent = '';
+        for(let i = 0; _indentData[1] > i; i++) _indent += ' ';
+        return _indent + _notVarBlock.replace(/\n/g, `\n${ _indent }`);
       })();
-      return `\n${ block_ }`;
+      return `\n${ _block }`;
     },
   },
 };
@@ -494,34 +483,34 @@ const pugTask = (srcPath, destPath, isSrcDirUpdate) => {
 };
 
 const pugFactoryTask = (isJsonFileUpdate) => {
-  const factory = () => {
-    const transform = function(data, encode, callback) {
-      const tmps = JSON.parse(data.contents.toString());
-      forEach(tmps, (pages, tmpPath) => {
+  const _factory = () => {
+    const _transform = function(data, encode, callback) {
+      const _tmps = JSON.parse(data.contents.toString());
+      forEach(_tmps, (pages, tmpPath) => {
         forEach(pages, (page, destPath) => {
-          const vals = reduce(page, (memo, val, key) => {
+          const _vals = reduce(page, (memo, val, key) => {
             return `${ memo }  - var ${ key } = '${ val }'\n`;
           }, '');
-          const tmpContent = fs.readFileSync(join(PUG_BASE, tmpPath)).toString().split('{{vars}}');
-          const contents   = tmpContent[0] + vals + tmpContent[1];
+          const _tmpContent = fs.readFileSync(join(PUG_BASE, tmpPath)).toString().split('{{vars}}');
+          const _contents   = _tmpContent[0] + _vals + _tmpContent[1];
           this.push(new File({
             path    : destPath,
-            contents: new Buffer(contents),
+            contents: new Buffer(_contents),
           }));
         });
       });
       callback();
     };
-    const flush = (callback) => {
+    const _flush = (callback) => {
       callback();
     };
-    return through.obj(transform, flush);
+    return through.obj(_transform, _flush);
   };
 
   return gulp.src(join(PUG_FACTORY, '/**/*.json'))
     .pipe(plumber(PLUMBER_OPTS))
     .pipe(gulpif(isJsonFileUpdate, cache('pug-factory')))
-    .pipe(factory())
+    .pipe(_factory())
     .pipe(data(pugMember))
     .pipe(gulpPug(pugOpts))
     .pipe(gulp.dest(PUG_DEST));
@@ -540,7 +529,7 @@ gulp.task('stylus-all', () => {
 });
 
 const stylusTask = (isSrcDirUpdate) => {
-  const stylusOpts = {
+  const _stylusOpts = {
     'include css': true,
     import       : [ 'nib' ],
     use          : [ nib() ],
@@ -548,7 +537,7 @@ const stylusTask = (isSrcDirUpdate) => {
     // compress     : isProduction,
   };
   if(!isProduction) {
-    merge(stylusOpts, {
+    merge(_stylusOpts, {
       sourcemap: { inline: true },
     });
   }
@@ -556,7 +545,7 @@ const stylusTask = (isSrcDirUpdate) => {
   return gulp.src(join(STYLUS_SRC, '/**/*.styl'))
     .pipe(plumber(PLUMBER_OPTS))
     .pipe(gulpif(isSrcDirUpdate, cache('stylus')))
-    .pipe(stylus(stylusOpts))
+    .pipe(stylus(_stylusOpts))
     .pipe(gulpif(!isProduction, sourcemaps.init({ loadMaps: true })))
     .pipe(gulpif(!isProduction, sourcemaps.write('.')))
     .pipe(bust({ base: 'htdocs' }))
@@ -577,7 +566,7 @@ gulp.task('sprite', () => {
 
   isSpritesChanged = false;
 
-  const imageDest = isProduction ? IMAGEMIN_SRC : SPRITE_DEST;
+  const _imageDest = isProduction ? IMAGEMIN_SRC : SPRITE_DEST;
 
   return gulp.src(join(SPRITE_SRC, '/**/*.png'))
     .pipe(plumber(PLUMBER_OPTS))
@@ -591,7 +580,7 @@ gulp.task('sprite', () => {
         algorithmOpts: { sort: false },
       },
     }))
-    .pipe(gulpif('*.png', gulp.dest(imageDest)))
+    .pipe(gulpif('*.png', gulp.dest(_imageDest)))
     .pipe(gulpif('*.styl', cache('stylus')))
     .pipe(gulpif('*.styl', gulp.dest(SPRITE_CSS_DEST)));
 });
@@ -603,9 +592,9 @@ gulp.task('sprite', () => {
 gulp.task('imagemin', (done) => {
   if(!isImagesChanged) return;
 
-  const rs = runSequence([ 'imagemin-png', 'imagemin-jpg', 'imagemin-gif', 'imagemin-svg' ], done);
+  const _rs = runSequence([ 'imagemin-png', 'imagemin-jpg', 'imagemin-gif', 'imagemin-svg' ], done);
   isImagesChanged = false;
-  return rs;
+  return _rs;
 });
 
 const imageminConfig = {
@@ -659,8 +648,8 @@ gulp.task('webpack-all', () => {
 });
 
 const webpackTask = (isSrcDir) => {
-  const webpackOpts = () => {
-    const opts = {
+  const _webpackOpts = () => {
+    const _opts = {
       resolve: {
         descriptionFiles: [ 'package.json', 'bower.json' ],
         extensions      : [ '.js', '.ts', '.coffee' ],
@@ -682,7 +671,7 @@ const webpackTask = (isSrcDir) => {
     };
     ({
       babel() {
-        opts.module.rules.push({
+        _opts.module.rules.push({
           test   : /\.js$/,
           use    : 'babel',
           options: {
@@ -698,15 +687,15 @@ const webpackTask = (isSrcDir) => {
         });
       },
       typescript() {
-        opts.module.rules.push({
+        _opts.module.rules.push({
           test: /\.ts$/,
           use : 'ts',
         });
       },
     })[jsCompiler]();
-    opts.module.rules[0].exclude = /(node_modules|bower_components)/;
+    _opts.module.rules[0].exclude = /(node_modules|bower_components)/;
     // if(isProduction) {
-    //   merge(opts.plugins, [
+    //   merge(_opts.plugins, [
     //     new webpack.LoaderOptionsPlugin({
     //       minimize: true,
     //       debug   : false,
@@ -720,12 +709,12 @@ const webpackTask = (isSrcDir) => {
     //     })
     //   ]);
     // }
-    return opts;
+    return _opts;
   };
 
-  const build = (opts) => {
+  const _build = (opts) => {
     const { basedir, src, dest, webpackOpts } = opts;
-    const webpackBaseOpts = (entry, outputPath, outputFilename) => {
+    const _webpackBaseOpts = (entry, outputPath, outputFilename) => {
       return {
         entry: entry,
         output: {
@@ -734,11 +723,11 @@ const webpackTask = (isSrcDir) => {
         },
       };
     };
-    const transform = (data, encode, callback) => {
-      const destDirname    = dirname(join(basedir, dest, relative(src, data.path)));
-      const destFilename   = basename(data.path, jsExtension);
-      const webpackAllOpts = merge(webpackBaseOpts(data.path, destDirname, destFilename), webpackOpts);
-      webpack(webpackAllOpts, (err, stats) => {
+    const _transform = (data, encode, callback) => {
+      const _destDirname    = dirname(join(basedir, dest, relative(src, data.path)));
+      const _destFilename   = basename(data.path, jsExtension);
+      const _webpackAllOpts = merge(_webpackBaseOpts(data.path, _destDirname, _destFilename), webpackOpts);
+      webpack(_webpackAllOpts, (err, stats) => {
         if(err) {
           throw new PluginError('webpack', err);
         }
@@ -746,10 +735,10 @@ const webpackTask = (isSrcDir) => {
         callback();
       });
     };
-    const flush = (callback) => {
+    const _flush = (callback) => {
       callback();
     };
-    return through.obj(transform, flush);
+    return through.obj(_transform, _flush);
   };
 
   return gulp.src(join(WEBPACK_SRC, `/**/*${ jsExtension }`))
@@ -758,11 +747,11 @@ const webpackTask = (isSrcDir) => {
     .pipe(gulpif(jsCompiler === 'babel', eslint({ useEslintrc: true })))
     .pipe(gulpif(jsCompiler === 'babel', eslint.format()))
     .pipe(gulpif(jsCompiler === 'babel', eslint.failAfterError()))
-    .pipe(build({
+    .pipe(_build({
       basedir    : __dirname,
       src        : WEBPACK_SRC,
       dest       : WEBPACK_DEST,
-      webpackOpts: webpackOpts(),
+      webpackOpts: _webpackOpts(),
     }));
 };
 
@@ -772,15 +761,15 @@ const webpackTask = (isSrcDir) => {
  */
 gulp.task('url-list', () => {
   return recursive(DEST_ROOT, ['!*.+(html|php)'], (err, files) => {
-    const pathData = reduce(files, (memo, path, i) => {
-      const pathName = path.replace('htdocs', '');
-      return i ? `${ memo }, '${ pathName }'` : `'${ pathName }'`;
+    const _pathData = reduce(files, (memo, path, i) => {
+      const _pathName = path.replace('htdocs', '');
+      return i ? `${ memo }, '${ _pathName }'` : `'${ _pathName }'`;
     }, '');
-    const tmpContent = fs.readFileSync(join(URL_LIST, 'tmp.html')).toString().split('{{data}}');
-    const data       = tmpContent[0] + pathData + tmpContent[1];
-    fs.writeFile(join(URL_LIST, 'index.html'), data);
+    const _tmpContent = fs.readFileSync(join(URL_LIST, 'tmp.html')).toString().split('{{data}}');
+    const _data       = _tmpContent[0] + _pathData + _tmpContent[1];
+    fs.writeFile(join(URL_LIST, 'index.html'), _data);
     if(outputUrlListToHtdocs && !isProduction) {
-      fs.writeFile(join(DEST_ROOT, 'url-list.html'), data);
+      fs.writeFile(join(DEST_ROOT, 'url-list.html'), _data);
     }
   });
 });
