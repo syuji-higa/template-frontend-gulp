@@ -700,7 +700,7 @@ const webpackTask = (isSrcDir) => {
       typescript() {
         opts.module.rules.push({
           test   : /\.ts$/,
-          use    : 'ts-loader',
+          use    : 'ts',
           exclude: /(node_modules|bower_components)/,
         });
       },
