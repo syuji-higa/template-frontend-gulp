@@ -716,7 +716,7 @@ const webpackTask = (isSrcDir) => {
     const { basedir, src, dest, webpackOpts } = opts;
     const _webpackBaseOpts = (entry, outputPath, outputFilename) => {
       return {
-        entry: entry,
+        entry : entry,
         output: {
           path    : outputPath,
           filename: `${ outputFilename }.js`,
