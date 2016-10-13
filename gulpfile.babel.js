@@ -451,7 +451,7 @@ const pugOpts = {
         if(!_indentData) return block;
         const _notVarBlock = block.replace(_indentData[0], '');
         let _indent = '';
-        for(let i = 0; _indentData[1] > i; i++) _indent += ' ';
+        for(let _i = 0; _indentData[1] > _i; _i++) _indent += ' ';
         return _indent + _notVarBlock.replace(/\n/g, `\n${ _indent }`);
       })();
       return `\n${ _block }`;
