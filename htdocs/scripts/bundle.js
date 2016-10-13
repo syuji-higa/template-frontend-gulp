@@ -61,7 +61,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -98,12 +98,65 @@ exports.default = Sample;
 
 /***/ },
 /* 1 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/**
+ * incetance
+ */
+
+/**
+ * @param {!Class} useClass
+ * @param {!string} selector
+ * @param {...*} [opts]
+ * @return {Array<Instance>}
+ */
+var createIncetance = exports.createIncetance = function createIncetance(useClass, selector) {
+  for (var _len = arguments.length, opts = Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    opts[_key - 2] = arguments[_key];
+  }
+
+  var _$$el = document.querySelectorAll(selector);
+  var _instances = [];
+  for (var _i = 0; _$$el.length > _i; _i++) {
+    var _arg = [_$$el[_i]];
+    if (opts) Array.prototype.push.apply(_arg, opts);
+    _instances.push(new (Function.prototype.bind.apply(useClass, [null].concat(_arg)))());
+  }
+  return _instances;
+};
+
+/**
+ * @param {!Class} useClass
+ * @param {!string} selector
+ * @param {...*} [opts]
+ * @return {Instance}
+ */
+var createSingleIncetance = exports.createSingleIncetance = function createSingleIncetance(useClass, selector) {
+  for (var _len2 = arguments.length, opts = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+    opts[_key2 - 2] = arguments[_key2];
+  }
+
+  var _$$el = document.querySelectorAll(selector);
+  if (!_$$el.length) return false;
+  var _arg = [_$$el];
+  if (opts) Array.prototype.push.apply(_arg, opts);
+  return new (Function.prototype.bind.apply(useClass, [null].concat(_arg)))();
+};
+
+/***/ },
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var _incetance = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../imports/view/incetance\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var _incetance = __webpack_require__(1);
 
 var _sample = __webpack_require__(0);
 
@@ -111,30 +164,20 @@ var _sample2 = _interopRequireDefault(_sample);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-// import 'lodash';
-// import 'Velocity';
-// import 'Velocity.ui';
-// import '../../vendors/velocity.easeplus';
-// import 'custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git
-// import 'html5-polyfills/classList';
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } } // import 'html5-polyfills/classList';
 // import 'html5-polyfills/dataset';
 // import 'fetch';
 // import 'rAF';  // https://gist.github.com/1579671.git
+// import 'polyfill/function';
+// import 'lodash';
+// import 'Velocity';
+// import 'Velocity.ui';
+// import 'velocity.easeplus';
+// import 'vendor/custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git
 // import 'html-domparser';  // https://gist.github.com/1129031.git
-// import '../../requires/polyfill/function';
 
-/**
- * get path name
- */
-var getPathName = function getPathName() {
-  return location.pathname.replace('index.html', '');
-};
 
 window.addEventListener('DOMContentLoaded', function () {
-
-  // const page = getPathName();
 
   var _modules = [[_sample2.default, '.js-sample']];
 
