@@ -662,12 +662,13 @@ const webpackTask = (isSrcDir) => {
   const webpackOpts = () => {
     const opts = {
       resolve: {
+        descriptionFiles: [ 'package.json', 'bower.json' ],
+        extensions      : [ '.js', '.ts', '.coffee' ],
         modules: [
           join(__dirname, 'webpack/imports'),
           join(__dirname, 'bower_components'),
           'node_modules'
         ],
-        descriptionFiles: [ 'package.json', 'bower.json' ],
         alias: {
           // 'es6-promise': 'es6-promise/es6-promise.min',
           // 'lodash'     : 'lodash/dist/lodash.min',
@@ -694,17 +695,16 @@ const webpackTask = (isSrcDir) => {
               // }],
             ],
           },
-          exclude: /(node_modules|bower_components)/,
         });
       },
       typescript() {
         opts.module.rules.push({
-          test   : /\.ts$/,
-          use    : 'ts',
-          exclude: /(node_modules|bower_components)/,
+          test: /\.ts$/,
+          use : 'ts',
         });
       },
     })[jsCompiler]();
+    opts.module.rules[0].exclude = /(node_modules|bower_components)/;
     // if(isProduction) {
     //   merge(opts.plugins, [
     //     new webpack.LoaderOptionsPlugin({
