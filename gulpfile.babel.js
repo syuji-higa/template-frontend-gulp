@@ -656,7 +656,7 @@ const webpackTask = (isSrcDir) => {
         modules: [
           join(__dirname, 'webpack/imports'),
           join(__dirname, 'bower_components'),
-          'node_modules'
+          'node_modules',
         ],
         alias: {
           // 'es6-promise': 'es6-promise/es6-promise.min',
