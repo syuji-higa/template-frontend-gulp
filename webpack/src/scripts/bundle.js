@@ -7,7 +7,7 @@
 // import 'Velocity';
 // import 'Velocity.ui';
 // import 'velocity.easeplus';
-// import 'vendor/custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git
+// import 'custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git
 // import 'html-domparser';  // https://gist.github.com/1129031.git
 import { createIncetance, createSingleIncetance } from 'view/incetance';
 import Sample from 'sample';
