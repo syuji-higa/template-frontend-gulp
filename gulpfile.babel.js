@@ -672,17 +672,19 @@ const webpackTask = (isSrcDir) => {
     ({
       babel() {
         _opts.module.rules.push({
-          test   : /\.js$/,
-          use    : 'babel',
-          options: {
-            presets: [ 'es2015', 'stage-0' ],
-            plugins: [
+          test: /\.js$/,
+          use : {
+            loader: 'babel',
+            options: {
+              presets: [ 'es2015', 'stage-0' ],
+              plugins: [
               // 'transform-object-assign',
               // [ 'transform-runtime', {
               //   'polyfill'   : false,
               //   'regenerator': true,
               // }],
-            ],
+              ],
+            },
           },
         });
       },
