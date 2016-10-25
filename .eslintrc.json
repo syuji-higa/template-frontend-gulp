@@ -14,7 +14,6 @@
     "eqeqeq": 1,
     "no-loop-func": 1,
     "no-native-reassign": 2,
-    "no-new": 2,
     "no-param-reassign": 1,
     "no-redeclare": 1,
     "no-self-compare": 2,
