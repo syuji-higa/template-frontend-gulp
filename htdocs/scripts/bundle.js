@@ -173,7 +173,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 // import 'Velocity';
 // import 'Velocity.ui';
 // import 'velocity.easeplus';
-// import 'vendor/custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git
+// import 'custom-event-polyfill';  // https://github.com/krambuhl/custom-event-polyfill.git
 // import 'html-domparser';  // https://gist.github.com/1129031.git
 
 

@@ -580,9 +580,9 @@ gulp.task('sprite', () => {
         algorithmOpts: { sort: false },
       },
     }))
-    .pipe(gulpif('*.png', gulp.dest(_imageDest)))
-    .pipe(gulpif('*.styl', cache('stylus')))
-    .pipe(gulpif('*.styl', gulp.dest(SPRITE_CSS_DEST)));
+    .pipe(gulpif(['*.png'], gulp.dest(_imageDest)))
+    .pipe(gulpif(['*.styl'], cache('stylus')))
+    .pipe(gulpif(['*.styl'], gulp.dest(SPRITE_CSS_DEST)));
 });
 
 
@@ -674,7 +674,7 @@ const webpackTask = (isSrcDir) => {
         _opts.module.rules.push({
           test: /\.js$/,
           use : {
-            loader: 'babel',
+            loader: 'babel-loader',
             options: {
               presets: [ 'es2015', 'stage-0' ],
               plugins: [
@@ -691,7 +691,7 @@ const webpackTask = (isSrcDir) => {
       typescript() {
         _opts.module.rules.push({
           test: /\.ts$/,
-          use : 'ts',
+          use : 'ts-loader',
         });
       },
     })[jsCompiler]();
