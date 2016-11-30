@@ -580,9 +580,9 @@ gulp.task('sprite', () => {
         algorithmOpts: { sort: false },
       },
     }))
-    .pipe(gulpif(['*.png'], gulp.dest(_imageDest)))
-    .pipe(gulpif(['*.styl'], cache('stylus')))
-    .pipe(gulpif(['*.styl'], gulp.dest(SPRITE_CSS_DEST)));
+    .pipe(gulpif('*.png', gulp.dest(_imageDest)))
+    .pipe(gulpif('*.styl', cache('stylus')))
+    .pipe(gulpif('*.styl', gulp.dest(SPRITE_CSS_DEST)));
 });
 
 
