@@ -566,7 +566,9 @@ gulp.task('sprite', () => {
 
   isSpritesChanged = false;
 
-  const _imageDest = isProduction ? IMAGEMIN_SRC : SPRITE_DEST;
+  const _imageDest  = isProduction ? IMAGEMIN_SRC : SPRITE_DEST;
+  const _pingFilter = filter(['*.png'], { restore: true });
+  const _stylFilter = filter(['*.styl'], { restore: true });
 
   return gulp.src(join(SPRITE_SRC, '/**/*.png'))
     .pipe(plumber(PLUMBER_OPTS))
@@ -580,9 +582,13 @@ gulp.task('sprite', () => {
         algorithmOpts: { sort: false },
       },
     }))
-    .pipe(gulpif('*.png', gulp.dest(_imageDest)))
-    .pipe(gulpif('*.styl', cache('stylus')))
-    .pipe(gulpif('*.styl', gulp.dest(SPRITE_CSS_DEST)));
+    .pipe(_pingFilter)
+    .pipe(gulp.dest(_imageDest))
+    .pipe(_pingFilter.restore)
+    .pipe(_stylFilter)
+    .pipe(cache('stylus'))
+    .pipe(gulp.dest(SPRITE_CSS_DEST))
+    .pipe(_stylFilter.restore);
 });
 
 
