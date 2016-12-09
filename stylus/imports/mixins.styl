@@ -215,12 +215,97 @@ create-keyframes(name, duration, interval, animationHash)
 opacity(val)
   opacity val
 
+border-radius(vals...)
+  border-radius vals
+
 clearfix()
   +cache('clearfix')
     &::after
       content ""
       display block
       clear both
+
+transform(vals...)
+  -webkit-transform vals
+  transform vals
+
+transform-origin(vals...)
+  -webkit-transform-origin vals
+  transform-origin vals
+
+transform-style(val)
+  -webkit-transform-style val
+  transform-style val
+
+backface-visibility(val)
+  -webkit-backface-visibility val
+  backface-visibility val
+
+perspective(val)
+  -webkit-perspective val
+  perspective val
+
+perspective-origin(vals...)
+  -webkit-perspective-origin vals
+  perspective-origin vals
+
+transition(vals...)
+  -webkit-transition vals
+  transition vals
+
+transition-property(vals...)
+  -webkit-transition-property vals
+  transition-property vals
+
+transition-duration(vals...)
+  -webkit-transition-duration vals
+  transition-duration vals
+
+transition-property(vals...)
+  -webkit-transition-property vals
+  transition-property vals
+
+transition-timing-function(vals...)
+  -webkit-transition-timing-function vals
+  transition-timing-function vals
+
+animation(vals...)
+  -webkit-animation vals
+  animation vals
+
+animation-name(vals...)
+  -webkit-animation-name vals
+  animation-name vals
+
+animation-duration(vals...)
+  -webkit-animation-duration vals
+  animation-duration vals
+
+animation-timing-function(vals...)
+  -webkit-animation-timing-function vals
+  animation-timing-function vals
+
+animation-delay(vals...)
+  -webkit-animation-delay vals
+  animation-delay vals
+
+animation-iteration-count(vals...)
+  -webkit-animation-iteration-count vals
+  animation-iteration-count vals
+
+animation-direction(vals...)
+  -webkit-animation-direction vals
+  animation-direction vals
+
+animation-fill-mode(vals...)
+  -webkit-animation-fill-mode vals
+  animation-fill-mode vals
+
+animation-play-state(vals...)
+  -webkit-animation-play-state vals
+  animation-play-state vals
+
+vendors = webkit official
 
 // ==============================
 // polyfiles
