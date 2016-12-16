@@ -41,6 +41,12 @@ Thumb.db
 # SASS
 .sass-cache
 
+# ESdoc
+.esdoc
+
+# url-list
+.url-list/index.html
+
 # sourcemap
 *.map
 
