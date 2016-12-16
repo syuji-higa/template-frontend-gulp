@@ -276,9 +276,12 @@ gulp.task('coding-watch', (done) => {
   watchStart([ join(DEST_ROOT, '/**/*.+(html|php)') ], (file) => {
     const _page = viewingPage ? join(__dirname, DEST_ROOT, viewingPage) : '*.+(html|php)';
 
+    if(file.path !== _page) return;
+
     gulp.src(file.path)
-      .pipe(gulpif(_page, browserSync.reload({ stream: true })))
-      .pipe(gulpif('*.html', htmlhint()));
+      .pipe(browserSync.reload({ stream: true }))
+      .pipe(filter(['*.html'])
+      .pipe(htmlhint()));
   });
 
   watchStart([ join(DEST_ROOT, '/**/*.+(css|js|png|jpg|jpeg|gif|svg)') ], (file) => {
