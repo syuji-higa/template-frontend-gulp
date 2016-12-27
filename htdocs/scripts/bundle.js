@@ -68,10 +68,10 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -100,10 +100,10 @@ exports.default = Sample;
 
 /***/ },
 /* 1 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-"use strict";
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -156,7 +156,7 @@ var createSingleIncetance = exports.createSingleIncetance = function createSingl
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
-'use strict';
+
 
 var _incetance = __webpack_require__(1);
 
