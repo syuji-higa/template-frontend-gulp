@@ -88,7 +88,7 @@ let isSpritesChanged = true;
 /**
  * viewing page
  */
-let viewingPage   = '';
+let viewingPage     = '';
 const viewPageFiles = [];
 
 
@@ -682,7 +682,7 @@ const webpackTask = (isSrcDir) => {
         _opts.module.rules.push({
           test: /\.js$/,
           use : {
-            loader: 'babel-loader',
+            loader : 'babel-loader',
             options: {
               presets: [ 'es2017', 'stage-0' ],
             },
