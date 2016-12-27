@@ -681,18 +681,16 @@ const webpackTask = (isSrcDir) => {
       babel() {
         _opts.module.rules.push({
           test: /\.js$/,
-          use : {
-            loader : 'babel-loader',
-            options: {
-              presets: [ 'es2017', 'stage-0' ],
-            },
+          loader : 'babel-loader',
+          options: {
+            presets: [ 'es2017', 'stage-0' ],
           },
         });
       },
       typescript() {
         _opts.module.rules.push({
-          test: /\.ts$/,
-          use : 'ts-loader',
+          test  : /\.ts$/,
+          loader: 'ts-loader',
         });
       },
     })[jsCompiler]();
