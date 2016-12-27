@@ -685,13 +685,6 @@ const webpackTask = (isSrcDir) => {
             loader: 'babel-loader',
             options: {
               presets: [ 'es2015', 'stage-0' ],
-              plugins: [
-              // 'transform-object-assign',
-              // [ 'transform-runtime', {
-              //   'polyfill'   : false,
-              //   'regenerator': true,
-              // }],
-              ],
             },
           },
         });
