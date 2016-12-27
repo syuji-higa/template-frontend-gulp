@@ -488,11 +488,11 @@ const pugTask = (srcPath, destPath, isSrcDirUpdate) => {
 const pugFactoryTask = (isJsonFileUpdate) => {
   const _factory = () => {
     const _transform = function(data, encode, callback) {
-      const _tmps = JSON.parse(data.contents.toString());
+      const _tmps = JSON.parse(data.contents);
       forEach(_tmps, (pages, tmpPath) => {
         forEach(pages, (page, destPath) => {
           const _vals = reduce(page, (memo, val, key) => {
-            return `${ memo }  - var ${ key } = '${ val }'\n`;
+            return `${ memo }  - var ${ key } = ${ JSON.stringify(val) }\n`;
           }, '');
           const _tmpContent = fs.readFileSync(join(PUG_BASE, tmpPath)).toString().split('{{vars}}');
           const _contents   = _tmpContent[0] + _vals + _tmpContent[1];
