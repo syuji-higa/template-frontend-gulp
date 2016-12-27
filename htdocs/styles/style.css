@@ -461,29 +461,7 @@ dl {
 dd {
   margin-left: 0;
 }
-@-moz-keyframes delayView {
-  0% {
-    opacity: 0;
-  }
-  99.999% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @-webkit-keyframes delayView {
-  0% {
-    opacity: 0;
-  }
-  99.999% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-o-keyframes delayView {
   0% {
     opacity: 0;
   }
@@ -505,23 +483,7 @@ dd {
     opacity: 1;
   }
 }
-@-moz-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 @-webkit-keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-o-keyframes fadeIn {
   0% {
     opacity: 0;
   }
@@ -537,23 +499,7 @@ dd {
     opacity: 1;
   }
 }
-@-moz-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 @-webkit-keyframes fadeOut {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@-o-keyframes fadeOut {
   0% {
     opacity: 1;
   }
