@@ -668,9 +668,9 @@ const webpackTask = (isSrcDir) => {
           'node_modules',
         ],
         alias: {
-          // 'es6-promise': 'es6-promise/es6-promise.min',
-          // 'Velocity'   : 'velocity/velocity.min',
-          // 'Velocity.ui': 'velocity/velocity.ui.min',
+          // 'babel-polyfill': 'babel-polyfill/dist/polyfill.min',
+          // 'velocity'      : 'velocity-animate/velocity.min',
+          // 'velocity.ui'   : 'velocity-animate/velocity.ui.min',
         },
       },
       module : { rules: [] },
@@ -695,23 +695,22 @@ const webpackTask = (isSrcDir) => {
       },
     })[jsCompiler]();
     _opts.module.rules[0].exclude = /(node_modules|bower_components)/;
-    // if(isProduction) {
-    //   merge(_opts.plugins, [
-    //     new webpack.LoaderOptionsPlugin({
-    //       minimize: true,
-    //       debug   : false,
-    //     }),
-    //     new webpack.optimize.UglifyJsPlugin({
-    //       compress : true,
-    //       mangle   : true,
-    //       beautify : false,
-    //       output   : { comments: false },
-    //       sourceMap: false,
-    //     })
-    //   ]);
-    // }
     return _opts;
-  };
+  })();
+
+  const _productionPlugins = [
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug   : false,
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress : true,
+      mangle   : true,
+      beautify : false,
+      output   : { comments: false },
+      sourceMap: false,
+    })
+  ];
 
   const _build = (opts) => {
     const { basedir, src, dest, webpackOpts } = opts;
@@ -727,7 +726,12 @@ const webpackTask = (isSrcDir) => {
     const _transform = (data, encode, callback) => {
       const _destDirname    = dirname(join(basedir, dest, relative(src, data.path)));
       const _destFilename   = basename(data.path, jsExtension);
-      const _webpackAllOpts = merge(_webpackBaseOpts(data.path, _destDirname, _destFilename), webpackOpts);
+      const _webpackAllOpts = merge(
+        _webpackBaseOpts(data.path, _destDirname, _destFilename), webpackOpts
+      );
+      // if(isProduction) {
+      //   merge(_webpackAllOpts.plugins, _productionPlugins);
+      // }
       webpack(_webpackAllOpts, (err, stats) => {
         if(err) {
           throw new PluginError('webpack', err);
@@ -752,7 +756,7 @@ const webpackTask = (isSrcDir) => {
       basedir    : __dirname,
       src        : WEBPACK_SRC,
       dest       : WEBPACK_DEST,
-      webpackOpts: _webpackOpts(),
+      webpackOpts: _webpackOpts,
     }));
 };
 
