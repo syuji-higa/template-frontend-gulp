@@ -15,6 +15,7 @@ block html
         block styles
           link(rel="stylesheet" href=relative('sp/styles/style.css') media="all")
         block scripts
+          script(src=relative('scripts/vendor.js'))
           script(src=relative('sp/scripts/bundle.js'))
     body&attributes(bodyAttrs)
       block body

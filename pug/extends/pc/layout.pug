@@ -13,6 +13,7 @@ block html
         block styles
           link(rel="stylesheet" href=relative('styles/style.css') media="all")
         block scripts
+          script(src=relative('scripts/vendor.js'))
           script(src=relative('scripts/bundle.js'))
     body&attributes(bodyAttrs)
       block body
