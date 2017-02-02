@@ -241,7 +241,7 @@ const jsCompiler = 'typescript';
 ```
 
 ## webpack
-パッケージマネージャーに [Bower](http://bower.io/) を使用しています。
+パッケージマネージャーには [npm](https://www.npmjs.com/)、[Bower](http://bower.io/) が使えます。
 
 minファイルなど package.json で指定されている main 以外のファイルを使用したい場合は、  
 オプションの alias に指定すると便利。
