@@ -3431,9 +3431,9 @@ gulp-sourcemaps@^1.5.2:
     through2 "2.X"
     vinyl "1.X"
 
-gulp-stylus-sprites@0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/gulp-stylus-sprites/-/gulp-stylus-sprites-0.1.0.tgz#89498f0844570a98522234e6af017018cdc23888"
+gulp-stylus-sprites@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/gulp-stylus-sprites/-/gulp-stylus-sprites-0.1.2.tgz#d25672de01da9b07834961cf98b61dedc120133c"
   dependencies:
     gulp-util "^3.0.8"
     lodash "^3.10.1"
