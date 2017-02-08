@@ -657,7 +657,7 @@ gulp.task('webpack-all', () => {
 });
 
 const webpackTask = (isSrcDir) => {
-  const _webpackOpts = () => {
+  const _webpackOpts = (() => {
     const _opts = {
       resolve: {
         descriptionFiles: [ 'package.json', 'bower.json' ],
