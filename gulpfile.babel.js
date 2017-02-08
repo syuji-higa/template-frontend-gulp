@@ -581,7 +581,7 @@ gulp.task('sprite', () => {
       imgSrcBase     : SPRITE_SRC.replace('./', '/'),
       stylusFileName : 'sprite',
       spritesmithOpts: {
-        engine       : 'pngsmith',
+        algorithm    : 'top-down',
         algorithmOpts: { sort: false },
       },
     }))
