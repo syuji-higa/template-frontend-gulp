@@ -65,9 +65,6 @@ const browserSyncEsdoc   = bs.create();
  * options
  */
 
-// javascript compiler
-const jsCompiler = 'babel';  // 'babel' or 'typescript'
-
 // output url list to htdocs
 const outputUrlListToHtdocs = false;
 
@@ -125,17 +122,6 @@ const WEBPACK_DEST  = DEST_ROOT;
 const URL_LIST = '.url-list';
 
 const ESDOC = '.esdoc';
-
-
-/**
- * javascript extension
- */
-const jsExtension = (() => {
-  return ({
-    babel     : '.js',
-    typescript: '.ts',
-  })[jsCompiler];
-})();
 
 
 /**
@@ -657,46 +643,36 @@ gulp.task('webpack-all', () => {
 });
 
 const webpackTask = (isSrcDir) => {
-  const _webpackOpts = (() => {
-    const _opts = {
-      resolve: {
-        descriptionFiles: [ 'package.json', 'bower.json' ],
-        extensions      : [ '.js', '.ts', '.coffee' ],
-        modules: [
-          join(__dirname, 'webpack/imports'),
-          join(__dirname, 'bower_components'),
-          'node_modules',
-        ],
-        alias: {
-          // 'babel-polyfill': 'babel-polyfill/dist/polyfill.min',
-          // 'velocity'      : 'velocity-animate/velocity.min',
-          // 'velocity.ui'   : 'velocity-animate/velocity.ui.min',
-        },
+  const _webpackOpts = {
+    resolve: {
+      descriptionFiles: [ 'package.json', 'bower.json' ],
+      extensions      : [ '.js' ],
+      modules: [
+        join(__dirname, 'webpack/imports'),
+        join(__dirname, 'bower_components'),
+        'node_modules',
+      ],
+      alias: {
+        // 'babel-polyfill': 'babel-polyfill/dist/polyfill.min',
+        // 'velocity'      : 'velocity-animate/velocity.min',
+        // 'velocity.ui'   : 'velocity-animate/velocity.ui.min',
       },
-      module : { rules: [] },
-      devtool: 'source-map',
-      plugins: [],
-    };
-    ({
-      babel() {
-        _opts.module.rules.push({
+    },
+    module : {
+      rules: [
+        {
           test: /\.js$/,
           loader : 'babel-loader',
           options: {
             presets: [ 'es2017', 'stage-0' ],
           },
-        });
-      },
-      typescript() {
-        _opts.module.rules.push({
-          test  : /\.ts$/,
-          loader: 'ts-loader',
-        });
-      },
-    })[jsCompiler]();
-    _opts.module.rules[0].exclude = /(node_modules|bower_components)/;
-    return _opts;
-  })();
+          exclude: /(node_modules|bower_components)/,
+        }
+      ],
+    },
+    devtool: 'source-map',
+    plugins: [],
+  };
 
   const _productionPlugins = [
     new webpack.LoaderOptionsPlugin({
@@ -725,7 +701,7 @@ const webpackTask = (isSrcDir) => {
     };
     const _transform = (data, encode, callback) => {
       const _destDirname    = dirname(join(basedir, dest, relative(src, data.path)));
-      const _destFilename   = basename(data.path, jsExtension);
+      const _destFilename   = basename(data.path, '.js');
       const _webpackAllOpts = merge(
         _webpackBaseOpts(data.path, _destDirname, _destFilename), webpackOpts
       );
@@ -746,12 +722,12 @@ const webpackTask = (isSrcDir) => {
     return through.obj(_transform, _flush);
   };
 
-  return gulp.src(join(WEBPACK_SRC, `/**/*${ jsExtension }`))
+  return gulp.src(join(WEBPACK_SRC, '/**/*.js'))
     .pipe(plumber(PLUMBER_OPTS))
     .pipe(gulpif(isSrcDir, cache('webpack')))
-    .pipe(gulpif(jsCompiler === 'babel', eslint({ useEslintrc: true })))
-    .pipe(gulpif(jsCompiler === 'babel', eslint.format()))
-    .pipe(gulpif(jsCompiler === 'babel', eslint.failAfterError()))
+    .pipe(eslint({ useEslintrc: true }))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
     .pipe(_build({
       basedir    : __dirname,
       src        : WEBPACK_SRC,
