@@ -321,7 +321,7 @@ const browserSyncMiddleware = (req, res, next) => {
 
   if(_otherUrl) {
     const _url = join(__dirname, DEST_ROOT, _otherUrl[1]);
-    if((viewPageFiles.length === 0) || (viewPageFiles.every((file) => _url !== file))) {
+    if((viewPageFiles.length === 0) || viewPageFiles.every((file) => _url !== file)) {
       viewPageFiles.push(_url);
     }
   }
