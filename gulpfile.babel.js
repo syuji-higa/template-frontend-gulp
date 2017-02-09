@@ -526,7 +526,7 @@ const stylusTask = (isSrcDirUpdate) => {
     // compress     : isProduction,
   };
   if(!isProduction) {
-    Object.assign(_stylusOpts, {
+    Object.assign({}, _stylusOpts, {
       sourcemap: { inline: true },
     });
   }
@@ -703,10 +703,10 @@ const webpackTask = (isSrcDir) => {
       const _destDirname    = dirname(join(basedir, dest, relative(src, data.path)));
       const _destFilename   = basename(data.path, '.js');
       const _webpackAllOpts = Object.assign(
-        _webpackBaseOpts(data.path, _destDirname, _destFilename), webpackOpts
+        {}, _webpackBaseOpts(data.path, _destDirname, _destFilename), webpackOpts
       );
       // if(isProduction) {
-      //   Object.assign(_webpackAllOpts.plugins, _productionPlugins);
+      //   Object.assign({}, _webpackAllOpts.plugins, _productionPlugins);
       // }
       webpack(_webpackAllOpts, (err, stats) => {
         if(err) {
