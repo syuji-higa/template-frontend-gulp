@@ -9,7 +9,9 @@ import 'html-domparser';  // https://gist.github.com/1129031.git
 import 'velocity';  // https://www.npmjs.com/package/velocity-animate
 import 'velocity.ui';  // https://www.npmjs.com/package/velocity-animate
 import 'velocity.easeplus';  // https://github.com/syuji-higa/easeplus-velocity
+import 'hash-router';  // https://github.com/michaelsogos/Hash-Router
 import deepAssign from 'deep-assign';  // https://www.npmjs.com/package/deep-assign
+import doT from 'doT';  // https://www.npmjs.com/package/dot
 
 if(typeof VENDORS !== 'undefined') {
   throw new Error('namespace "VENDORS" is already exists.');
@@ -17,3 +19,21 @@ if(typeof VENDORS !== 'undefined') {
 window.VENDORS = {};
 
 VENDORS.deepAssign = deepAssign;
+VENDORS.doT        = doT;
+
+doT.templateSettings = {
+  evaluate    : /<%([\s\S]+?(\}?)+)%>/g,
+  interpolate : /<%=([\s\S]+?)%>/g,
+  encode      : /<%!([\s\S]+?)%>/g,
+  use         : /<%#([\s\S]+?)%>/g,
+  useParams   : /(^|[^\w$])def(?:\.|\[[\'\"])([\w$\.]+)(?:[\'\"]\])?\s*\:\s*([\w$\.]+|\"[^\"]+\"|\'[^\']+\'|\{[^\}]+\})/g,
+  define      : /<%##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#%>/g,
+  defineParams: /^\s*([\w$]+):([\s\S]+)/,
+  conditional : /<%\?(\?)?\s*([\s\S]*?)\s*%>/g,
+  iterate     : /<%~\s*(?:%>|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*%>)/g,
+  varname         : 'it',
+  strip           : true,
+  append          : true,
+  selfcontained   : false,
+  doNotSkipEncoded: false
+};

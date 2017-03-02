@@ -3423,11 +3423,10 @@ gulp-sourcemaps@^1.5.2:
     through2 "2.X"
     vinyl "1.X"
 
-gulp-stylus-sprites@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/gulp-stylus-sprites/-/gulp-stylus-sprites-0.1.5.tgz#84c6ec56be4f8077c2c3702c718f2dc71f1b0a25"
+gulp-stylus-sprites@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/gulp-stylus-sprites/-/gulp-stylus-sprites-0.1.6.tgz#b4b43f1d8816fb44c7a990d85bbef73291735d11"
   dependencies:
-    babel-polyfill "^6.22.0"
     gulp-util "^3.0.8"
     spritesmith "^3.1.0"
     through2 "^2.0.3"
