@@ -1,4 +1,4 @@
-import { createIncetance, createSingleIncetance } from 'utility/incetance';
+import { createInstance, createSingleInstance } from 'utility/instance';
 import Sample from 'sample';
 
 if(typeof NS !== 'undefined') {
@@ -17,11 +17,11 @@ window.addEventListener('DOMContentLoaded', () => {
   ];
 
   _modules.forEach((arr) => {
-    createIncetance(...arr);
+    createInstance(...arr);
   });
 
   _singleModules.forEach((arr) => {
-    createSingleIncetance(...arr);
+    createSingleInstance(...arr);
   });
 
 });
