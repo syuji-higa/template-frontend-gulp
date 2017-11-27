@@ -28,6 +28,7 @@ import through from 'through2';
 import sort from 'gulp-sort';
 import filter from 'gulp-filter';
 import del from 'del';
+import clone from 'clone';
 import watch from 'gulp-watch';
 import connect from 'gulp-connect-php';
 import bs from 'browser-sync';
@@ -685,7 +686,7 @@ const webpackTask = (isSrcDir) => {
       beautify : false,
       output   : { comments: false },
       sourceMap: false,
-    })
+    }),
   ];
 
   const _build = (opts) => {
@@ -703,11 +704,11 @@ const webpackTask = (isSrcDir) => {
       const _destDirname    = dirname(join(basedir, dest, relative(src, data.path)));
       const _destFilename   = basename(data.path, '.js');
       const _webpackAllOpts = Object.assign(
-        {}, _webpackBaseOpts(data.path, _destDirname, _destFilename), webpackOpts
+        {}, _webpackBaseOpts(data.path, _destDirname, _destFilename), clone(webpackOpts)
       );
-      // if(isProduction) {
-      //   Object.assign({}, _webpackAllOpts.plugins, _productionPlugins);
-      // }
+      if(isProduction && _destFilename !== 'vendor') {
+        Object.assign(_webpackAllOpts.plugins, _productionPlugins);
+      }
       webpack(_webpackAllOpts, (err, stats) => {
         if(err) {
           throw new PluginError('webpack', err);
